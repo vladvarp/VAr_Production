@@ -4,7 +4,7 @@ from pathlib import Path
 
 def get_file_type(filename):
     ext = Path(filename).suffix.lower()
-    if ext in ['.txt']:
+    if ext in ['.inf']:
         return "text"
     elif ext in ['.jpg', '.jpeg', '.png']:
         return "image"
@@ -46,5 +46,5 @@ def scan_directory(root_path, output_file):
 
 if __name__ == "__main__":
     root = os.getcwd()
-    output = os.path.join(root, "directory_structure.json")
+    output = os.path.join(root, "source/structure.json")
     scan_directory(root, output)

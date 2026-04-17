@@ -1,0 +1,79 @@
+{
+  "tree": {
+    "name": "VAr_Production",
+    "type": "directory",
+    "children": [
+      {
+        "name": "source",
+        "type": "directory",
+        "children": [
+          {
+            "name": "portfolio",
+            "type": "directory",
+            "children": [
+              {
+                "name": "3dtour",
+                "type": "directory",
+                "children": []
+              },
+              {
+                "name": "exterior",
+                "type": "directory",
+                "children": []
+              },
+              {
+                "name": "interior",
+                "type": "directory",
+                "children": [
+                  {
+                    "name": "01_ataman",
+                    "type": "directory",
+                    "children": [
+                      {
+                        "name": "6P7ZNOvlLbw3IN3OJB4QXrFtTVrMosqF6WCOns7I7zN_2xDcf6_M2CQOpzgoA_swh09HP3DQw9pOKaB-yf5y-yna.jpg",
+                        "type": "image"
+                      },
+                      {
+                        "name": "7l9cfO01V_may4dOMBggTGhFtzYGJlbTkGl6DbjTL65prKMxZ-xqRFNW2M7wkvGnCo-7LIRbkAZz9yqBveZkkknN.jpg",
+                        "type": "image"
+                      },
+                      {
+                        "name": "image.jpg",
+                        "type": "image"
+                      },
+                      {
+                        "name": "info.inf",
+                        "type": "text"
+                      },
+                      {
+                        "name": "N9HY7_YSwSow-qekm3j3PvPRihoULDgY7SYFwjnuxVcSB3qmwj157d2bAKI_nBoxPcA1Y5bYt2EVGsm-5Rx38EFX.jpg",
+                        "type": "image"
+                      }
+                    ]
+                  },
+                  {
+                    "name": "info.inf",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "name": "subject",
+                "type": "directory",
+                "children": []
+              },
+              {
+                "name": "info.inf",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "name": "structure.json",
+            "type": "file"
+          }
+        ]
+      }
+    ]
+  }
+}

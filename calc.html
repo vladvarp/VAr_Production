@@ -495,11 +495,11 @@ input[type="range"]::-moz-range-thumb {
     <div class="fgrid g2">
       <div class="field">
         <span class="field-lbl">Тип работы</span>
-        <select id="sel-type" onchange="calc()">
-          <option value="700">Интерьер</option>
-          <option value="300">Интерьер офиса</option>
-          <option value="300">Экстерьер дома</option>
-          <option value="15">Жилой комплекс</option>
+<select id="sel-type" onchange="calc()">
+          <option value="interior">Интерьер</option>
+          <option value="office">Интерьер офиса</option>
+          <option value="exterior">Экстерьер дома</option>
+          <option value="residential">Жилой комплекс</option>
         </select>
       </div>
       <div class="field">
@@ -516,9 +516,9 @@ input[type="range"]::-moz-range-thumb {
       <div class="field">
         <span class="field-lbl">Наличие чертежа</span>
         <div class="rgroup" id="rg-draw">
-          <div class="ritem on" data-val="100" onclick="pickR('rg-draw',this);calc()"><div class="rdot"></div>Чертёж от руки с размерами</div>
-          <div class="ritem" data-val="80" onclick="pickR('rg-draw',this);calc()"><div class="rdot"></div>Чертёж в формате PDF (скан)</div>
-          <div class="ritem" data-val="0" onclick="pickR('rg-draw',this);calc()"><div class="rdot"></div>Чертёж в формате DWG</div>
+          <div class="ritem on" data-val="hand" onclick="pickR('rg-draw',this);calc()"><div class="rdot"></div>Чертёж от руки с размерами</div>
+          <div class="ritem" data-val="pdf" onclick="pickR('rg-draw',this);calc()"><div class="rdot"></div>Чертёж в формате PDF (скан)</div>
+          <div class="ritem" data-val="dwg" onclick="pickR('rg-draw',this);calc()"><div class="rdot"></div>Чертёж в формате DWG</div>
         </div>
       </div>
     </div>
@@ -572,12 +572,12 @@ input[type="range"]::-moz-range-thumb {
       <div class="field">
         <span class="field-lbl">Разрешение изображения</span>
         <select id="sel-pres" onchange="calc()">
-          <option value="150">HD — 1280 × 720</option>
-          <option value="300" selected>FHD — 1920 × 1080</option>
-          <option value="600">QHD — 2560 × 1440</option>
-          <option value="1000">4K — 3840 × 2160</option>
-          <option value="2000">8K — 7680 × 4320</option>
-          <option value="3500">16K — 15360 × 8640</option>
+          <option value="hd">HD — 1280 × 720</option>
+          <option value="fhd" selected>FHD — 1920 × 1080</option>
+          <option value="qhd">QHD — 2560 × 1440</option>
+          <option value="k4">4K — 3840 × 2160</option>
+          <option value="k8">8K — 7680 × 4320</option>
+          <option value="k16">16K — 15360 × 8640</option>
         </select>
       </div>
     </div>
@@ -616,10 +616,10 @@ input[type="range"]::-moz-range-thumb {
       <div class="field">
         <span class="field-lbl">Разрешение</span>
         <select id="sel-vres" onchange="calc()">
-          <option value="10">HD 1280×720</option>
-          <option value="20" selected>FHD 1920×1080</option>
-          <option value="40">QHD 2560×1440</option>
-          <option value="70">4K 3840×2160</option>
+          <option value="hd">HD 1280×720</option>
+          <option value="fhd" selected>FHD 1920×1080</option>
+          <option value="qhd">QHD 2560×1440</option>
+          <option value="k4">4K 3840×2160</option>
         </select>
       </div>
       <div class="field">
@@ -667,9 +667,9 @@ input[type="range"]::-moz-range-thumb {
       <div class="field">
         <span class="field-lbl">Качество панорам</span>
         <select id="sel-pano" onchange="calc()">
-          <option value="1000">360° панорама — 4000 × 2000</option>
-          <option value="2000" selected>360° панорама — 8000 × 4000</option>
-          <option value="4000">360° панорама — 16000 × 8000</option>
+          <option value="p4k">360° панорама — 4000 × 2000</option>
+          <option value="p8k" selected>360° панорама — 8000 × 4000</option>
+          <option value="p16k">360° панорама — 16000 × 8000</option>
         </select>
       </div>
     </div>
@@ -756,16 +756,16 @@ const P = {
 
   // Тип работы: руб. за 1 м²
   type_per_m2: {
-    interior:          700,
-    office:            300,
-    exterior:          300,
-    residential:        50,
+    interior:          560,
+    office:            420,
+    exterior:          420,
+    residential:        21,
   },
 
   // Надбавка за тип чертежа: руб. за 1 м²
   drawing_per_m2: {
-    hand:              100,   // от руки
-    pdf:                80,   // скан PDF
+    hand:              140,   // от руки
+    pdf:               112,   // скан PDF
     dwg:                 0,   // DWG — без надбавки
   },
 
@@ -774,31 +774,31 @@ const P = {
 
   // Фото: руб. за 1 изображение
   photo_per_img: {
-    hd:                150,
-    fhd:               300,
-    qhd:               600,
-    k4:               1000,
-    k8:               2000,
-    k16:              3500,
+    hd:                210,
+    fhd:               420,
+    qhd:               840,
+    k4:               1400,
+    k8:               2800,
+    k16:              4900,
   },
 
   // Видео: руб. за 1 кадр
   video_per_frame: {
-    hd:                 10,
-    fhd:                20,
-    qhd:                40,
-    k4:                 70,
+    hd:                 14,
+    fhd:                28,
+    qhd:                56,
+    k4:                 98,
   },
 
   // 360-тур: руб. за 1 точку
   pano_per_point: {
-    p4k:              1000,
-    p8k:              2000,
-    p16k:             4000,
+    p4k:              1400,
+    p8k:              2800,
+    p16k:             5600,
   },
 
   // Платформенная версия тура (WEB / macOS / Windows)
-  tour_platform:      5000,
+  tour_platform:      7000,
 
   // Аванс: доля от итога
   advance_ratio:       0.5,
@@ -838,11 +838,13 @@ function accToggle(key) {
 
 function calc() {
   // Основное
-  const typeRate = fv('sel-type');
-  const area     = fv('inp-area');
-  const drawEl   = document.querySelector('#rg-draw .ritem.on');
-  const drawRate = drawEl ? parseFloat(drawEl.dataset.val) || 0 : 0;
-  const modeling = withM((typeRate + drawRate) * area);
+  const typeKey   = $('sel-type').value;
+  const typeRate  = P.type_per_m2[typeKey] || 0;
+  const area      = fv('inp-area');
+  const drawEl    = document.querySelector('#rg-draw .ritem.on');
+  const drawKey   = drawEl ? drawEl.dataset.val : 'hand';
+  const drawRate  = P.drawing_per_m2[drawKey] || 0;
+  const modeling  = withM((typeRate + drawRate) * area);
   $('out-model').innerHTML = fmt(modeling) + '<small>₽</small>';
 
   // Файлы проекта
@@ -850,22 +852,25 @@ function calc() {
   $('out-files').innerHTML = fmt(files) + '<small>₽</small>';
 
   // Фото
-  const photoRate = fv('sel-pres');
+  const photoKey  = $('sel-pres').value;
+  const photoRate = P.photo_per_img[photoKey] || 0;
   const photoCnt  = fv('sl-photos');
   const photo     = withM(photoRate * photoCnt);
   $('out-photo').innerHTML = fmt(photo) + '<small>₽</small>';
 
   // Видео
-  const vRate  = fv('sel-vres');
-  const fps    = fv('sel-fps');
-  const dur    = fv('inp-dur');
-  const frames = fps * dur;
+  const vKey    = $('sel-vres').value;
+  const vRate   = P.video_per_frame[vKey] || 0;
+  const fps     = fv('sel-fps');
+  const dur     = fv('inp-dur');
+  const frames  = fps * dur;
   $('out-frames').innerHTML = fmt(frames) + '<small>кадров</small>';
   const video = withM(vRate * frames);
   $('out-video').innerHTML = fmt(video) + '<small>₽</small>';
 
   // Тур 360
-  const panoRate = fv('sel-pano');
+  const panoKey  = $('sel-pano').value;
+  const panoRate = P.pano_per_point[panoKey] || 0;
   const points   = fv('sl-pts');
   const dn       = on('ck-dn') ? 2 : 1;
   const platCnt  = (on('ck-web') ? 1 : 0) + (on('ck-mac') ? 1 : 0) + (on('ck-win') ? 1 : 0);

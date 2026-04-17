@@ -3,147 +3,485 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>V.Ar Production — Калькулятор</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+<title>V.Ar Production — Калькулятор стоимости</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
 <style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{
-  --ink:#0f0f0e;
-  --velvet:#1c1b1a;
-  --charcoal:#2a2927;
-  --mist:#3d3c3a;
-  --fog:#6b6a68;
-  --silver:#a8a7a5;
-  --smoke:#d4d3d1;
-  --cream:#f0ede8;
-  --white:#faf9f7;
-  --r:6px;
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --void:      #0a0908;
+  --velvet:    #131210;
+  --deep:      #1a1816;
+  --panel:     #201e1b;
+  --lift:      #272420;
+  --rim:       #2f2c27;
+  --divider:   rgba(255,255,255,0.07);
+  --divider2:  rgba(255,255,255,0.12);
+  --fog:       rgba(255,255,255,0.22);
+  --mist:      rgba(255,255,255,0.45);
+  --ash:       rgba(255,255,255,0.65);
+  --snow:      rgba(255,255,255,0.88);
+  --white:     #ffffff;
+  --gold:      #c8a96e;
+  --gold-dim:  rgba(200,169,110,0.18);
+  --gold-line: rgba(200,169,110,0.35);
+  --r:         4px;
+  --r2:        8px;
 }
-html,body{min-height:100vh;background:var(--cream);font-family:'Inter',sans-serif;color:var(--ink);-webkit-font-smoothing:antialiased}
-.page{max-width:680px;margin:0 auto;padding:48px 24px 80px}
 
-.masthead{border-bottom:1px solid var(--smoke);padding-bottom:32px;margin-bottom:36px}
-.masthead-eye{font-size:10px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--fog);margin-bottom:10px}
-.masthead-title{font-family:'Cormorant Garamond',serif;font-size:34px;font-weight:300;color:var(--ink);line-height:1.15}
-.masthead-title em{font-style:italic;color:var(--fog)}
-.masthead-sub{margin-top:10px;font-size:12px;color:var(--silver);line-height:1.7;max-width:420px}
-
-.section{margin-bottom:8px}
-.sec-head{
-  background:var(--velvet);color:var(--white);
-  padding:13px 20px;display:flex;align-items:center;justify-content:space-between;
-  cursor:pointer;user-select:none;border-radius:var(--r) var(--r) 0 0;transition:background .15s;
+html, body {
+  min-height: 100vh;
+  background: var(--void);
+  font-family: 'Jost', sans-serif;
+  color: var(--snow);
+  -webkit-font-smoothing: antialiased;
 }
-.sec-head:hover{background:var(--charcoal)}
-.sec-head.closed{border-radius:var(--r)}
-.sec-head h2{font-size:10px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.65)}
-.chev{width:16px;height:16px;display:flex;align-items:center;justify-content:center;transition:transform .2s}
-.chev svg{width:11px;height:11px;stroke:rgba(255,255,255,.4);stroke-width:2;fill:none;stroke-linecap:round}
-.sec-head.closed .chev{transform:rotate(-90deg)}
 
-.sec-body{background:var(--white);border:1px solid var(--smoke);border-top:none;border-radius:0 0 var(--r) var(--r);padding:24px}
-.sec-body.hide{display:none}
-.sec-hint{background:var(--cream);border:1px solid var(--smoke);border-top:1px solid rgba(0,0,0,.05);padding:9px 20px;font-size:11px;color:var(--silver);line-height:1.6;border-radius:0 0 var(--r) var(--r)}
-.sec-hint.hide{display:none}
-
-.row{display:grid;gap:14px;margin-bottom:18px}
-.c2{grid-template-columns:1fr 1fr}
-.c3{grid-template-columns:1fr 1fr 1fr}
-.c1{grid-template-columns:1fr}
-@media(max-width:520px){.c2,.c3{grid-template-columns:1fr}}
-
-.field{display:flex;flex-direction:column;gap:5px}
-.fl{font-size:9.5px;font-weight:600;letter-spacing:.13em;text-transform:uppercase;color:var(--fog)}
-
-.field select,.field input[type=number]{
-  height:38px;background:var(--cream);border:1px solid var(--smoke);border-radius:var(--r);
-  padding:0 11px;font-size:13px;color:var(--ink);font-family:'Inter',sans-serif;
-  outline:none;appearance:none;-webkit-appearance:none;transition:border-color .15s,box-shadow .15s;
+/* ── PAGE ── */
+.page {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 64px 28px 100px;
 }
-.field select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%23a8a7a5' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 11px center;padding-right:30px}
-.field select:focus,.field input[type=number]:focus{border-color:var(--charcoal);box-shadow:0 0 0 3px rgba(42,41,39,.1)}
-.field select:hover,.field input[type=number]:hover{border-color:var(--mist)}
-.nw{position:relative}
-.nw input{width:100%;padding-right:36px}
-.nu{position:absolute;right:11px;top:50%;transform:translateY(-50%);font-size:11px;color:var(--silver);pointer-events:none}
 
-.rstack{display:flex;flex-direction:column;gap:5px}
-.ri{display:flex;align-items:center;gap:10px;padding:10px 13px;border-radius:var(--r);border:1px solid var(--smoke);background:var(--cream);cursor:pointer;font-size:12.5px;color:var(--ink);transition:all .12s}
-.ri:hover{border-color:var(--mist);background:var(--white)}
-.ri.on{border-color:var(--charcoal);background:var(--white)}
-.rpip{width:15px;height:15px;border-radius:50%;border:1.5px solid var(--smoke);flex-shrink:0;display:flex;align-items:center;justify-content:center;transition:all .12s}
-.rpip::after{content:'';width:7px;height:7px;border-radius:50%;background:transparent;transition:background .12s}
-.ri.on .rpip{border-color:var(--ink)}
-.ri.on .rpip::after{background:var(--ink)}
+/* ── MASTHEAD ── */
+.masthead {
+  margin-bottom: 56px;
+  position: relative;
+  padding-bottom: 40px;
+}
+.masthead::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0;
+  width: 100%; height: 1px;
+  background: linear-gradient(90deg, var(--gold-line) 0%, transparent 70%);
+}
+.masthead-label {
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: .32em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 16px;
+}
+.masthead-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(32px, 5vw, 48px);
+  font-weight: 400;
+  line-height: 1.1;
+  color: var(--white);
+  letter-spacing: -.01em;
+}
+.masthead-title em {
+  font-style: italic;
+  color: var(--mist);
+  font-weight: 400;
+}
+.masthead-caption {
+  margin-top: 14px;
+  font-size: 13px;
+  font-weight: 300;
+  color: var(--fog);
+  line-height: 1.7;
+  max-width: 380px;
+  letter-spacing: .01em;
+}
 
-.cstack{display:flex;flex-direction:column;gap:5px}
-.ci-item{display:flex;align-items:center;gap:10px;padding:10px 13px;border-radius:var(--r);border:1px solid var(--smoke);background:var(--cream);cursor:pointer;font-size:12.5px;color:var(--ink);transition:all .12s}
-.ci-item:hover{border-color:var(--mist);background:var(--white)}
-.ci-item.on{border-color:var(--charcoal);background:var(--white)}
-.cbox{width:15px;height:15px;border-radius:3px;border:1.5px solid var(--smoke);flex-shrink:0;display:flex;align-items:center;justify-content:center;transition:all .12s}
-.cbox svg{width:9px;height:9px;stroke:#fff;stroke-width:2.5;fill:none;opacity:0;transition:opacity .12s}
-.ci-item.on .cbox{background:var(--ink);border-color:var(--ink)}
-.ci-item.on .cbox svg{opacity:1}
+/* ── ACCORDION SECTION ── */
+.section { margin-bottom: 2px; }
 
-.sl-field{}
-.sl-top{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:10px}
-.sl-big{font-size:22px;font-weight:300;color:var(--ink);line-height:1}
-.sl-big em{font-size:12px;font-style:normal;color:var(--silver);margin-left:3px}
-input[type=range]{width:100%;height:4px;appearance:none;-webkit-appearance:none;background:var(--smoke);border-radius:2px;outline:none;cursor:pointer}
-input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;height:18px;border-radius:50%;background:var(--ink);border:2.5px solid var(--white);box-shadow:0 1px 4px rgba(0,0,0,.22);margin-top:-7px}
-input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;background:var(--ink);border:2.5px solid var(--white)}
-.ticks{display:flex;justify-content:space-between;margin-top:5px}
-.ticks span{font-size:9.5px;color:var(--silver)}
+.acc-trigger {
+  width: 100%;
+  background: var(--panel);
+  border: none;
+  border-bottom: 1px solid var(--divider);
+  padding: 16px 22px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  user-select: none;
+  transition: background .2s;
+}
+.acc-trigger:hover { background: var(--lift); }
+.acc-trigger.open { background: var(--lift); border-bottom-color: var(--gold-line); }
 
-.rpill{display:flex;align-items:center;justify-content:space-between;background:var(--velvet);border-radius:var(--r);padding:13px 18px;margin-top:20px}
-.rpill-l{font-size:9.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.4)}
-.rpill-v{font-size:24px;font-weight:300;color:var(--white);letter-spacing:-.02em}
-.rpill-v em{font-size:13px;font-style:normal;color:rgba(255,255,255,.4);margin-left:2px}
+.acc-trigger-left {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.acc-num {
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: .12em;
+  color: var(--gold);
+  min-width: 18px;
+}
+.acc-title {
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--ash);
+}
+.acc-arrow {
+  width: 20px; height: 20px;
+  display: flex; align-items: center; justify-content: center;
+  transition: transform .25s cubic-bezier(.4,0,.2,1);
+  flex-shrink: 0;
+}
+.acc-arrow svg { width: 12px; height: 12px; stroke: var(--fog); stroke-width: 1.5; fill: none; }
+.acc-trigger.open .acc-arrow { transform: rotate(180deg); }
 
-.spill{display:flex;align-items:center;justify-content:space-between;background:var(--cream);border:1px solid var(--smoke);border-radius:var(--r);padding:9px 14px;margin-top:12px}
-.spill-l{font-size:10px;color:var(--fog);font-weight:500}
-.spill-v{font-size:16px;font-weight:300;color:var(--ink)}
-.spill-v em{font-size:10px;font-style:normal;color:var(--silver)}
+.acc-body {
+  background: var(--deep);
+  border-bottom: 1px solid var(--divider);
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height .35s cubic-bezier(.4,0,.2,1), padding .35s;
+  padding: 0 22px;
+}
+.acc-body.open { max-height: 2000px; padding: 28px 22px; }
 
-.totals{background:var(--ink);border-radius:var(--r);overflow:hidden;margin-top:24px}
-.totals-top{padding:24px 24px 18px}
-.t-eye{font-size:9.5px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:6px}
-.t-num{font-family:'Cormorant Garamond',serif;font-size:48px;font-weight:300;color:var(--white);letter-spacing:-.02em;line-height:1}
-.t-num em{font-family:'Inter',sans-serif;font-size:18px;font-style:normal;color:rgba(255,255,255,.3);margin-left:4px}
-.totals-body{background:var(--velvet);padding:20px 24px}
-.adv-row{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;background:var(--charcoal);border-radius:var(--r);margin-bottom:14px}
-.adv-l{font-size:9.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.4)}
-.adv-v{font-size:22px;font-weight:300;color:var(--white)}
-.adv-v em{font-size:12px;font-style:normal;color:rgba(255,255,255,.3);margin-left:2px}
-.t-note{font-size:11.5px;color:var(--fog);line-height:1.7}
+.acc-hint {
+  font-size: 11.5px;
+  font-weight: 300;
+  color: var(--fog);
+  line-height: 1.7;
+  letter-spacing: .01em;
+  padding: 12px 22px 14px;
+  background: var(--deep);
+  border-bottom: 1px solid var(--divider);
+  display: none;
+}
+.acc-hint.open { display: block; }
 
-.contacts{background:var(--white);border:1px solid var(--smoke);border-radius:var(--r);padding:22px 24px;margin-top:10px}
-.ct-brand{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:400;color:var(--ink);margin-bottom:14px}
-.ct-row{display:flex;align-items:center;gap:8px;font-size:12.5px;color:var(--fog);margin-bottom:7px}
-.ct-row a{color:var(--fog);text-decoration:none;border-bottom:1px solid var(--smoke);transition:color .12s,border-color .12s}
-.ct-row a:hover{color:var(--ink);border-color:var(--mist)}
-.ico{width:14px;height:14px;flex-shrink:0;opacity:.45}
+/* ── FIELD GRID ── */
+.fgrid { display: grid; gap: 16px; margin-bottom: 20px; }
+.fgrid.g2 { grid-template-columns: 1fr 1fr; }
+.fgrid.g3 { grid-template-columns: 1fr 1fr 1fr; }
+.fgrid.g1 { grid-template-columns: 1fr; }
+@media (max-width: 520px) { .fgrid.g2, .fgrid.g3 { grid-template-columns: 1fr; } }
+
+.field { display: flex; flex-direction: column; gap: 8px; }
+.field-lbl {
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.field select,
+.field input[type="number"] {
+  height: 42px;
+  background: var(--panel);
+  border: 1px solid var(--divider2);
+  border-radius: var(--r);
+  padding: 0 14px;
+  font-size: 13px;
+  font-family: 'Jost', sans-serif;
+  font-weight: 300;
+  color: var(--snow);
+  outline: none;
+  appearance: none;
+  -webkit-appearance: none;
+  transition: border-color .2s, background .2s;
+}
+.field select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='rgba(255,255,255,0.3)' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  padding-right: 36px;
+}
+.field select option { background: #1a1816; color: #fff; }
+.field select:focus,
+.field input[type="number"]:focus { border-color: var(--gold-line); background: var(--lift); }
+.field select:hover,
+.field input[type="number"]:hover { border-color: rgba(255,255,255,.22); }
+
+.nwrap { position: relative; }
+.nwrap input { width: 100%; padding-right: 42px; }
+.nunit { position: absolute; right: 14px; top: 50%; transform: translateY(-50%); font-size: 11px; font-weight: 300; color: var(--fog); pointer-events: none; letter-spacing: .05em; }
+
+/* ── RADIO ── */
+.rgroup { display: flex; flex-direction: column; gap: 6px; }
+.ritem {
+  display: flex; align-items: center; gap: 12px;
+  padding: 11px 14px;
+  border: 1px solid var(--divider);
+  border-radius: var(--r);
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 300;
+  color: var(--mist);
+  background: var(--panel);
+  transition: all .18s;
+  letter-spacing: .01em;
+}
+.ritem:hover { border-color: var(--divider2); color: var(--ash); background: var(--lift); }
+.ritem.on { border-color: var(--gold-line); color: var(--snow); background: var(--gold-dim); }
+.rdot {
+  width: 14px; height: 14px;
+  border-radius: 50%;
+  border: 1.5px solid var(--divider2);
+  flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  transition: all .18s;
+}
+.rdot::after {
+  content: '';
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: transparent;
+  transition: background .18s;
+}
+.ritem.on .rdot { border-color: var(--gold); }
+.ritem.on .rdot::after { background: var(--gold); }
+
+/* ── CHECKBOX ── */
+.ckgroup { display: flex; flex-direction: column; gap: 6px; }
+.ckitem {
+  display: flex; align-items: center; gap: 12px;
+  padding: 11px 14px;
+  border: 1px solid var(--divider);
+  border-radius: var(--r);
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 300;
+  color: var(--mist);
+  background: var(--panel);
+  transition: all .18s;
+  letter-spacing: .01em;
+}
+.ckitem:hover { border-color: var(--divider2); color: var(--ash); background: var(--lift); }
+.ckitem.on { border-color: var(--gold-line); color: var(--snow); background: var(--gold-dim); }
+.ckbox {
+  width: 14px; height: 14px;
+  border-radius: 2px;
+  border: 1.5px solid var(--divider2);
+  flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  transition: all .18s;
+}
+.ckbox svg { width: 8px; height: 8px; stroke: var(--void); stroke-width: 2.5; fill: none; opacity: 0; transition: opacity .18s; }
+.ckitem.on .ckbox { background: var(--gold); border-color: var(--gold); }
+.ckitem.on .ckbox svg { opacity: 1; }
+
+/* ── SLIDER ── */
+.sl-wrap { }
+.sl-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 14px; }
+.sl-readout { font-size: 28px; font-weight: 200; color: var(--white); letter-spacing: -.02em; line-height: 1; }
+.sl-readout small { font-size: 12px; font-weight: 300; color: var(--fog); margin-left: 4px; letter-spacing: .04em; }
+.sl-hint { font-size: 11px; font-weight: 300; color: var(--fog); }
+
+input[type="range"] {
+  width: 100%; height: 2px;
+  appearance: none; -webkit-appearance: none;
+  background: var(--divider2); border-radius: 1px;
+  outline: none; cursor: pointer;
+}
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 20px; height: 20px; border-radius: 50%;
+  background: var(--white);
+  border: 2px solid var(--panel);
+  box-shadow: 0 0 0 1px var(--gold-line);
+  margin-top: -9px;
+  transition: box-shadow .15s;
+}
+input[type="range"]::-webkit-slider-thumb:hover { box-shadow: 0 0 0 2px var(--gold); }
+input[type="range"]::-moz-range-thumb {
+  width: 20px; height: 20px; border-radius: 50%;
+  background: var(--white); border: 2px solid var(--panel);
+}
+.sl-ticks { display: flex; justify-content: space-between; margin-top: 7px; }
+.sl-ticks span { font-size: 9px; font-weight: 300; color: rgba(255,255,255,.2); letter-spacing: .04em; }
+
+/* ── RESULT PILL ── */
+.result {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-top: 24px;
+  padding: 16px 20px;
+  background: var(--panel);
+  border: 1px solid var(--gold-line);
+  border-radius: var(--r);
+  position: relative;
+  overflow: hidden;
+}
+.result::before {
+  content: '';
+  position: absolute; left: 0; top: 0; bottom: 0;
+  width: 2px;
+  background: var(--gold);
+}
+.result-lbl {
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+.result-val {
+  font-family: 'Playfair Display', serif;
+  font-size: 26px;
+  font-weight: 400;
+  color: var(--white);
+  letter-spacing: -.01em;
+}
+.result-val small { font-family: 'Jost', sans-serif; font-size: 13px; font-weight: 300; color: var(--fog); margin-left: 3px; }
+
+/* ── SUB RESULT ── */
+.sub-result {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 10px 14px;
+  background: var(--panel);
+  border: 1px solid var(--divider);
+  border-radius: var(--r);
+  margin-top: 14px;
+}
+.sub-lbl { font-size: 10px; font-weight: 300; letter-spacing: .08em; color: var(--fog); text-transform: uppercase; }
+.sub-val { font-size: 18px; font-weight: 300; color: var(--ash); }
+.sub-val small { font-size: 10px; color: var(--fog); margin-left: 2px; }
+
+/* ── SECTION DIVIDER ── */
+.sdivider {
+  height: 1px;
+  background: linear-gradient(90deg, var(--gold-line) 0%, transparent 60%);
+  margin: 24px 0;
+}
+
+/* ── TOTAL BLOCK ── */
+.total-block {
+  margin-top: 32px;
+  background: var(--velvet);
+  border: 1px solid var(--divider2);
+  border-radius: var(--r2);
+  overflow: hidden;
+  position: relative;
+}
+.total-block::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold) 40%, transparent);
+}
+.total-top {
+  padding: 32px 28px 24px;
+  border-bottom: 1px solid var(--divider);
+}
+.total-eyebrow {
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: .3em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 10px;
+}
+.total-amount {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(40px, 7vw, 58px);
+  font-weight: 400;
+  color: var(--white);
+  letter-spacing: -.02em;
+  line-height: 1;
+}
+.total-amount small {
+  font-family: 'Jost', sans-serif;
+  font-size: 20px;
+  font-weight: 200;
+  color: var(--fog);
+  margin-left: 6px;
+}
+.total-bottom { padding: 22px 28px 28px; }
+.advance-row {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 14px 18px;
+  background: var(--deep);
+  border: 1px solid var(--divider);
+  border-radius: var(--r);
+  margin-bottom: 16px;
+}
+.adv-lbl {
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--mist);
+}
+.adv-val {
+  font-family: 'Playfair Display', serif;
+  font-size: 24px;
+  font-weight: 400;
+  color: var(--ash);
+}
+.adv-val small { font-family: 'Jost', sans-serif; font-size: 12px; font-weight: 300; color: var(--fog); margin-left: 2px; }
+.total-note {
+  font-size: 12px;
+  font-weight: 300;
+  color: var(--fog);
+  line-height: 1.75;
+  letter-spacing: .01em;
+}
+
+/* ── CONTACTS ── */
+.contacts {
+  margin-top: 10px;
+  background: var(--velvet);
+  border: 1px solid var(--divider2);
+  border-radius: var(--r2);
+  padding: 24px 28px;
+}
+.contact-brand {
+  font-family: 'Playfair Display', serif;
+  font-size: 18px;
+  font-weight: 400;
+  color: var(--white);
+  letter-spacing: .02em;
+  margin-bottom: 16px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--divider);
+}
+.contact-row {
+  display: flex; align-items: center; gap: 10px;
+  font-size: 12.5px; font-weight: 300;
+  color: var(--mist);
+  margin-bottom: 8px;
+  letter-spacing: .02em;
+}
+.contact-row a { color: var(--mist); text-decoration: none; border-bottom: 1px solid var(--divider2); padding-bottom: 1px; transition: color .2s, border-color .2s; }
+.contact-row a:hover { color: var(--gold); border-color: var(--gold-line); }
+.c-ico { width: 13px; height: 13px; flex-shrink: 0; opacity: .4; }
 </style>
 </head>
 <body>
 <div class="page">
 
+<!-- MASTHEAD -->
 <div class="masthead">
-  <div class="masthead-eye">V.Ar Production</div>
-  <div class="masthead-title">Калькулятор<br><em>стоимости проекта</em></div>
-  <p class="masthead-sub">Предварительная оценка. Окончательная цена называется после изучения материалов.</p>
+  <div class="masthead-label">V.Ar Production</div>
+  <div class="masthead-title">
+    Калькулятор<br>
+    <em>стоимости проекта</em>
+  </div>
+  <p class="masthead-caption">Предварительная оценка. Точная цена определяется после изучения материалов.</p>
 </div>
 
-<!-- ОСНОВНОЕ -->
+<!-- 01 ОСНОВНОЕ -->
 <div class="section">
-  <div class="sec-head" id="h-main" onclick="tog('main')">
-    <h2>Основное</h2>
-    <div class="chev"><svg viewBox="0 0 11 7"><polyline points="1,1 5.5,6 10,1"/></svg></div>
-  </div>
-  <div class="sec-body" id="b-main">
-    <div class="row c2">
+  <button class="acc-trigger open" id="trg-main" onclick="accToggle('main')">
+    <div class="acc-trigger-left">
+      <span class="acc-num">01</span>
+      <span class="acc-title">Основное</span>
+    </div>
+    <div class="acc-arrow"><svg viewBox="0 0 12 8"><polyline points="1,1 6,7 11,1"/></svg></div>
+  </button>
+  <div class="acc-body open" id="body-main">
+    <div class="fgrid g2">
       <div class="field">
-        <span class="fl">Тип работы</span>
+        <span class="field-lbl">Тип работы</span>
         <select id="sel-type" onchange="calc()">
           <option value="400">Интерьер</option>
           <option value="300">Интерьер офиса</option>
@@ -152,57 +490,72 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
         </select>
       </div>
       <div class="field">
-        <span class="fl">Площадь</span>
-        <div class="nw"><input type="number" id="inp-area" min="0" value="0" step="1" oninput="calc()"><span class="nu">м²</span></div>
-      </div>
-    </div>
-    <div class="row c1" style="margin-bottom:0">
-      <div class="field">
-        <span class="fl">Наличие чертежа</span>
-        <div class="rstack" id="rg-draw">
-          <div class="ri on" data-val="100" onclick="pickR('rg-draw',this);calc()"><div class="rpip"></div>Чертёж от руки с размерами</div>
-          <div class="ri" data-val="80" onclick="pickR('rg-draw',this);calc()"><div class="rpip"></div>Чертёж в формате PDF (скан)</div>
-          <div class="ri" data-val="0" onclick="pickR('rg-draw',this);calc()"><div class="rpip"></div>Чертёж в формате DWG</div>
+        <span class="field-lbl">Площадь</span>
+        <div class="nwrap">
+          <input type="number" id="inp-area" min="0" value="0" step="1" oninput="calc()">
+          <span class="nunit">м²</span>
         </div>
       </div>
     </div>
-    <div class="rpill"><span class="rpill-l">Моделирование</span><span class="rpill-v" id="out-model">0<em>₽</em></span></div>
+    <div class="fgrid g1" style="margin-bottom:0">
+      <div class="field">
+        <span class="field-lbl">Наличие чертежа</span>
+        <div class="rgroup" id="rg-draw">
+          <div class="ritem on" data-val="100" onclick="pickR('rg-draw',this);calc()"><div class="rdot"></div>Чертёж от руки с размерами</div>
+          <div class="ritem" data-val="80" onclick="pickR('rg-draw',this);calc()"><div class="rdot"></div>Чертёж в формате PDF (скан)</div>
+          <div class="ritem" data-val="0" onclick="pickR('rg-draw',this);calc()"><div class="rdot"></div>Чертёж в формате DWG</div>
+        </div>
+      </div>
+    </div>
+    <div class="result">
+      <span class="result-lbl">Моделирование</span>
+      <span class="result-val" id="out-model">0<small>₽</small></span>
+    </div>
   </div>
 </div>
 
-<!-- ДОПОЛНИТЕЛЬНО -->
+<!-- 02 ДОПОЛНИТЕЛЬНО -->
 <div class="section">
-  <div class="sec-head closed" id="h-extra" onclick="tog('extra')">
-    <h2>Дополнительно — исходные файлы</h2>
-    <div class="chev"><svg viewBox="0 0 11 7"><polyline points="1,1 5.5,6 10,1"/></svg></div>
-  </div>
-  <div class="sec-body hide" id="b-extra">
-    <div class="row c1" style="margin-bottom:0">
+  <button class="acc-trigger" id="trg-extra" onclick="accToggle('extra')">
+    <div class="acc-trigger-left">
+      <span class="acc-num">02</span>
+      <span class="acc-title">Файлы проекта</span>
+    </div>
+    <div class="acc-arrow"><svg viewBox="0 0 12 8"><polyline points="1,1 6,7 11,1"/></svg></div>
+  </button>
+  <div class="acc-body" id="body-extra">
+    <div class="fgrid g1" style="margin-bottom:0">
       <div class="field">
-        <span class="fl">Файлы проекта</span>
-        <div class="cstack">
-          <div class="ci-item" id="ck-files" onclick="togCk(this);calc()">
-            <div class="cbox"><svg viewBox="0 0 9 7"><polyline points="1,3.5 3.5,6 8,1"/></svg></div>
-            Все исходные файлы проекта (с текстурами из 3D-пакета) — 50% от стоимости моделирования
+        <span class="field-lbl">Опция</span>
+        <div class="ckgroup">
+          <div class="ckitem" id="ck-files" onclick="togCk(this);calc()">
+            <div class="ckbox"><svg viewBox="0 0 8 6"><polyline points="1,3 3,5.5 7,1"/></svg></div>
+            Все исходные файлы с текстурами — 50% от стоимости моделирования
           </div>
         </div>
       </div>
     </div>
-    <div class="rpill"><span class="rpill-l">Файлы проекта</span><span class="rpill-v" id="out-files">0<em>₽</em></span></div>
+    <div class="result">
+      <span class="result-lbl">Файлы проекта</span>
+      <span class="result-val" id="out-files">0<small>₽</small></span>
+    </div>
   </div>
-  <div class="sec-hint hide" id="hs-extra">После завершения заказа предоставляются исходные файлы в программном комплексе, наиболее подходящем для задачи.</div>
+  <div class="acc-hint" id="hint-extra">После завершения заказа предоставляются исходные файлы в программном комплексе, наиболее подходящем для поставленной задачи.</div>
 </div>
 
-<!-- ФОТО -->
+<!-- 03 ФОТО -->
 <div class="section">
-  <div class="sec-head closed" id="h-photo" onclick="tog('photo')">
-    <h2>Визуализация — фото</h2>
-    <div class="chev"><svg viewBox="0 0 11 7"><polyline points="1,1 5.5,6 10,1"/></svg></div>
-  </div>
-  <div class="sec-body hide" id="b-photo">
-    <div class="row c1">
+  <button class="acc-trigger" id="trg-photo" onclick="accToggle('photo')">
+    <div class="acc-trigger-left">
+      <span class="acc-num">03</span>
+      <span class="acc-title">Визуализация — фото</span>
+    </div>
+    <div class="acc-arrow"><svg viewBox="0 0 12 8"><polyline points="1,1 6,7 11,1"/></svg></div>
+  </button>
+  <div class="acc-body" id="body-photo">
+    <div class="fgrid g1">
       <div class="field">
-        <span class="fl">Разрешение изображения</span>
+        <span class="field-lbl">Разрешение изображения</span>
         <select id="sel-pres" onchange="calc()">
           <option value="150">HD — 1280 × 720</option>
           <option value="300" selected>FHD — 1920 × 1080</option>
@@ -213,28 +566,40 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
         </select>
       </div>
     </div>
-    <div class="row c1" style="margin-bottom:0">
-      <div class="field sl-field">
-        <span class="fl">Количество фотографий</span>
-        <div class="sl-top"><span style="font-size:11px;color:var(--silver)">от 0 до 80</span><div class="sl-big" id="sv-photos">0<em>шт.</em></div></div>
-        <input type="range" id="sl-photos" min="0" max="80" value="0" step="1" oninput="ss('sl-photos','sv-photos','шт.');calc()">
-        <div class="ticks"><span>0</span><span>20</span><span>40</span><span>60</span><span>80</span></div>
+    <div class="fgrid g1" style="margin-bottom:0">
+      <div class="field">
+        <span class="field-lbl">Количество фотографий</span>
+        <div class="sl-wrap">
+          <div class="sl-header">
+            <span class="sl-hint">0 — 80 штук</span>
+            <div class="sl-readout" id="sv-photos">0<small>шт.</small></div>
+          </div>
+          <input type="range" id="sl-photos" min="0" max="80" value="0" step="1"
+            oninput="ss('sl-photos','sv-photos','шт.');calc()">
+          <div class="sl-ticks"><span>0</span><span>20</span><span>40</span><span>60</span><span>80</span></div>
+        </div>
       </div>
     </div>
-    <div class="rpill"><span class="rpill-l">Визуализация фото</span><span class="rpill-v" id="out-photo">0<em>₽</em></span></div>
+    <div class="result">
+      <span class="result-lbl">Визуализация фото</span>
+      <span class="result-val" id="out-photo">0<small>₽</small></span>
+    </div>
   </div>
 </div>
 
-<!-- ВИДЕО -->
+<!-- 04 ВИДЕО -->
 <div class="section">
-  <div class="sec-head closed" id="h-video" onclick="tog('video')">
-    <h2>Визуализация — видео</h2>
-    <div class="chev"><svg viewBox="0 0 11 7"><polyline points="1,1 5.5,6 10,1"/></svg></div>
-  </div>
-  <div class="sec-body hide" id="b-video">
-    <div class="row c3">
+  <button class="acc-trigger" id="trg-video" onclick="accToggle('video')">
+    <div class="acc-trigger-left">
+      <span class="acc-num">04</span>
+      <span class="acc-title">Визуализация — видео</span>
+    </div>
+    <div class="acc-arrow"><svg viewBox="0 0 12 8"><polyline points="1,1 6,7 11,1"/></svg></div>
+  </button>
+  <div class="acc-body" id="body-video">
+    <div class="fgrid g3">
       <div class="field">
-        <span class="fl">Разрешение видео</span>
+        <span class="field-lbl">Разрешение</span>
         <select id="sel-vres" onchange="calc()">
           <option value="10">HD 1280×720</option>
           <option value="20" selected>FHD 1920×1080</option>
@@ -243,7 +608,7 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
         </select>
       </div>
       <div class="field">
-        <span class="fl">Кадры / сек.</span>
+        <span class="field-lbl">Кадры / сек.</span>
         <select id="sel-fps" onchange="calc()">
           <option value="24">24 к/с</option>
           <option value="25">25 к/с</option>
@@ -253,25 +618,37 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
         </select>
       </div>
       <div class="field">
-        <span class="fl">Длительность</span>
-        <div class="nw"><input type="number" id="inp-dur" min="0" value="0" step="1" oninput="calc()"><span class="nu">сек.</span></div>
+        <span class="field-lbl">Длительность</span>
+        <div class="nwrap">
+          <input type="number" id="inp-dur" min="0" value="0" step="1" oninput="calc()">
+          <span class="nunit">сек.</span>
+        </div>
       </div>
     </div>
-    <div class="spill"><span class="spill-l">Количество кадров</span><span class="spill-v" id="out-frames">0<em> кадров</em></span></div>
-    <div class="rpill"><span class="rpill-l">Визуализация видео</span><span class="rpill-v" id="out-video">0<em>₽</em></span></div>
+    <div class="sub-result">
+      <span class="sub-lbl">Кадров итого</span>
+      <span class="sub-val" id="out-frames">0<small>кадров</small></span>
+    </div>
+    <div class="result">
+      <span class="result-lbl">Визуализация видео</span>
+      <span class="result-val" id="out-video">0<small>₽</small></span>
+    </div>
   </div>
 </div>
 
-<!-- ТУР 360 -->
+<!-- 05 ТУР 360 -->
 <div class="section">
-  <div class="sec-head closed" id="h-tour" onclick="tog('tour')">
-    <h2>Виртуальный 360° тур</h2>
-    <div class="chev"><svg viewBox="0 0 11 7"><polyline points="1,1 5.5,6 10,1"/></svg></div>
-  </div>
-  <div class="sec-body hide" id="b-tour">
-    <div class="row c1">
+  <button class="acc-trigger" id="trg-tour" onclick="accToggle('tour')">
+    <div class="acc-trigger-left">
+      <span class="acc-num">05</span>
+      <span class="acc-title">Виртуальный 360° тур</span>
+    </div>
+    <div class="acc-arrow"><svg viewBox="0 0 12 8"><polyline points="1,1 6,7 11,1"/></svg></div>
+  </button>
+  <div class="acc-body" id="body-tour">
+    <div class="fgrid g1">
       <div class="field">
-        <span class="fl">Качество панорам</span>
+        <span class="field-lbl">Качество панорам</span>
         <select id="sel-pano" onchange="calc()">
           <option value="1000">360° панорама — 4000 × 2000</option>
           <option value="2000" selected>360° панорама — 8000 × 4000</option>
@@ -279,178 +656,202 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
         </select>
       </div>
     </div>
-    <div class="row c1">
-      <div class="field sl-field">
-        <span class="fl">Количество точек</span>
-        <div class="sl-top"><span style="font-size:11px;color:var(--silver)">от 0 до 100</span><div class="sl-big" id="sv-points">0<em>шт.</em></div></div>
-        <input type="range" id="sl-points" min="0" max="100" value="0" step="1" oninput="ss('sl-points','sv-points','шт.');calc()">
-        <div class="ticks"><span>0</span><span>25</span><span>50</span><span>75</span><span>100</span></div>
-      </div>
-    </div>
-    <div class="row c1" style="margin-bottom:0">
+    <div class="fgrid g1">
       <div class="field">
-        <span class="fl">Опции</span>
-        <div class="cstack">
-          <div class="ci-item" id="ck-dn" onclick="togCk(this);calc()"><div class="cbox"><svg viewBox="0 0 9 7"><polyline points="1,3.5 3.5,6 8,1"/></svg></div>Вариация день и ночь (×2 к стоимости точек)</div>
-          <div class="ci-item" id="ck-web" onclick="togCk(this);calc()"><div class="cbox"><svg viewBox="0 0 9 7"><polyline points="1,3.5 3.5,6 8,1"/></svg></div>Версия для WEB — +5 000 ₽</div>
-          <div class="ci-item" id="ck-mac" onclick="togCk(this);calc()"><div class="cbox"><svg viewBox="0 0 9 7"><polyline points="1,3.5 3.5,6 8,1"/></svg></div>Версия для macOS — +5 000 ₽</div>
-          <div class="ci-item" id="ck-win" onclick="togCk(this);calc()"><div class="cbox"><svg viewBox="0 0 9 7"><polyline points="1,3.5 3.5,6 8,1"/></svg></div>Версия для Windows — +5 000 ₽</div>
+        <span class="field-lbl">Количество точек</span>
+        <div class="sl-wrap">
+          <div class="sl-header">
+            <span class="sl-hint">0 — 100 точек</span>
+            <div class="sl-readout" id="sv-pts">0<small>шт.</small></div>
+          </div>
+          <input type="range" id="sl-pts" min="0" max="100" value="0" step="1"
+            oninput="ss('sl-pts','sv-pts','шт.');calc()">
+          <div class="sl-ticks"><span>0</span><span>25</span><span>50</span><span>75</span><span>100</span></div>
         </div>
       </div>
     </div>
-    <div class="rpill"><span class="rpill-l">Тур 360°</span><span class="rpill-v" id="out-tour">0<em>₽</em></span></div>
-  </div>
-</div>
-
-<!-- ИТОГ -->
-<div class="totals">
-  <div class="totals-top">
-    <div class="t-eye">Итоговая стоимость</div>
-    <div class="t-num" id="out-total">0<em>₽</em></div>
-  </div>
-  <div class="totals-body">
-    <div class="adv-row">
-      <span class="adv-l">Аванс 50%</span>
-      <span class="adv-v" id="out-adv">0<em>₽</em></span>
+    <div class="fgrid g1" style="margin-bottom:0">
+      <div class="field">
+        <span class="field-lbl">Дополнительные опции</span>
+        <div class="ckgroup">
+          <div class="ckitem" id="ck-dn" onclick="togCk(this);calc()">
+            <div class="ckbox"><svg viewBox="0 0 8 6"><polyline points="1,3 3,5.5 7,1"/></svg></div>
+            Вариация день и ночь — ×2 к стоимости точек
+          </div>
+          <div class="ckitem" id="ck-web" onclick="togCk(this);calc()">
+            <div class="ckbox"><svg viewBox="0 0 8 6"><polyline points="1,3 3,5.5 7,1"/></svg></div>
+            Версия для WEB — +5 000 ₽
+          </div>
+          <div class="ckitem" id="ck-mac" onclick="togCk(this);calc()">
+            <div class="ckbox"><svg viewBox="0 0 8 6"><polyline points="1,3 3,5.5 7,1"/></svg></div>
+            Версия для macOS — +5 000 ₽
+          </div>
+          <div class="ckitem" id="ck-win" onclick="togCk(this);calc()">
+            <div class="ckbox"><svg viewBox="0 0 8 6"><polyline points="1,3 3,5.5 7,1"/></svg></div>
+            Версия для Windows — +5 000 ₽
+          </div>
+        </div>
+      </div>
     </div>
-    <p class="t-note">Аванс покрывает начальные затраты и подтверждает серьёзность намерений — гарантия качественного и своевременного выполнения. Расчёт предварительный; окончательная цена после изучения материалов.</p>
+    <div class="result">
+      <span class="result-lbl">Тур 360°</span>
+      <span class="result-val" id="out-tour">0<small>₽</small></span>
+    </div>
   </div>
 </div>
 
-<!-- КОНТАКТЫ -->
+<!-- TOTAL -->
+<div class="total-block">
+  <div class="total-top">
+    <div class="total-eyebrow">Итоговая стоимость</div>
+    <div class="total-amount" id="out-total">0<small>₽</small></div>
+  </div>
+  <div class="total-bottom">
+    <div class="advance-row">
+      <span class="adv-lbl">Аванс 50%</span>
+      <span class="adv-val" id="out-adv">0<small>₽</small></span>
+    </div>
+    <p class="total-note">Аванс до 50% необходим для покрытия начальных затрат и подтверждения намерений. Расчёт предварительный — окончательная стоимость определяется после изучения материалов проекта.</p>
+  </div>
+</div>
+
+<!-- CONTACTS -->
 <div class="contacts">
-  <div class="ct-brand">V.Ar Production</div>
-  <div class="ct-row">
-    <svg class="ico" viewBox="0 0 14 11" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="1" y="1" width="12" height="9" rx="1.5"/><polyline points="1,1 7,6.5 13,1"/></svg>
+  <div class="contact-brand">V.Ar Production</div>
+  <div class="contact-row">
+    <svg class="c-ico" viewBox="0 0 13 10" fill="none" stroke="currentColor" stroke-width="1.4"><rect x=".7" y=".7" width="11.6" height="8.6" rx="1.3"/><polyline points=".7,.7 6.5,6 12.3,.7"/></svg>
     <a href="mailto:varprod@outlook.com">varprod@outlook.com</a>
   </div>
-  <div class="ct-row">
-    <svg class="ico" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M2 2h3l1.5 3.5-2 1.2a7.5 7.5 0 003.8 3.8l1.2-2L13 10v3a1 1 0 01-1 1C5.4 14 0 8.6 0 2a1 1 0 011-1h1z"/></svg>
+  <div class="contact-row">
+    <svg class="c-ico" viewBox="0 0 13 13" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M1.8 1.8h2.8l1.4 3.2-1.8 1.1a6.9 6.9 0 003.5 3.5l1.1-1.8 3.2 1.4v2.8a.9.9 0 01-.9.9C5.2 13 0 7.8 0 1.9A.9.9 0 01.9 1h.9z"/></svg>
     Tel / WhatsApp / Telegram: <a href="tel:+79044449935">+7 (904) 444-99-35</a>
   </div>
 </div>
 
 </div>
+
 <script>
-/* ═══════════════════════════════════════════
-   ПРАЙС-ЛИСТ — все ставки в одном месте
-   ═══════════════════════════════════════════ */
+/* ═══════════════════════════════════════════════════
+   ПРАЙС-ЛИСТ — все ставки здесь, меняйте только это
+   ═══════════════════════════════════════════════════ */
 const P = {
-  /* Надценка студии, % */
-  markup: 40,
+  markup:              40,    // наценка студии, %
 
-  /* Тип работы: ставка за 1 м² */
+  // Тип работы: руб. за 1 м²
   type_per_m2: {
-    interior:        400,
-    office_interior: 300,
-    exterior_house:  300,
-    residential:      15,
+    interior:          400,
+    office:            300,
+    exterior:          300,
+    residential:        15,
   },
 
-  /* Надбавка за тип чертежа: руб. за 1 м² */
+  // Надбавка за тип чертежа: руб. за 1 м²
   drawing_per_m2: {
-    hand: 100,   /* от руки */
-    pdf:   80,   /* скан PDF */
-    dwg:    0,   /* DWG — без надбавки */
+    hand:              100,   // от руки
+    pdf:                80,   // скан PDF
+    dwg:                 0,   // DWG — без надбавки
   },
 
-  /* Файлы проекта: доля от стоимости моделирования */
-  files_ratio: 0.5,
+  // Файлы проекта: доля от стоимости моделирования
+  files_ratio:         0.5,
 
-  /* Фото-визуализация: руб. за 1 изображение */
-  photo_per_image: {
-    hd:   150,
-    fhd:  300,
-    qhd:  600,
-    k4:   1000,
-    k8:   2000,
-    k16:  3500,
+  // Фото: руб. за 1 изображение
+  photo_per_img: {
+    hd:                150,
+    fhd:               300,
+    qhd:               600,
+    k4:               1000,
+    k8:               2000,
+    k16:              3500,
   },
 
-  /* Видео-визуализация: руб. за 1 кадр */
+  // Видео: руб. за 1 кадр
   video_per_frame: {
-    hd:   10,
-    fhd:  20,
-    qhd:  40,
-    k4:   70,
+    hd:                 10,
+    fhd:                20,
+    qhd:                40,
+    k4:                 70,
   },
 
-  /* 360-тур: руб. за 1 точку при данном качестве панорамы */
+  // 360-тур: руб. за 1 точку
   pano_per_point: {
-    p4k:  1000,
-    p8k:  2000,
-    p16k: 4000,
+    p4k:              1000,
+    p8k:              2000,
+    p16k:             4000,
   },
 
-  /* Платформенные версии тура — фиксированная цена */
-  tour_platform_price: 5000,
+  // Платформенная версия тура (WEB / macOS / Windows)
+  tour_platform:      5000,
 
-  /* Аванс: доля от итога */
-  advance_ratio: 0.5,
+  // Аванс: доля от итога
+  advance_ratio:       0.5,
 };
-/* ═══════════════════════════════════════════ */
+/* ═══════════════════════════════════════════════════ */
 
-const $ = id => document.getElementById(id);
+const $  = id => document.getElementById(id);
 const fv = id => parseFloat($(id).value) || 0;
-const isOn = id => $(id).classList.contains('on');
+const on = id => $(id).classList.contains('on');
 const fmt = n => Math.round(n).toLocaleString('ru-RU');
-const withMarkup = n => n + n * P.markup / 100;
+const withM = n => n + n * P.markup / 100;
 
-function ss(slId, dispId, unit){
-  $(dispId).innerHTML = $(slId).value + '<em>' + unit + '</em>';
+function ss(slId, dispId, unit) {
+  $(dispId).innerHTML = $(slId).value + '<small>' + unit + '</small>';
 }
-function pickR(gId, el){
-  document.querySelectorAll('#'+gId+' .ri').forEach(r => r.classList.remove('on'));
+function pickR(gId, el) {
+  document.querySelectorAll('#' + gId + ' .ritem').forEach(r => r.classList.remove('on'));
   el.classList.add('on');
 }
-function togCk(el){ el.classList.toggle('on') }
-function tog(key){
-  $('h-'+key).classList.toggle('closed');
-  $('b-'+key).classList.toggle('hide');
-  const hs = $('hs-'+key);
-  if(hs) hs.classList.toggle('hide');
+function togCk(el) { el.classList.toggle('on'); }
+
+function accToggle(key) {
+  const trg  = $('trg-' + key);
+  const body = $('body-' + key);
+  const hint = $('hint-' + key);
+  trg.classList.toggle('open');
+  body.classList.toggle('open');
+  if (hint) hint.classList.toggle('open');
 }
 
-function calc(){
-  /* Основное */
-  const typeRate  = fv('sel-type');
-  const area      = fv('inp-area');
-  const drawEl    = document.querySelector('#rg-draw .ri.on');
-  const drawRate  = drawEl ? parseFloat(drawEl.dataset.val)||0 : 0;
-  const modeling  = withMarkup((typeRate + drawRate) * area);
-  $('out-model').innerHTML = fmt(modeling)+'<em>₽</em>';
+function calc() {
+  // Основное
+  const typeRate = fv('sel-type');
+  const area     = fv('inp-area');
+  const drawEl   = document.querySelector('#rg-draw .ritem.on');
+  const drawRate = drawEl ? parseFloat(drawEl.dataset.val) || 0 : 0;
+  const modeling = withM((typeRate + drawRate) * area);
+  $('out-model').innerHTML = fmt(modeling) + '<small>₽</small>';
 
-  /* Файлы проекта */
-  const files = isOn('ck-files') ? withMarkup(modeling * P.files_ratio) : 0;
-  $('out-files').innerHTML = fmt(files)+'<em>₽</em>';
+  // Файлы проекта
+  const files = on('ck-files') ? withM(modeling * P.files_ratio) : 0;
+  $('out-files').innerHTML = fmt(files) + '<small>₽</small>';
 
-  /* Фото */
-  const photoRatePer = fv('sel-pres');
-  const photoCount   = fv('sl-photos');
-  const photo        = withMarkup(photoRatePer * photoCount);
-  $('out-photo').innerHTML = fmt(photo)+'<em>₽</em>';
+  // Фото
+  const photoRate = fv('sel-pres');
+  const photoCnt  = fv('sl-photos');
+  const photo     = withM(photoRate * photoCnt);
+  $('out-photo').innerHTML = fmt(photo) + '<small>₽</small>';
 
-  /* Видео */
-  const vRatePer = fv('sel-vres');
-  const fps      = fv('sel-fps');
-  const dur      = fv('inp-dur');
-  const frames   = fps * dur;
-  $('out-frames').innerHTML = fmt(frames)+'<em> кадров</em>';
-  const video = withMarkup(vRatePer * frames);
-  $('out-video').innerHTML = fmt(video)+'<em>₽</em>';
+  // Видео
+  const vRate  = fv('sel-vres');
+  const fps    = fv('sel-fps');
+  const dur    = fv('inp-dur');
+  const frames = fps * dur;
+  $('out-frames').innerHTML = fmt(frames) + '<small>кадров</small>';
+  const video = withM(vRate * frames);
+  $('out-video').innerHTML = fmt(video) + '<small>₽</small>';
 
-  /* Тур 360 */
+  // Тур 360
   const panoRate = fv('sel-pano');
-  const points   = fv('sl-points');
-  const dn       = isOn('ck-dn') ? 2 : 1;
-  const platforms = (isOn('ck-web')?1:0) + (isOn('ck-mac')?1:0) + (isOn('ck-win')?1:0);
-  const tour = withMarkup(panoRate * points * dn + platforms * P.tour_platform_price);
-  $('out-tour').innerHTML = fmt(tour)+'<em>₽</em>';
+  const points   = fv('sl-pts');
+  const dn       = on('ck-dn') ? 2 : 1;
+  const platCnt  = (on('ck-web') ? 1 : 0) + (on('ck-mac') ? 1 : 0) + (on('ck-win') ? 1 : 0);
+  const tour     = withM(panoRate * points * dn + platCnt * P.tour_platform);
+  $('out-tour').innerHTML = fmt(tour) + '<small>₽</small>';
 
-  /* Итог */
+  // Итог
   const total = modeling + files + photo + video + tour;
-  $('out-total').innerHTML = fmt(total)+'<em>₽</em>';
-  $('out-adv').innerHTML = fmt(total * P.advance_ratio)+'<em>₽</em>';
+  $('out-total').innerHTML = fmt(total) + '<small>₽</small>';
+  $('out-adv').innerHTML   = fmt(total * P.advance_ratio) + '<small>₽</small>';
 }
 
 calc();

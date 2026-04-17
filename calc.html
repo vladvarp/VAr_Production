@@ -38,6 +38,14 @@ html, body {
   -webkit-font-smoothing: antialiased;
 }
 
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--void); }
+::-webkit-scrollbar-thumb { background: var(--panel); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--rim); }
+::-moz-scrollbar { width: 6px; }
+::-moz-scrollbar-track { background: var(--void); }
+::-moz-scrollbar-thumb { background: var(--panel); border-radius: 3px; }
+
 /* ── PAGE ── */
 .page {
   max-width: 720px;
@@ -47,9 +55,9 @@ html, body {
 
 /* ── MASTHEAD ── */
 .masthead {
-  margin-bottom: 56px;
+  margin-bottom: 40px;
   position: relative;
-  padding-bottom: 40px;
+  padding-bottom: 28px;
 }
 .masthead::after {
   content: '';
@@ -58,34 +66,26 @@ html, body {
   width: 100%; height: 1px;
   background: linear-gradient(90deg, var(--gold-line) 0%, transparent 70%);
 }
-.masthead-label {
-  font-size: 10px;
-  font-weight: 400;
-  letter-spacing: .32em;
-  text-transform: uppercase;
-  color: var(--gold);
-  margin-bottom: 16px;
-}
 .masthead-title {
   font-family: 'Playfair Display', serif;
-  font-size: clamp(32px, 5vw, 48px);
+  font-size: clamp(22px, 4vw, 28px);
   font-weight: 400;
-  line-height: 1.1;
-  color: var(--white);
-  letter-spacing: -.01em;
+  line-height: 1.15;
+  color: var(--mist);
+  letter-spacing: .01em;
 }
 .masthead-title em {
   font-style: italic;
-  color: var(--mist);
+  color: var(--fog);
   font-weight: 400;
 }
 .masthead-caption {
-  margin-top: 14px;
-  font-size: 13px;
+  margin-top: 12px;
+  font-size: 12px;
   font-weight: 300;
   color: var(--fog);
   line-height: 1.7;
-  max-width: 380px;
+  max-width: 340px;
   letter-spacing: .01em;
 }
 
@@ -475,10 +475,9 @@ input[type="range"]::-moz-range-thumb {
 
 <!-- MASTHEAD -->
 <div class="masthead">
-  <div class="masthead-label">V.Ar Production</div>
   <div class="masthead-title">
-    Калькулятор<br>
-    <em>стоимости проекта</em>
+    V.Ar Production<br>
+    <em>Калькулятор стоимости</em>
   </div>
   <p class="masthead-caption">Предварительная оценка. Точная цена определяется после изучения материалов.</p>
 </div>

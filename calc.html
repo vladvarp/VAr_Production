@@ -191,6 +191,14 @@ html, body {
   -webkit-appearance: none;
   transition: border-color .2s, background .2s;
 }
+.field input[type="number"]::-webkit-inner-spin-button,
+.field input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.field input[type="number"] {
+  -moz-appearance: textfield;
+}
 .field select {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='rgba(255,255,255,0.3)' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
@@ -203,9 +211,14 @@ html, body {
 .field select:hover,
 .field input[type="number"]:hover { border-color: rgba(255,255,255,.22); }
 
-.nwrap { position: relative; }
-.nwrap input { width: 100%; padding-right: 42px; }
+.nwrap { position: relative; display: flex; align-items: center; }
+.nwrap input { width: 100%; padding-right: 56px; padding-left: 32px; text-align: center; }
 .nunit { position: absolute; right: 14px; top: 50%; transform: translateY(-50%); font-size: 11px; font-weight: 300; color: var(--fog); pointer-events: none; letter-spacing: .05em; }
+.ninc { position: absolute; top: 0; bottom: 0; width: 32px; display: flex; align-items: center; justify-content: center; cursor: pointer; color: var(--fog); transition: color .15s; font-size: 16px; user-select: none; }
+.ninc:hover { color: var(--white); }
+.ninc:active { color: var(--gold); }
+.ninc.minus { left: 0; }
+.ninc.plus { right: 36px; }
 
 /* ── RADIO ── */
 .rgroup { display: flex; flex-direction: column; gap: 6px; }
@@ -493,7 +506,9 @@ input[type="range"]::-moz-range-thumb {
       <div class="field">
         <span class="field-lbl">Площадь</span>
         <div class="nwrap">
+          <span class="ninc minus" onclick="nStep('inp-area',-1)">−</span>
           <input type="number" id="inp-area" min="0" value="0" step="1" oninput="calc()">
+          <span class="ninc plus" onclick="nStep('inp-area',1)">+</span>
           <span class="nunit">м²</span>
         </div>
       </div>
@@ -621,7 +636,9 @@ input[type="range"]::-moz-range-thumb {
       <div class="field">
         <span class="field-lbl">Длительность</span>
         <div class="nwrap">
+          <span class="ninc minus" onclick="nStep('inp-dur',-1)">−</span>
           <input type="number" id="inp-dur" min="0" value="0" step="1" oninput="calc()">
+          <span class="ninc plus" onclick="nStep('inp-dur',1)">+</span>
           <span class="nunit">сек.</span>
         </div>
       </div>
@@ -803,6 +820,13 @@ function pickR(gId, el) {
   el.classList.add('on');
 }
 function togCk(el) { el.classList.toggle('on'); }
+function nStep(id, delta) {
+  const el = $(id);
+  let val = parseInt(el.value) || 0;
+  val = Math.max(0, val + delta);
+  el.value = val;
+  calc();
+}
 
 function accToggle(key) {
   const trg  = $('trg-' + key);

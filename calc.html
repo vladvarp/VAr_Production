@@ -496,7 +496,7 @@ input[type="range"]::-moz-range-thumb {
       <div class="field">
         <span class="field-lbl">Тип работы</span>
         <select id="sel-type" onchange="calc()">
-          <option value="400">Интерьер</option>
+          <option value="700">Интерьер</option>
           <option value="300">Интерьер офиса</option>
           <option value="300">Экстерьер дома</option>
           <option value="15">Жилой комплекс</option>
@@ -752,14 +752,14 @@ input[type="range"]::-moz-range-thumb {
    ПРАЙС-ЛИСТ — все ставки здесь, меняйте только это
    ═══════════════════════════════════════════════════ */
 const P = {
-  markup:              40,    // наценка студии, %
+  markup:              0,    // наценка студии, %
 
   // Тип работы: руб. за 1 м²
   type_per_m2: {
-    interior:          400,
+    interior:          700,
     office:            300,
     exterior:          300,
-    residential:        15,
+    residential:        50,
   },
 
   // Надбавка за тип чертежа: руб. за 1 м²

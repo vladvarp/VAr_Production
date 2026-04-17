@@ -3,772 +3,457 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>V.Ar Production — Калькулятор стоимости</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Cormorant+Garamond:wght@400;600&display=swap" rel="stylesheet">
+<title>V.Ar Production — Калькулятор</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --ink:#0f0f0e;
+  --velvet:#1c1b1a;
+  --charcoal:#2a2927;
+  --mist:#3d3c3a;
+  --fog:#6b6a68;
+  --silver:#a8a7a5;
+  --smoke:#d4d3d1;
+  --cream:#f0ede8;
+  --white:#faf9f7;
+  --r:6px;
+}
+html,body{min-height:100vh;background:var(--cream);font-family:'Inter',sans-serif;color:var(--ink);-webkit-font-smoothing:antialiased}
+.page{max-width:680px;margin:0 auto;padding:48px 24px 80px}
 
-  :root {
-    --bg: #f5f4f0;
-    --surface: #ffffff;
-    --surface-alt: #f9f8f6;
-    --border: rgba(0,0,0,0.1);
-    --border-strong: rgba(0,0,0,0.18);
-    --text: #1a1a1a;
-    --text-muted: #666;
-    --text-hint: #999;
-    --accent: #2c2c2a;
-    --accent-hover: #444441;
-    --group-header: #2c2c2a;
-    --result-bg: #2c2c2a;
-    --result-text: #fff;
-    --highlight: #f0ede6;
-    --total-bg: #1a1a1a;
-    --total-text: #fff;
-    --radio-active: #2c2c2a;
-    --slider-track: #ddd;
-    --slider-fill: #2c2c2a;
-    --tag-bg: #ebebeb;
-    --tag-text: #555;
-  }
+.masthead{border-bottom:1px solid var(--smoke);padding-bottom:32px;margin-bottom:36px}
+.masthead-eye{font-size:10px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--fog);margin-bottom:10px}
+.masthead-title{font-family:'Cormorant Garamond',serif;font-size:34px;font-weight:300;color:var(--ink);line-height:1.15}
+.masthead-title em{font-style:italic;color:var(--fog)}
+.masthead-sub{margin-top:10px;font-size:12px;color:var(--silver);line-height:1.7;max-width:420px}
 
-  html, body {
-    min-height: 100vh;
-    background: var(--bg);
-    font-family: 'Inter', sans-serif;
-    color: var(--text);
-    -webkit-font-smoothing: antialiased;
-  }
+.section{margin-bottom:8px}
+.sec-head{
+  background:var(--velvet);color:var(--white);
+  padding:13px 20px;display:flex;align-items:center;justify-content:space-between;
+  cursor:pointer;user-select:none;border-radius:var(--r) var(--r) 0 0;transition:background .15s;
+}
+.sec-head:hover{background:var(--charcoal)}
+.sec-head.closed{border-radius:var(--r)}
+.sec-head h2{font-size:10px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.65)}
+.chev{width:16px;height:16px;display:flex;align-items:center;justify-content:center;transition:transform .2s}
+.chev svg{width:11px;height:11px;stroke:rgba(255,255,255,.4);stroke-width:2;fill:none;stroke-linecap:round}
+.sec-head.closed .chev{transform:rotate(-90deg)}
 
-  .page-wrapper {
-    max-width: 760px;
-    margin: 0 auto;
-    padding: 40px 20px 80px;
-  }
+.sec-body{background:var(--white);border:1px solid var(--smoke);border-top:none;border-radius:0 0 var(--r) var(--r);padding:24px}
+.sec-body.hide{display:none}
+.sec-hint{background:var(--cream);border:1px solid var(--smoke);border-top:1px solid rgba(0,0,0,.05);padding:9px 20px;font-size:11px;color:var(--silver);line-height:1.6;border-radius:0 0 var(--r) var(--r)}
+.sec-hint.hide{display:none}
 
-  .page-header {
-    text-align: center;
-    margin-bottom: 40px;
-  }
-  .page-header .brand {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 13px;
-    font-weight: 600;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--text-muted);
-    margin-bottom: 8px;
-  }
-  .page-header h1 {
-    font-size: 28px;
-    font-weight: 300;
-    letter-spacing: -0.02em;
-    color: var(--text);
-    line-height: 1.2;
-  }
-  .page-header p {
-    margin-top: 10px;
-    font-size: 13px;
-    color: var(--text-hint);
-    line-height: 1.6;
-  }
+.row{display:grid;gap:14px;margin-bottom:18px}
+.c2{grid-template-columns:1fr 1fr}
+.c3{grid-template-columns:1fr 1fr 1fr}
+.c1{grid-template-columns:1fr}
+@media(max-width:520px){.c2,.c3{grid-template-columns:1fr}}
 
-  .card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    overflow: hidden;
-    margin-bottom: 12px;
-  }
+.field{display:flex;flex-direction:column;gap:5px}
+.fl{font-size:9.5px;font-weight:600;letter-spacing:.13em;text-transform:uppercase;color:var(--fog)}
 
-  .card-header {
-    background: var(--group-header);
-    color: #fff;
-    padding: 12px 20px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    cursor: pointer;
-    user-select: none;
-  }
-  .card-header h2 {
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-  }
-  .card-header .toggle-icon {
-    width: 18px;
-    height: 18px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: transform 0.2s;
-  }
-  .card-header .toggle-icon svg {
-    width: 12px;
-    height: 12px;
-    fill: none;
-    stroke: rgba(255,255,255,0.7);
-    stroke-width: 2;
-    stroke-linecap: round;
-  }
-  .card-header.collapsed .toggle-icon { transform: rotate(-90deg); }
+.field select,.field input[type=number]{
+  height:38px;background:var(--cream);border:1px solid var(--smoke);border-radius:var(--r);
+  padding:0 11px;font-size:13px;color:var(--ink);font-family:'Inter',sans-serif;
+  outline:none;appearance:none;-webkit-appearance:none;transition:border-color .15s,box-shadow .15s;
+}
+.field select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%23a8a7a5' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 11px center;padding-right:30px}
+.field select:focus,.field input[type=number]:focus{border-color:var(--charcoal);box-shadow:0 0 0 3px rgba(42,41,39,.1)}
+.field select:hover,.field input[type=number]:hover{border-color:var(--mist)}
+.nw{position:relative}
+.nw input{width:100%;padding-right:36px}
+.nu{position:absolute;right:11px;top:50%;transform:translateY(-50%);font-size:11px;color:var(--silver);pointer-events:none}
 
-  .card-body {
-    padding: 20px;
-  }
-  .card-body.collapsed { display: none; }
+.rstack{display:flex;flex-direction:column;gap:5px}
+.ri{display:flex;align-items:center;gap:10px;padding:10px 13px;border-radius:var(--r);border:1px solid var(--smoke);background:var(--cream);cursor:pointer;font-size:12.5px;color:var(--ink);transition:all .12s}
+.ri:hover{border-color:var(--mist);background:var(--white)}
+.ri.on{border-color:var(--charcoal);background:var(--white)}
+.rpip{width:15px;height:15px;border-radius:50%;border:1.5px solid var(--smoke);flex-shrink:0;display:flex;align-items:center;justify-content:center;transition:all .12s}
+.rpip::after{content:'';width:7px;height:7px;border-radius:50%;background:transparent;transition:background .12s}
+.ri.on .rpip{border-color:var(--ink)}
+.ri.on .rpip::after{background:var(--ink)}
 
-  .card-hint {
-    font-size: 12px;
-    color: var(--text-hint);
-    padding: 8px 20px 14px;
-    line-height: 1.5;
-    border-top: 1px solid var(--border);
-    background: var(--surface-alt);
-  }
+.cstack{display:flex;flex-direction:column;gap:5px}
+.ci-item{display:flex;align-items:center;gap:10px;padding:10px 13px;border-radius:var(--r);border:1px solid var(--smoke);background:var(--cream);cursor:pointer;font-size:12.5px;color:var(--ink);transition:all .12s}
+.ci-item:hover{border-color:var(--mist);background:var(--white)}
+.ci-item.on{border-color:var(--charcoal);background:var(--white)}
+.cbox{width:15px;height:15px;border-radius:3px;border:1.5px solid var(--smoke);flex-shrink:0;display:flex;align-items:center;justify-content:center;transition:all .12s}
+.cbox svg{width:9px;height:9px;stroke:#fff;stroke-width:2.5;fill:none;opacity:0;transition:opacity .12s}
+.ci-item.on .cbox{background:var(--ink);border-color:var(--ink)}
+.ci-item.on .cbox svg{opacity:1}
 
-  .field-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 14px;
-    margin-bottom: 14px;
-  }
-  .field-row.full { grid-template-columns: 1fr; }
-  .field-row.three { grid-template-columns: 1fr 1fr 1fr; }
+.sl-field{}
+.sl-top{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:10px}
+.sl-big{font-size:22px;font-weight:300;color:var(--ink);line-height:1}
+.sl-big em{font-size:12px;font-style:normal;color:var(--silver);margin-left:3px}
+input[type=range]{width:100%;height:4px;appearance:none;-webkit-appearance:none;background:var(--smoke);border-radius:2px;outline:none;cursor:pointer}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;height:18px;border-radius:50%;background:var(--ink);border:2.5px solid var(--white);box-shadow:0 1px 4px rgba(0,0,0,.22);margin-top:-7px}
+input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;background:var(--ink);border:2.5px solid var(--white)}
+.ticks{display:flex;justify-content:space-between;margin-top:5px}
+.ticks span{font-size:9.5px;color:var(--silver)}
 
-  @media (max-width: 560px) {
-    .field-row, .field-row.three { grid-template-columns: 1fr; }
-  }
+.rpill{display:flex;align-items:center;justify-content:space-between;background:var(--velvet);border-radius:var(--r);padding:13px 18px;margin-top:20px}
+.rpill-l{font-size:9.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.4)}
+.rpill-v{font-size:24px;font-weight:300;color:var(--white);letter-spacing:-.02em}
+.rpill-v em{font-size:13px;font-style:normal;color:rgba(255,255,255,.4);margin-left:2px}
 
-  .field {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-  }
-  .field label {
-    font-size: 10px;
-    font-weight: 600;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--text-muted);
-  }
+.spill{display:flex;align-items:center;justify-content:space-between;background:var(--cream);border:1px solid var(--smoke);border-radius:var(--r);padding:9px 14px;margin-top:12px}
+.spill-l{font-size:10px;color:var(--fog);font-weight:500}
+.spill-v{font-size:16px;font-weight:300;color:var(--ink)}
+.spill-v em{font-size:10px;font-style:normal;color:var(--silver)}
 
-  .field select,
-  .field input[type="number"] {
-    height: 40px;
-    background: var(--surface-alt);
-    border: 1px solid var(--border-strong);
-    border-radius: 6px;
-    padding: 0 12px;
-    font-size: 13px;
-    color: var(--text);
-    font-family: 'Inter', sans-serif;
-    appearance: none;
-    -webkit-appearance: none;
-    cursor: pointer;
-    outline: none;
-    transition: border-color 0.15s;
-  }
-  .field select { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%23999' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 12px center; padding-right: 32px; }
-  .field select:hover,
-  .field input[type="number"]:hover { border-color: var(--accent); }
-  .field select:focus,
-  .field input[type="number"]:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(44,44,42,0.08); }
+.totals{background:var(--ink);border-radius:var(--r);overflow:hidden;margin-top:24px}
+.totals-top{padding:24px 24px 18px}
+.t-eye{font-size:9.5px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:6px}
+.t-num{font-family:'Cormorant Garamond',serif;font-size:48px;font-weight:300;color:var(--white);letter-spacing:-.02em;line-height:1}
+.t-num em{font-family:'Inter',sans-serif;font-size:18px;font-style:normal;color:rgba(255,255,255,.3);margin-left:4px}
+.totals-body{background:var(--velvet);padding:20px 24px}
+.adv-row{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;background:var(--charcoal);border-radius:var(--r);margin-bottom:14px}
+.adv-l{font-size:9.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.4)}
+.adv-v{font-size:22px;font-weight:300;color:var(--white)}
+.adv-v em{font-size:12px;font-style:normal;color:rgba(255,255,255,.3);margin-left:2px}
+.t-note{font-size:11.5px;color:var(--fog);line-height:1.7}
 
-  .number-wrap {
-    position: relative;
-  }
-  .number-wrap input { width: 100%; padding-right: 44px; }
-  .number-wrap .unit {
-    position: absolute;
-    right: 12px;
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: 12px;
-    color: var(--text-hint);
-    pointer-events: none;
-  }
-
-  .radio-group {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-  }
-  .radio-option {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 9px 12px;
-    border-radius: 6px;
-    border: 1px solid var(--border-strong);
-    cursor: pointer;
-    background: var(--surface-alt);
-    transition: all 0.15s;
-    font-size: 13px;
-  }
-  .radio-option:hover { border-color: var(--accent); background: var(--highlight); }
-  .radio-option input[type="radio"] { display: none; }
-  .radio-dot {
-    width: 16px;
-    height: 16px;
-    border-radius: 50%;
-    border: 2px solid var(--border-strong);
-    flex-shrink: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.15s;
-  }
-  .radio-dot::after {
-    content: '';
-    width: 7px;
-    height: 7px;
-    border-radius: 50%;
-    background: transparent;
-    transition: background 0.15s;
-  }
-  .radio-option.active { border-color: var(--accent); background: var(--highlight); }
-  .radio-option.active .radio-dot { border-color: var(--accent); }
-  .radio-option.active .radio-dot::after { background: var(--accent); }
-
-  .checkbox-option {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 9px 12px;
-    border-radius: 6px;
-    border: 1px solid var(--border-strong);
-    cursor: pointer;
-    background: var(--surface-alt);
-    transition: all 0.15s;
-    font-size: 13px;
-  }
-  .checkbox-option:hover { border-color: var(--accent); background: var(--highlight); }
-  .checkbox-option input[type="checkbox"] { display: none; }
-  .check-box {
-    width: 16px;
-    height: 16px;
-    border-radius: 3px;
-    border: 2px solid var(--border-strong);
-    flex-shrink: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.15s;
-  }
-  .check-box svg { width: 10px; height: 10px; fill: none; stroke: #fff; stroke-width: 2.5; opacity: 0; transition: opacity 0.15s; }
-  .checkbox-option.active .check-box { background: var(--accent); border-color: var(--accent); }
-  .checkbox-option.active .check-box svg { opacity: 1; }
-
-  .slider-wrap { padding: 4px 0; }
-  .slider-label-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    margin-bottom: 10px;
-  }
-  .slider-val {
-    font-size: 20px;
-    font-weight: 300;
-    color: var(--text);
-  }
-  .slider-val span { font-size: 12px; color: var(--text-hint); margin-left: 2px; }
-  .slider-track {
-    position: relative;
-    height: 20px;
-    display: flex;
-    align-items: center;
-  }
-  .slider-track input[type="range"] {
-    width: 100%;
-    height: 4px;
-    appearance: none;
-    -webkit-appearance: none;
-    background: transparent;
-    cursor: pointer;
-    position: relative;
-    z-index: 1;
-  }
-  .slider-track input[type="range"]::-webkit-slider-runnable-track { height: 4px; border-radius: 2px; background: var(--slider-track); }
-  .slider-track input[type="range"]::-moz-range-track { height: 4px; border-radius: 2px; background: var(--slider-track); }
-  .slider-track input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; width: 18px; height: 18px; border-radius: 50%; background: var(--accent); border: 2px solid #fff; box-shadow: 0 1px 4px rgba(0,0,0,0.25); margin-top: -7px; }
-  .slider-track input[type="range"]::-moz-range-thumb { width: 18px; height: 18px; border-radius: 50%; background: var(--accent); border: 2px solid #fff; box-shadow: 0 1px 4px rgba(0,0,0,0.25); }
-  .slider-scale {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 6px;
-  }
-  .slider-scale span { font-size: 10px; color: var(--text-hint); }
-
-  .result-box {
-    background: var(--result-bg);
-    border-radius: 8px;
-    padding: 14px 16px;
-    display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-    margin-top: 14px;
-  }
-  .result-box .result-label {
-    font-size: 10px;
-    font-weight: 600;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: rgba(255,255,255,0.55);
-  }
-  .result-box .result-val {
-    font-size: 26px;
-    font-weight: 300;
-    color: #fff;
-    letter-spacing: -0.02em;
-  }
-  .result-box .result-val span { font-size: 14px; color: rgba(255,255,255,0.6); margin-left: 2px; }
-
-  .sub-result {
-    background: var(--surface-alt);
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    padding: 10px 14px;
-    display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-    margin-top: 12px;
-  }
-  .sub-result .sub-label { font-size: 11px; color: var(--text-muted); font-weight: 500; }
-  .sub-result .sub-val { font-size: 18px; font-weight: 300; color: var(--text); }
-  .sub-result .sub-val span { font-size: 11px; color: var(--text-hint); }
-
-  .totals-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    overflow: hidden;
-    margin-top: 20px;
-  }
-  .totals-header {
-    background: var(--total-bg);
-    padding: 14px 20px;
-  }
-  .totals-header h2 {
-    font-size: 10px;
-    font-weight: 600;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: rgba(255,255,255,0.5);
-    margin-bottom: 4px;
-  }
-  .total-main {
-    font-size: 36px;
-    font-weight: 300;
-    color: #fff;
-    letter-spacing: -0.03em;
-  }
-  .total-main span { font-size: 16px; color: rgba(255,255,255,0.5); margin-left: 2px; }
-
-  .totals-body { padding: 20px; }
-  .advance-row {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 10px 14px;
-    background: var(--highlight);
-    border-radius: 8px;
-    margin-bottom: 14px;
-  }
-  .advance-label { font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); }
-  .advance-val { font-size: 22px; font-weight: 300; color: var(--text); }
-  .advance-val span { font-size: 12px; color: var(--text-hint); }
-
-  .hint-text {
-    font-size: 12px;
-    color: var(--text-hint);
-    line-height: 1.6;
-  }
-
-  .divider { height: 1px; background: var(--border); margin: 16px 0; }
-
-  .contact-block {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 20px;
-    margin-top: 12px;
-  }
-  .contact-block .brand-name {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 20px;
-    font-weight: 600;
-    color: var(--text);
-    margin-bottom: 12px;
-  }
-  .contact-line {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 13px;
-    color: var(--text-muted);
-    margin-bottom: 6px;
-  }
-  .contact-line .contact-icon { font-size: 14px; }
-  .contact-line a { color: var(--text-muted); text-decoration: none; border-bottom: 1px solid var(--border); }
-  .contact-line a:hover { color: var(--text); border-color: var(--text); }
+.contacts{background:var(--white);border:1px solid var(--smoke);border-radius:var(--r);padding:22px 24px;margin-top:10px}
+.ct-brand{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:400;color:var(--ink);margin-bottom:14px}
+.ct-row{display:flex;align-items:center;gap:8px;font-size:12.5px;color:var(--fog);margin-bottom:7px}
+.ct-row a{color:var(--fog);text-decoration:none;border-bottom:1px solid var(--smoke);transition:color .12s,border-color .12s}
+.ct-row a:hover{color:var(--ink);border-color:var(--mist)}
+.ico{width:14px;height:14px;flex-shrink:0;opacity:.45}
 </style>
 </head>
 <body>
-<div class="page-wrapper">
+<div class="page">
 
-  <div class="page-header">
-    <div class="brand">V.Ar Production</div>
-    <h1>Калькулятор стоимости проекта</h1>
-    <p>Приблизительная оценка. Окончательная цена будет названа после изучения материалов.</p>
-  </div>
-
-  <!-- ОСНОВНОЕ -->
-  <div class="card">
-    <div class="card-header" onclick="toggleCard(this)">
-      <h2>Основное</h2>
-      <div class="toggle-icon"><svg viewBox="0 0 12 8"><polyline points="1,1 6,7 11,1"/></svg></div>
-    </div>
-    <div class="card-body">
-      <div class="field-row">
-        <div class="field">
-          <label>Тип</label>
-          <select id="sel-type" onchange="recalc()">
-            <option value="400">Интерьер</option>
-            <option value="300">Интерьер офиса</option>
-            <option value="300">Экстерьер дома</option>
-            <option value="15">Жилой Комплекс</option>
-          </select>
-        </div>
-        <div class="field">
-          <label>Площадь</label>
-          <div class="number-wrap">
-            <input type="number" id="inp-area" min="0" max="9999999" value="0" step="1" oninput="recalc()">
-            <span class="unit">м²</span>
-          </div>
-        </div>
-      </div>
-      <div class="field-row full">
-        <div class="field">
-          <label>Сможете ли вы предоставить чертёж?</label>
-          <div class="radio-group" id="radio-drawing">
-            <label class="radio-option active" data-val="100">
-              <input type="radio" name="drawing" value="100" checked>
-              <div class="radio-dot"></div>
-              Наличие чертежа от руки с размерами
-            </label>
-            <label class="radio-option" data-val="80">
-              <input type="radio" name="drawing" value="80">
-              <div class="radio-dot"></div>
-              Наличие чертежа в формате PDF (скан чертежа)
-            </label>
-            <label class="radio-option" data-val="0">
-              <input type="radio" name="drawing" value="0">
-              <div class="radio-dot"></div>
-              Наличие чертежа в формате DWG
-            </label>
-          </div>
-        </div>
-      </div>
-      <div class="result-box">
-        <span class="result-label">Моделирование</span>
-        <span class="result-val" id="res-modeling">0<span>₽</span></span>
-      </div>
-    </div>
-  </div>
-
-  <!-- ДОПОЛНИТЕЛЬНО -->
-  <div class="card">
-    <div class="card-header collapsed" onclick="toggleCard(this)">
-      <h2>Дополнительно</h2>
-      <div class="toggle-icon"><svg viewBox="0 0 12 8"><polyline points="1,1 6,7 11,1"/></svg></div>
-    </div>
-    <div class="card-body collapsed">
-      <div class="field-row full">
-        <div class="field">
-          <label>Файлы проекта</label>
-          <label class="checkbox-option" id="chk-files-label" onclick="toggleCheck('chk-files', 'chk-files-label'); recalc()">
-            <input type="checkbox" id="chk-files">
-            <div class="check-box"><svg viewBox="0 0 10 8"><polyline points="1,4 4,7 9,1"/></svg></div>
-            Все исходные файлы проекта (проект с текстурами из 3D пакета)
-          </label>
-        </div>
-      </div>
-      <div class="result-box">
-        <span class="result-label">Файлы проекта</span>
-        <span class="result-val" id="res-files">0<span>₽</span></span>
-      </div>
-    </div>
-    <div class="card-hint">После завершения заказа я могу предоставить вам исходные файлы проекта, выполненные в программном комплексе, наиболее подходящем для поставленной задачи.</div>
-  </div>
-
-  <!-- ВИЗУАЛИЗАЦИЯ ФОТО -->
-  <div class="card">
-    <div class="card-header collapsed" onclick="toggleCard(this)">
-      <h2>Визуализация фото</h2>
-      <div class="toggle-icon"><svg viewBox="0 0 12 8"><polyline points="1,1 6,7 11,1"/></svg></div>
-    </div>
-    <div class="card-body collapsed">
-      <div class="field-row full">
-        <div class="field">
-          <label>Разрешение изображения</label>
-          <select id="sel-photo-res" onchange="recalc()">
-            <option value="150">HD 1280×720</option>
-            <option value="300" selected>FHD 1920×1080</option>
-            <option value="600">QHD 2560×1440</option>
-            <option value="1000">4K 3840×2160</option>
-            <option value="2000">8K 7680×4320</option>
-            <option value="3500">16K 15360×8640</option>
-          </select>
-        </div>
-      </div>
-      <div class="field-row full">
-        <div class="field">
-          <label>Количество фотографий</label>
-          <div class="slider-wrap">
-            <div class="slider-label-row">
-              <span style="font-size:12px;color:var(--text-muted)">Количество</span>
-              <div class="slider-val" id="val-photos">0<span>шт.</span></div>
-            </div>
-            <div class="slider-track">
-              <input type="range" id="sl-photos" min="0" max="80" value="0" step="1" oninput="document.getElementById('val-photos').innerHTML=this.value+'<span>шт.</span>'; recalc()">
-            </div>
-            <div class="slider-scale">
-              <span>0</span><span>10</span><span>20</span><span>30</span><span>40</span><span>50</span><span>60</span><span>70</span><span>80</span>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="result-box">
-        <span class="result-label">Визуализация фото</span>
-        <span class="result-val" id="res-photo">0<span>₽</span></span>
-      </div>
-    </div>
-  </div>
-
-  <!-- ВИЗУАЛИЗАЦИЯ ВИДЕО -->
-  <div class="card">
-    <div class="card-header collapsed" onclick="toggleCard(this)">
-      <h2>Визуализация видео</h2>
-      <div class="toggle-icon"><svg viewBox="0 0 12 8"><polyline points="1,1 6,7 11,1"/></svg></div>
-    </div>
-    <div class="card-body collapsed">
-      <div class="field-row three">
-        <div class="field">
-          <label>Разрешение видео</label>
-          <select id="sel-video-res" onchange="recalc()">
-            <option value="10">HD 1280×720</option>
-            <option value="20" selected>FHD 1920×1080</option>
-            <option value="40">QHD 2560×1440</option>
-            <option value="70">4K 3840×2160</option>
-          </select>
-        </div>
-        <div class="field">
-          <label>Кадры в секунде</label>
-          <select id="sel-fps" onchange="recalc()">
-            <option value="24">24 к/с</option>
-            <option value="25">25 к/с</option>
-            <option value="30" selected>30 к/с</option>
-            <option value="60">60 к/с</option>
-            <option value="120">120 к/с</option>
-          </select>
-        </div>
-        <div class="field">
-          <label>Длительность</label>
-          <div class="number-wrap">
-            <input type="number" id="inp-duration" min="0" max="9999999" value="0" step="1" oninput="recalc()">
-            <span class="unit">сек.</span>
-          </div>
-        </div>
-      </div>
-      <div class="sub-result">
-        <span class="sub-label">Количество кадров</span>
-        <span class="sub-val" id="res-frames">0<span>кадров</span></span>
-      </div>
-      <div class="result-box">
-        <span class="result-label">Визуализация видео</span>
-        <span class="result-val" id="res-video">0<span>₽</span></span>
-      </div>
-    </div>
-  </div>
-
-  <!-- ВИРТУАЛЬНЫЙ 360 ТУР -->
-  <div class="card">
-    <div class="card-header collapsed" onclick="toggleCard(this)">
-      <h2>Виртуальный 360 тур</h2>
-      <div class="toggle-icon"><svg viewBox="0 0 12 8"><polyline points="1,1 6,7 11,1"/></svg></div>
-    </div>
-    <div class="card-body collapsed">
-      <div class="field-row full">
-        <div class="field">
-          <label>Качество панорам</label>
-          <select id="sel-pano-qual" onchange="recalc()">
-            <option value="1000">360 панорама 4000×2000</option>
-            <option value="2000" selected>360 панорама 8000×4000</option>
-            <option value="4000">360 панорама 16000×8000</option>
-          </select>
-        </div>
-      </div>
-      <div class="field-row full">
-        <div class="field">
-          <label>Количество точек</label>
-          <div class="slider-wrap">
-            <div class="slider-label-row">
-              <span style="font-size:12px;color:var(--text-muted)">Точки</span>
-              <div class="slider-val" id="val-points">0<span>шт.</span></div>
-            </div>
-            <div class="slider-track">
-              <input type="range" id="sl-points" min="0" max="100" value="0" step="1" oninput="document.getElementById('val-points').innerHTML=this.value+'<span>шт.</span>'; recalc()">
-            </div>
-            <div class="slider-scale">
-              <span>0</span><span>10</span><span>20</span><span>30</span><span>40</span><span>50</span><span>60</span><span>70</span><span>80</span><span>90</span><span>100</span>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="field-row full" style="margin-bottom:8px">
-        <div class="field">
-          <label>Опции</label>
-          <div style="display:flex;flex-direction:column;gap:6px">
-            <label class="checkbox-option" id="chk-daynight-label" onclick="toggleCheck('chk-daynight','chk-daynight-label'); recalc()">
-              <input type="checkbox" id="chk-daynight">
-              <div class="check-box"><svg viewBox="0 0 10 8"><polyline points="1,4 4,7 9,1"/></svg></div>
-              Вариация день и ночь
-            </label>
-            <label class="checkbox-option" id="chk-web-label" onclick="toggleCheck('chk-web','chk-web-label'); recalc()">
-              <input type="checkbox" id="chk-web">
-              <div class="check-box"><svg viewBox="0 0 10 8"><polyline points="1,4 4,7 9,1"/></svg></div>
-              Версия для WEB (+5 000 ₽)
-            </label>
-            <label class="checkbox-option" id="chk-mac-label" onclick="toggleCheck('chk-mac','chk-mac-label'); recalc()">
-              <input type="checkbox" id="chk-mac">
-              <div class="check-box"><svg viewBox="0 0 10 8"><polyline points="1,4 4,7 9,1"/></svg></div>
-              Версия для MAC (+5 000 ₽)
-            </label>
-            <label class="checkbox-option" id="chk-win-label" onclick="toggleCheck('chk-win','chk-win-label'); recalc()">
-              <input type="checkbox" id="chk-win">
-              <div class="check-box"><svg viewBox="0 0 10 8"><polyline points="1,4 4,7 9,1"/></svg></div>
-              Версия для WINDOWS (+5 000 ₽)
-            </label>
-          </div>
-        </div>
-      </div>
-      <div class="result-box">
-        <span class="result-label">Тур 360</span>
-        <span class="result-val" id="res-tour">0<span>₽</span></span>
-      </div>
-    </div>
-  </div>
-
-  <!-- ИТОГ -->
-  <div class="totals-card">
-    <div class="totals-header">
-      <h2>Итоговая стоимость</h2>
-      <div class="total-main" id="res-total">0<span>₽</span></div>
-    </div>
-    <div class="totals-body">
-      <div class="advance-row">
-        <span class="advance-label">Аванс (50%)</span>
-        <span class="advance-val" id="res-advance">0<span>₽</span></span>
-      </div>
-      <p class="hint-text">Аванс до 50% необходим для подтверждения серьёзности намерений, покрытия начальных затрат и эффективного планирования проекта. Это гарантирует качественное и своевременное выполнение работы.</p>
-      <div class="divider"></div>
-      <p class="hint-text">Калькулятор позволяет примерно оценить стоимость проекта. Окончательная цена будет названа после того, как мы изучим материалы.</p>
-    </div>
-  </div>
-
-  <!-- КОНТАКТЫ -->
-  <div class="contact-block">
-    <div class="brand-name">V.Ar Production</div>
-    <div class="contact-line">
-      <span class="contact-icon">✉</span>
-      <a href="mailto:varprod@outlook.com">varprod@outlook.com</a>
-    </div>
-    <div class="contact-line">
-      <span class="contact-icon">✆</span>
-      Tel / WhatsApp / Telegram: <a href="tel:+79044449935">+7 (904) 444-99-35</a>
-    </div>
-  </div>
-
+<div class="masthead">
+  <div class="masthead-eye">V.Ar Production</div>
+  <div class="masthead-title">Калькулятор<br><em>стоимости проекта</em></div>
+  <p class="masthead-sub">Предварительная оценка. Окончательная цена называется после изучения материалов.</p>
 </div>
 
+<!-- ОСНОВНОЕ -->
+<div class="section">
+  <div class="sec-head" id="h-main" onclick="tog('main')">
+    <h2>Основное</h2>
+    <div class="chev"><svg viewBox="0 0 11 7"><polyline points="1,1 5.5,6 10,1"/></svg></div>
+  </div>
+  <div class="sec-body" id="b-main">
+    <div class="row c2">
+      <div class="field">
+        <span class="fl">Тип работы</span>
+        <select id="sel-type" onchange="calc()">
+          <option value="400">Интерьер</option>
+          <option value="300">Интерьер офиса</option>
+          <option value="300">Экстерьер дома</option>
+          <option value="15">Жилой комплекс</option>
+        </select>
+      </div>
+      <div class="field">
+        <span class="fl">Площадь</span>
+        <div class="nw"><input type="number" id="inp-area" min="0" value="0" step="1" oninput="calc()"><span class="nu">м²</span></div>
+      </div>
+    </div>
+    <div class="row c1" style="margin-bottom:0">
+      <div class="field">
+        <span class="fl">Наличие чертежа</span>
+        <div class="rstack" id="rg-draw">
+          <div class="ri on" data-val="100" onclick="pickR('rg-draw',this);calc()"><div class="rpip"></div>Чертёж от руки с размерами</div>
+          <div class="ri" data-val="80" onclick="pickR('rg-draw',this);calc()"><div class="rpip"></div>Чертёж в формате PDF (скан)</div>
+          <div class="ri" data-val="0" onclick="pickR('rg-draw',this);calc()"><div class="rpip"></div>Чертёж в формате DWG</div>
+        </div>
+      </div>
+    </div>
+    <div class="rpill"><span class="rpill-l">Моделирование</span><span class="rpill-v" id="out-model">0<em>₽</em></span></div>
+  </div>
+</div>
+
+<!-- ДОПОЛНИТЕЛЬНО -->
+<div class="section">
+  <div class="sec-head closed" id="h-extra" onclick="tog('extra')">
+    <h2>Дополнительно — исходные файлы</h2>
+    <div class="chev"><svg viewBox="0 0 11 7"><polyline points="1,1 5.5,6 10,1"/></svg></div>
+  </div>
+  <div class="sec-body hide" id="b-extra">
+    <div class="row c1" style="margin-bottom:0">
+      <div class="field">
+        <span class="fl">Файлы проекта</span>
+        <div class="cstack">
+          <div class="ci-item" id="ck-files" onclick="togCk(this);calc()">
+            <div class="cbox"><svg viewBox="0 0 9 7"><polyline points="1,3.5 3.5,6 8,1"/></svg></div>
+            Все исходные файлы проекта (с текстурами из 3D-пакета) — 50% от стоимости моделирования
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="rpill"><span class="rpill-l">Файлы проекта</span><span class="rpill-v" id="out-files">0<em>₽</em></span></div>
+  </div>
+  <div class="sec-hint hide" id="hs-extra">После завершения заказа предоставляются исходные файлы в программном комплексе, наиболее подходящем для задачи.</div>
+</div>
+
+<!-- ФОТО -->
+<div class="section">
+  <div class="sec-head closed" id="h-photo" onclick="tog('photo')">
+    <h2>Визуализация — фото</h2>
+    <div class="chev"><svg viewBox="0 0 11 7"><polyline points="1,1 5.5,6 10,1"/></svg></div>
+  </div>
+  <div class="sec-body hide" id="b-photo">
+    <div class="row c1">
+      <div class="field">
+        <span class="fl">Разрешение изображения</span>
+        <select id="sel-pres" onchange="calc()">
+          <option value="150">HD — 1280 × 720</option>
+          <option value="300" selected>FHD — 1920 × 1080</option>
+          <option value="600">QHD — 2560 × 1440</option>
+          <option value="1000">4K — 3840 × 2160</option>
+          <option value="2000">8K — 7680 × 4320</option>
+          <option value="3500">16K — 15360 × 8640</option>
+        </select>
+      </div>
+    </div>
+    <div class="row c1" style="margin-bottom:0">
+      <div class="field sl-field">
+        <span class="fl">Количество фотографий</span>
+        <div class="sl-top"><span style="font-size:11px;color:var(--silver)">от 0 до 80</span><div class="sl-big" id="sv-photos">0<em>шт.</em></div></div>
+        <input type="range" id="sl-photos" min="0" max="80" value="0" step="1" oninput="ss('sl-photos','sv-photos','шт.');calc()">
+        <div class="ticks"><span>0</span><span>20</span><span>40</span><span>60</span><span>80</span></div>
+      </div>
+    </div>
+    <div class="rpill"><span class="rpill-l">Визуализация фото</span><span class="rpill-v" id="out-photo">0<em>₽</em></span></div>
+  </div>
+</div>
+
+<!-- ВИДЕО -->
+<div class="section">
+  <div class="sec-head closed" id="h-video" onclick="tog('video')">
+    <h2>Визуализация — видео</h2>
+    <div class="chev"><svg viewBox="0 0 11 7"><polyline points="1,1 5.5,6 10,1"/></svg></div>
+  </div>
+  <div class="sec-body hide" id="b-video">
+    <div class="row c3">
+      <div class="field">
+        <span class="fl">Разрешение видео</span>
+        <select id="sel-vres" onchange="calc()">
+          <option value="10">HD 1280×720</option>
+          <option value="20" selected>FHD 1920×1080</option>
+          <option value="40">QHD 2560×1440</option>
+          <option value="70">4K 3840×2160</option>
+        </select>
+      </div>
+      <div class="field">
+        <span class="fl">Кадры / сек.</span>
+        <select id="sel-fps" onchange="calc()">
+          <option value="24">24 к/с</option>
+          <option value="25">25 к/с</option>
+          <option value="30" selected>30 к/с</option>
+          <option value="60">60 к/с</option>
+          <option value="120">120 к/с</option>
+        </select>
+      </div>
+      <div class="field">
+        <span class="fl">Длительность</span>
+        <div class="nw"><input type="number" id="inp-dur" min="0" value="0" step="1" oninput="calc()"><span class="nu">сек.</span></div>
+      </div>
+    </div>
+    <div class="spill"><span class="spill-l">Количество кадров</span><span class="spill-v" id="out-frames">0<em> кадров</em></span></div>
+    <div class="rpill"><span class="rpill-l">Визуализация видео</span><span class="rpill-v" id="out-video">0<em>₽</em></span></div>
+  </div>
+</div>
+
+<!-- ТУР 360 -->
+<div class="section">
+  <div class="sec-head closed" id="h-tour" onclick="tog('tour')">
+    <h2>Виртуальный 360° тур</h2>
+    <div class="chev"><svg viewBox="0 0 11 7"><polyline points="1,1 5.5,6 10,1"/></svg></div>
+  </div>
+  <div class="sec-body hide" id="b-tour">
+    <div class="row c1">
+      <div class="field">
+        <span class="fl">Качество панорам</span>
+        <select id="sel-pano" onchange="calc()">
+          <option value="1000">360° панорама — 4000 × 2000</option>
+          <option value="2000" selected>360° панорама — 8000 × 4000</option>
+          <option value="4000">360° панорама — 16000 × 8000</option>
+        </select>
+      </div>
+    </div>
+    <div class="row c1">
+      <div class="field sl-field">
+        <span class="fl">Количество точек</span>
+        <div class="sl-top"><span style="font-size:11px;color:var(--silver)">от 0 до 100</span><div class="sl-big" id="sv-points">0<em>шт.</em></div></div>
+        <input type="range" id="sl-points" min="0" max="100" value="0" step="1" oninput="ss('sl-points','sv-points','шт.');calc()">
+        <div class="ticks"><span>0</span><span>25</span><span>50</span><span>75</span><span>100</span></div>
+      </div>
+    </div>
+    <div class="row c1" style="margin-bottom:0">
+      <div class="field">
+        <span class="fl">Опции</span>
+        <div class="cstack">
+          <div class="ci-item" id="ck-dn" onclick="togCk(this);calc()"><div class="cbox"><svg viewBox="0 0 9 7"><polyline points="1,3.5 3.5,6 8,1"/></svg></div>Вариация день и ночь (×2 к стоимости точек)</div>
+          <div class="ci-item" id="ck-web" onclick="togCk(this);calc()"><div class="cbox"><svg viewBox="0 0 9 7"><polyline points="1,3.5 3.5,6 8,1"/></svg></div>Версия для WEB — +5 000 ₽</div>
+          <div class="ci-item" id="ck-mac" onclick="togCk(this);calc()"><div class="cbox"><svg viewBox="0 0 9 7"><polyline points="1,3.5 3.5,6 8,1"/></svg></div>Версия для macOS — +5 000 ₽</div>
+          <div class="ci-item" id="ck-win" onclick="togCk(this);calc()"><div class="cbox"><svg viewBox="0 0 9 7"><polyline points="1,3.5 3.5,6 8,1"/></svg></div>Версия для Windows — +5 000 ₽</div>
+        </div>
+      </div>
+    </div>
+    <div class="rpill"><span class="rpill-l">Тур 360°</span><span class="rpill-v" id="out-tour">0<em>₽</em></span></div>
+  </div>
+</div>
+
+<!-- ИТОГ -->
+<div class="totals">
+  <div class="totals-top">
+    <div class="t-eye">Итоговая стоимость</div>
+    <div class="t-num" id="out-total">0<em>₽</em></div>
+  </div>
+  <div class="totals-body">
+    <div class="adv-row">
+      <span class="adv-l">Аванс 50%</span>
+      <span class="adv-v" id="out-adv">0<em>₽</em></span>
+    </div>
+    <p class="t-note">Аванс покрывает начальные затраты и подтверждает серьёзность намерений — гарантия качественного и своевременного выполнения. Расчёт предварительный; окончательная цена после изучения материалов.</p>
+  </div>
+</div>
+
+<!-- КОНТАКТЫ -->
+<div class="contacts">
+  <div class="ct-brand">V.Ar Production</div>
+  <div class="ct-row">
+    <svg class="ico" viewBox="0 0 14 11" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="1" y="1" width="12" height="9" rx="1.5"/><polyline points="1,1 7,6.5 13,1"/></svg>
+    <a href="mailto:varprod@outlook.com">varprod@outlook.com</a>
+  </div>
+  <div class="ct-row">
+    <svg class="ico" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M2 2h3l1.5 3.5-2 1.2a7.5 7.5 0 003.8 3.8l1.2-2L13 10v3a1 1 0 01-1 1C5.4 14 0 8.6 0 2a1 1 0 011-1h1z"/></svg>
+    Tel / WhatsApp / Telegram: <a href="tel:+79044449935">+7 (904) 444-99-35</a>
+  </div>
+</div>
+
+</div>
 <script>
-function toggleCard(header) {
-  header.classList.toggle('collapsed');
-  var body = header.nextElementSibling;
-  body.classList.toggle('collapsed');
+/* ═══════════════════════════════════════════
+   ПРАЙС-ЛИСТ — все ставки в одном месте
+   ═══════════════════════════════════════════ */
+const P = {
+  /* Надценка студии, % */
+  markup: 40,
+
+  /* Тип работы: ставка за 1 м² */
+  type_per_m2: {
+    interior:        400,
+    office_interior: 300,
+    exterior_house:  300,
+    residential:      15,
+  },
+
+  /* Надбавка за тип чертежа: руб. за 1 м² */
+  drawing_per_m2: {
+    hand: 100,   /* от руки */
+    pdf:   80,   /* скан PDF */
+    dwg:    0,   /* DWG — без надбавки */
+  },
+
+  /* Файлы проекта: доля от стоимости моделирования */
+  files_ratio: 0.5,
+
+  /* Фото-визуализация: руб. за 1 изображение */
+  photo_per_image: {
+    hd:   150,
+    fhd:  300,
+    qhd:  600,
+    k4:   1000,
+    k8:   2000,
+    k16:  3500,
+  },
+
+  /* Видео-визуализация: руб. за 1 кадр */
+  video_per_frame: {
+    hd:   10,
+    fhd:  20,
+    qhd:  40,
+    k4:   70,
+  },
+
+  /* 360-тур: руб. за 1 точку при данном качестве панорамы */
+  pano_per_point: {
+    p4k:  1000,
+    p8k:  2000,
+    p16k: 4000,
+  },
+
+  /* Платформенные версии тура — фиксированная цена */
+  tour_platform_price: 5000,
+
+  /* Аванс: доля от итога */
+  advance_ratio: 0.5,
+};
+/* ═══════════════════════════════════════════ */
+
+const $ = id => document.getElementById(id);
+const fv = id => parseFloat($(id).value) || 0;
+const isOn = id => $(id).classList.contains('on');
+const fmt = n => Math.round(n).toLocaleString('ru-RU');
+const withMarkup = n => n + n * P.markup / 100;
+
+function ss(slId, dispId, unit){
+  $(dispId).innerHTML = $(slId).value + '<em>' + unit + '</em>';
+}
+function pickR(gId, el){
+  document.querySelectorAll('#'+gId+' .ri').forEach(r => r.classList.remove('on'));
+  el.classList.add('on');
+}
+function togCk(el){ el.classList.toggle('on') }
+function tog(key){
+  $('h-'+key).classList.toggle('closed');
+  $('b-'+key).classList.toggle('hide');
+  const hs = $('hs-'+key);
+  if(hs) hs.classList.toggle('hide');
 }
 
-function toggleCheck(id, labelId) {
-  var el = document.getElementById(id);
-  el.checked = !el.checked;
-  document.getElementById(labelId).classList.toggle('active', el.checked);
+function calc(){
+  /* Основное */
+  const typeRate  = fv('sel-type');
+  const area      = fv('inp-area');
+  const drawEl    = document.querySelector('#rg-draw .ri.on');
+  const drawRate  = drawEl ? parseFloat(drawEl.dataset.val)||0 : 0;
+  const modeling  = withMarkup((typeRate + drawRate) * area);
+  $('out-model').innerHTML = fmt(modeling)+'<em>₽</em>';
+
+  /* Файлы проекта */
+  const files = isOn('ck-files') ? withMarkup(modeling * P.files_ratio) : 0;
+  $('out-files').innerHTML = fmt(files)+'<em>₽</em>';
+
+  /* Фото */
+  const photoRatePer = fv('sel-pres');
+  const photoCount   = fv('sl-photos');
+  const photo        = withMarkup(photoRatePer * photoCount);
+  $('out-photo').innerHTML = fmt(photo)+'<em>₽</em>';
+
+  /* Видео */
+  const vRatePer = fv('sel-vres');
+  const fps      = fv('sel-fps');
+  const dur      = fv('inp-dur');
+  const frames   = fps * dur;
+  $('out-frames').innerHTML = fmt(frames)+'<em> кадров</em>';
+  const video = withMarkup(vRatePer * frames);
+  $('out-video').innerHTML = fmt(video)+'<em>₽</em>';
+
+  /* Тур 360 */
+  const panoRate = fv('sel-pano');
+  const points   = fv('sl-points');
+  const dn       = isOn('ck-dn') ? 2 : 1;
+  const platforms = (isOn('ck-web')?1:0) + (isOn('ck-mac')?1:0) + (isOn('ck-win')?1:0);
+  const tour = withMarkup(panoRate * points * dn + platforms * P.tour_platform_price);
+  $('out-tour').innerHTML = fmt(tour)+'<em>₽</em>';
+
+  /* Итог */
+  const total = modeling + files + photo + video + tour;
+  $('out-total').innerHTML = fmt(total)+'<em>₽</em>';
+  $('out-adv').innerHTML = fmt(total * P.advance_ratio)+'<em>₽</em>';
 }
 
-function fmt(n) {
-  return Math.round(n).toLocaleString('ru-RU');
-}
-
-function recalc() {
-  var typeVal = parseFloat(document.getElementById('sel-type').value) || 0;
-  var area = parseFloat(document.getElementById('inp-area').value) || 0;
-  var drawing = 0;
-  document.querySelectorAll('#radio-drawing .radio-option').forEach(function(opt) {
-    opt.classList.remove('active');
-  });
-  var checkedRadio = document.querySelector('input[name="drawing"]:checked');
-  if (checkedRadio) {
-    drawing = parseFloat(checkedRadio.value) || 0;
-    checkedRadio.closest('.radio-option').classList.add('active');
-  }
-
-  var modeling = typeVal * area + drawing * area + (typeVal * area + drawing * area) / 100 * 40;
-  document.getElementById('res-modeling').innerHTML = fmt(modeling) + '<span>₽</span>';
-
-  var filesChecked = document.getElementById('chk-files').checked;
-  var filesMultiplier = filesChecked ? 0.5 : 0;
-  var files = modeling * filesMultiplier;
-  document.getElementById('res-files').innerHTML = fmt(files) + '<span>₽</span>';
-
-  var photoRes = parseFloat(document.getElementById('sel-photo-res').value) || 0;
-  var photoCount = parseFloat(document.getElementById('sl-photos').value) || 0;
-  var photo = photoRes * photoCount + (photoRes * photoCount) / 100 * 40;
-  document.getElementById('res-photo').innerHTML = fmt(photo) + '<span>₽</span>';
-
-  var videoRes = parseFloat(document.getElementById('sel-video-res').value) || 0;
-  var fps = parseFloat(document.getElementById('sel-fps').value) || 0;
-  var duration = parseFloat(document.getElementById('inp-duration').value) || 0;
-  var frames = fps * duration;
-  document.getElementById('res-frames').innerHTML = fmt(frames) + '<span>кадров</span>';
-  var video = videoRes * fps * duration + (videoRes * fps * duration) / 100 * 40;
-  document.getElementById('res-video').innerHTML = fmt(video) + '<span>₽</span>';
-
-  var panoQual = parseFloat(document.getElementById('sel-pano-qual').value) || 0;
-  var points = parseFloat(document.getElementById('sl-points').value) || 0;
-  var daynight = document.getElementById('chk-daynight').checked ? 2 : 1;
-  var web = document.getElementById('chk-web').checked ? 5000 : 0;
-  var mac = document.getElementById('chk-mac').checked ? 5000 : 0;
-  var win = document.getElementById('chk-win').checked ? 5000 : 0;
-  var tourBase = panoQual * points * daynight + web + mac + win;
-  var tour = tourBase + tourBase / 100 * 40;
-  document.getElementById('res-tour').innerHTML = fmt(tour) + '<span>₽</span>';
-
-  var total = modeling + files + photo + video + tour;
-  document.getElementById('res-total').innerHTML = fmt(total) + '<span>₽</span>';
-  document.getElementById('res-advance').innerHTML = fmt(total / 2) + '<span>₽</span>';
-}
-
-document.querySelectorAll('#radio-drawing .radio-option').forEach(function(opt) {
-  opt.addEventListener('click', function() {
-    var radio = this.querySelector('input[type="radio"]');
-    radio.checked = true;
-    recalc();
-  });
-});
-
-recalc();
+calc();
 </script>
 </body>
 </html>

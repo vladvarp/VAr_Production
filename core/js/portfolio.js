@@ -65,16 +65,15 @@ function renderSectionList(data) {
     
     const coverImage = getCoverImage(item, data.children || []);
     const hasCover = !!coverImage;
-    const coverStyle = hasCover ? `background: url(source/portfolio/${coverImage}) center/cover no-repeat !important; border: none !important;` : '';
+     const coverStyle = hasCover ? `background: url(source/portfolio/${coverImage}) left/cover no-repeat !important; border: none !important;` : '';
     const coverClass = hasCover ? ' has-cover' : '';
     
-    html += `<a href="${getSectionUrl(encodeURIComponent(item.name))}" class="section-link">
-      <div class="section-card${coverClass}" style="${coverStyle}">
-        <div class="section-card-num">${num}</div>
-        <div class="section-card-title">${name}</div>
-        <div class="section-card-desc">${totalFiles} изображений</div>
-      </div>
-    </a>`;
+     html += `<a href="${getSectionUrl(encodeURIComponent(item.name))}" class="section-link">
+       <div class="section-card${coverClass}" style="${coverStyle}">
+         <div class="section-card-num">${num}</div>
+         <div class="section-card-title">${name}</div>
+       </div>
+     </a>`;
   });
   
   urlItems.forEach((item, idx) => {
@@ -84,16 +83,15 @@ function renderSectionList(data) {
     
     const urlCover = getUrlCover(item, data.children || []);
     const urlHasCover = !!urlCover;
-    const urlCoverStyle = urlCover ? `background: url(source/portfolio/${urlCover}) center/cover no-repeat !important; border: none !important;` : '';
+     const urlCoverStyle = urlCover ? `background: url(source/portfolio/${urlCover}) left/cover no-repeat !important; border: none !important;` : '';
     const urlCoverClass = urlHasCover ? ' has-cover' : '';
     
-    html += `<a href="${item.URL}" target="_blank" rel="noopener" class="section-link">
-      <div class="section-card${urlCoverClass}" style="${urlCoverStyle}">
-        <div class="section-card-num">${num}</div>
-        <div class="section-card-title">${name}</div>
-        <div class="section-card-desc">Ссылка</div>
-      </div>
-    </a>`;
+     html += `<a href="${item.URL}" target="_blank" rel="noopener" class="section-link">
+       <div class="section-card${urlCoverClass}" style="${urlCoverStyle}">
+         <div class="section-card-num">${num}</div>
+         <div class="section-card-title">${name}</div>
+       </div>
+     </a>`;
   });
   
   container.innerHTML = html;
@@ -145,7 +143,7 @@ function renderSection(data, sectionName) {
       if (!sfName) return;
       const sfFiles = getFilesFromJson(sf);
       const sfCover = getCoverImage(sf, section.children || []);
-      const sfCoverStyle = sfCover ? `background: url(source/portfolio/${encodeURIComponent(section.name)}/${sfCover}) center/cover no-repeat; border: none;` : '';
+       const sfCoverStyle = sfCover ? `background: url(source/portfolio/${encodeURIComponent(section.name)}/${sfCover}) left/cover no-repeat; border: none;` : '';
       const sfCoverClass = sfCover ? ' has-cover' : '';
       subfoldersHtml += `<a href="#${encodeURIComponent(section.name)}/${encodeURIComponent(sf.name)}" class="subsection-card${sfCoverClass}" style="${sfCoverStyle}">
         <div class="subsection-title">${sfName}</div>
@@ -161,7 +159,7 @@ function renderSection(data, sectionName) {
       const urlName = getDisplayName(urlItem);
       if (!urlName) return;
       const urlCover = getUrlCover(urlItem, section.children || []);
-      const urlCoverStyle = urlCover ? `background: url(source/portfolio/${encodeURIComponent(section.name)}/${urlCover}) center/cover no-repeat; border: none;` : '';
+       const urlCoverStyle = urlCover ? `background: url(source/portfolio/${encodeURIComponent(section.name)}/${urlCover}) left/cover no-repeat; border: none;` : '';
       const urlCoverClass = urlCover ? ' has-cover' : '';
       urlsHtml += `<a href="${urlItem.URL}" target="_blank" rel="noopener" class="subsection-card${urlCoverClass}" style="${urlCoverStyle}">
         <div class="subsection-title">${urlName}</div>
@@ -315,7 +313,7 @@ function renderSubfolder(data, sectionName, subPath) {
       const ndName = getDisplayName(nd);
       if (!ndName) return;
       const ndCover = getCoverImage(nd, currentFolder.children || []);
-      const ndCoverStyle = ndCover ? `background: url(source/portfolio/${imgPath}/${ndCover}) center/cover no-repeat; border: none;` : '';
+       const ndCoverStyle = ndCover ? `background: url(source/portfolio/${imgPath}/${ndCover}) left/cover no-repeat; border: none;` : '';
       const ndCoverClass = ndCover ? ' has-cover' : '';
       nestedDirsHtml += `<a href="#${[sectionName, subPath, nd.name].map(p => encodeURIComponent(p)).join('/')}" class="subsection-card${ndCoverClass}" style="${ndCoverStyle}">
         <div class="subsection-title">${ndName}</div>

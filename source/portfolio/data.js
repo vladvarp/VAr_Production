@@ -3,28 +3,33 @@ const portfolioData = {
   "type": "directory",
   "children": [
     {
-      "first_name": "",
+      "position": "4",
+      "first_name": "3D Тур",
       "name": "3dtour",
       "type": "directory",
       "children": []
     },
     {
+      "position": "3",
       "first_name": "",
       "name": "exterior",
       "type": "directory",
       "children": []
     },
     {
+      "position": "1",
       "first_name": "",
       "name": "interior",
       "type": "directory",
       "children": [
         {
+          "position": "",
           "first_name": "",
           "name": "Жилой парк «Сокольники» (Планировки)",
           "type": "directory",
           "children": [
             {
+              "position": "",
               "first_name": "",
               "name": "Новая папка",
               "type": "directory",
@@ -180,6 +185,7 @@ const portfolioData = {
       ]
     },
     {
+      "position": "3",
       "first_name": "",
       "name": "subject",
       "type": "directory",

@@ -71,6 +71,10 @@ function getSubfolders(dir) {
   return dir.children.filter(c => c.type === 'directory');
 }
 
+function getDisplayName(item) {
+  return item.first_name && item.first_name.trim() ? item.first_name : item.name;
+}
+
 function renderPortfolio(data) {
   const sections = data.children || [];
   
@@ -80,9 +84,28 @@ function renderPortfolio(data) {
   sections.forEach((item, idx) => {
     if (item.type !== 'directory') return;
     const num = String(idx + 1).padStart(2, '0');
-    const name = item.name;
+    const name = getDisplayName(item);
     const files = getFilesFromJson(item);
     const subfolders = getSubfolders(item);
+    
+    let filesHtml = '';
+    if (files.length) {
+      filesHtml = files.slice(0, 30).map(f => `
+<div class="pitem">
+  <img src="source/portfolio/${item.name}/${f}" alt="${f}" loading="lazy" onerror="this.parentElement.style.display='none'">
+</div>`).join('');
+    }
+    
+    let subfoldersHtml = '';
+    if (subfolders.length) {
+      subfoldersHtml = '<div class="subfolder-grid"><span class="subfolder-title">Проекты</span>';
+      subfolders.forEach(sf => {
+        const sfName = getDisplayName(sf);
+        const sfFiles = getFilesFromJson(sf);
+        subfoldersHtml += `<span class="folder-chip" onclick="loadSubfolder('${item.name}', '${sf.name}', this)">${sfName} (${sfFiles.length})</span>`;
+      });
+      subfoldersHtml += '</div>';
+    }
     
     html += `
 <div class="section">
@@ -94,12 +117,36 @@ function renderPortfolio(data) {
     <div class="acc-arrow"><svg viewBox="0 0 12 8"><polyline points="1,1 6,7 11,1"/></svg></div>
   </button>
   <div class="acc-body${idx === 0 ? ' open' : ''}" id="body-${item.name}">
+    <div class="pgrid">${filesHtml}</div>
+    ${subfoldersHtml}
     ${!files.length && !subfolders.length ? '<p class="pitem-load">Нет изображений</p>' : ''}
   </div>
 </div>`;
   });
   
   container.innerHTML = html;
+}
+
+function loadSubfolder(dirName, subfolderName, chip) {
+  const body = chip.closest('.acc-body');
+  const wrapper = body.querySelector('.pgrid');
+  if (wrapper) wrapper.innerHTML = '<p class="pitem-load">Загрузка...</p>';
+  
+  if (typeof portfolioData === 'undefined') return;
+  
+  const dir = portfolioData.children?.find(c => c.name === dirName);
+  const subfolder = dir?.children?.find(c => c.name === subfolderName);
+  if (!subfolder) return;
+  
+  const files = getFilesFromJson(subfolder);
+  const pitems = files.slice(0, 30).map(f => `
+<div class="pitem">
+  <img src="source/portfolio/${dirName}/${subfolderName}/${f}" alt="${f}" loading="lazy" onerror="this.parentElement.style.display='none'">
+</div>`).join('');
+  
+  if (wrapper) {
+    wrapper.innerHTML = pitems || '<p class="pitem-load">Нет изображений</p>';
+  }
 }
 
 if (typeof portfolioData !== 'undefined') {

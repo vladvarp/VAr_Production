@@ -6,8 +6,17 @@
 <title>V.Ar Production — Портфолио</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="core/css/style.css">
+<script>document.documentElement.classList.add('loading');</script>
 </head>
 <body>
+
+<div class="preloader">
+  <div class="preloader-content">
+    <div class="preloader-title">V.Ar Production</div>
+    <div class="preloader-spin"></div>
+  </div>
+</div>
+
 <div class="page">
 
 <div class="masthead">
@@ -43,5 +52,15 @@
   <button class="lb-nav lb-next" onclick="event.stopPropagation(); nextImage()">&#10095;</button>
   <button class="lb-close" onclick="closeLightbox()">&#10005;</button>
 </div>
+
+<script>
+window.addEventListener('load', function() {
+  var preloader = document.querySelector('.preloader');
+  if (preloader) {
+    preloader.classList.add('hidden');
+  }
+  document.documentElement.classList.remove('loading');
+});
+</script>
 </body>
 </html>

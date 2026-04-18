@@ -9,6 +9,13 @@
 </head>
 <body>
 
+<div class="preloader">
+  <div class="preloader-content">
+    <div class="preloader-title">V.Ar Production</div>
+    <div class="preloader-spin"></div>
+  </div>
+</div>
+
 <div class="hero-bg">
   <img src="source/portfolio/экстерьер/050_Резиденция_Романов/A1.jpg" alt="">
 </div>
@@ -83,5 +90,15 @@
 </div>
 
 </div>
+
+<script>
+window.addEventListener('load', function() {
+  var preloader = document.querySelector('.preloader');
+  if (preloader) {
+    preloader.classList.add('hidden');
+  }
+  document.documentElement.classList.remove('loading');
+});
+</script>
 </body>
 </html>

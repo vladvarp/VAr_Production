@@ -21,8 +21,7 @@ function getUrlCover(item, allItems) {
     const fNameWithoutExt = f.name.replace(/\.(png|jpg|jpeg)$/i, '');
     return fNameWithoutExt === nameWithoutExt;
   });
-  if (cover) return cover.name;
-  return siblingFiles.length > 0 ? siblingFiles[0].name : null;
+  return cover ? cover.name : null;
 }
 
 function getDisplayName(item) {
@@ -33,6 +32,68 @@ function getSectionUrl(name) {
   return '#' + name;
 }
 
+function parseComment(comment) {
+  if (!comment || !comment.trim()) return '';
+  
+  const escapeHtml = (str) => str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  
+  const processInline = (text) => {
+    let result = escapeHtml(text);
+    result = result.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+    result = result.replace(/\*(.+?)\*/g, '<em>$1</em>');
+    result = result.replace(/`(.+?)`/g, '<code>$1</code>');
+    result = result.replace(/\[(.+?)\]\((.+?)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>');
+    return result;
+  };
+  
+  const lines = comment.split('\n');
+  let html = '';
+  let inList = false;
+  let inOrderedList = false;
+  
+  const closeLists = () => {
+    if (inList) { html += '</ul>'; inList = false; }
+    if (inOrderedList) { html += '</ol>'; inOrderedList = false; }
+  };
+  
+  lines.forEach(line => {
+    const trimmed = line.trim();
+    if (!trimmed) {
+      closeLists();
+      return;
+    }
+    if (trimmed.startsWith('## ')) {
+      closeLists();
+      html += `<h2>${processInline(trimmed.slice(3))}</h2>`;
+    } else if (trimmed.startsWith('### ')) {
+      closeLists();
+      html += `<h3>${processInline(trimmed.slice(4))}</h3>`;
+    } else if (trimmed.startsWith('---')) {
+      closeLists();
+      html += '<hr>';
+    } else if (/^\d+\.\s/.test(trimmed)) {
+      if (!inOrderedList) { closeLists(); html += '<ol>'; inOrderedList = true; }
+      if (inList) { html += '</ul>'; inList = false; }
+      const match = trimmed.match(/^(\d+)\.\s(.*)$/);
+      html += `<li>${processInline(match[2])}</li>`;
+    } else if (trimmed.startsWith('- ')) {
+      if (!inList) { closeLists(); html += '<ul>'; inList = true; }
+      if (inOrderedList) { html += '</ol>'; inOrderedList = false; }
+      html += `<li>${processInline(trimmed.slice(2))}</li>`;
+    } else if (trimmed.startsWith('* ')) {
+      if (!inList) { closeLists(); html += '<ul>'; inList = true; }
+      if (inOrderedList) { html += '</ol>'; inOrderedList = false; }
+      html += `<li>${processInline(trimmed.slice(2))}</li>`;
+    } else {
+      closeLists();
+      html += `<p>${processInline(trimmed)}</p>`;
+    }
+  });
+  
+  closeLists();
+  return html;
+}
+
 function getCoverImage(item, allItems) {
   if (!allItems) return null;
   const siblingFiles = allItems.filter(c => c.type === 'file' && /\.(png|jpg|jpeg)$/i.test(c.name));
@@ -40,8 +101,7 @@ function getCoverImage(item, allItems) {
     const nameWithoutExt = f.name.replace(/\.(png|jpg|jpeg)$/i, '');
     return nameWithoutExt === item.name || nameWithoutExt === item.first_name;
   });
-  if (cover) return cover.name;
-  return siblingFiles.length > 0 ? siblingFiles[0].name : null;
+  return cover ? cover.name : null;
 }
 
 function renderSectionList(data) {
@@ -111,28 +171,7 @@ function renderSection(data, sectionName) {
   
   let contentHtml = '';
   if (comment) {
-    const escapeHtml = (str) => str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-    const lines = comment.split('\n');
-    let html = '';
-    let inList = false;
-    
-    lines.forEach(line => {
-      const trimmed = line.trim();
-      if (!trimmed) {
-        if (inList) { html += '</ul>'; inList = false; }
-        return;
-      }
-      if (trimmed.startsWith('- ')) {
-        if (!inList) { html += '<ul>'; inList = true; }
-        html += `<li>${escapeHtml(trimmed.slice(2))}</li>`;
-      } else {
-        if (inList) { html += '</ul>'; inList = false; }
-        html += `<p>${escapeHtml(trimmed)}</p>`;
-      }
-    });
-    if (inList) html += '</ul>';
-    
-    contentHtml = `<div class="section-content">${html}</div>`;
+    contentHtml = `<div class="section-content">${parseComment(comment)}</div>`;
   }
   let subfoldersHtml = '';
   const urls = getUrls(section);
@@ -271,28 +310,7 @@ function renderSubfolder(data, sectionName, subPath) {
   const comment = currentFolder.comment && currentFolder.comment.trim() ? currentFolder.comment : '';
   let contentHtml = '';
   if (comment) {
-    const escapeHtml = (str) => str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-    const lines = comment.split('\n');
-    let html = '';
-    let inList = false;
-    
-    lines.forEach(line => {
-      const trimmed = line.trim();
-      if (!trimmed) {
-        if (inList) { html += '</ul>'; inList = false; }
-        return;
-      }
-      if (trimmed.startsWith('- ')) {
-        if (!inList) { html += '<ul>'; inList = true; }
-        html += `<li>${escapeHtml(trimmed.slice(2))}</li>`;
-      } else {
-        if (inList) { html += '</ul>'; inList = false; }
-        html += `<p>${escapeHtml(trimmed)}</p>`;
-      }
-    });
-    if (inList) html += '</ul>';
-    
-    contentHtml = `<div class="section-content">${html}</div>`;
+    contentHtml = `<div class="section-content">${parseComment(comment)}</div>`;
   }
   
   let filesHtml = '';

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>V.Ar Production — Портфолио</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="core/css/calc.css">
+<style>
+#portfolio-sections .pgrid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 8px; }
+@media (max-width: 540px) { #portfolio-sections .pgrid { grid-template-columns: repeat(2, 1fr); } }
+#portfolio-sections .pitem { aspect-ratio: 4/3; background: var(--panel); border: 1px solid var(--divider); border-radius: var(--r); overflow: hidden; cursor: pointer; position: relative; transition: all .2s; }
+#portfolio-sections .pitem:hover { border-color: var(--gold-line); background: var(--lift); }
+#portfolio-sections .pitem img { width: 100%; height: 100%; object-fit: cover; opacity: .85; transition: opacity .2s; }
+#portfolio-sections .pitem:hover img { opacity: 1; }
+#portfolio-sections .pitem-load { min-height: 60px; display: flex; align-items: center; justify-content: center; color: var(--fog); font-size: 11px; }
+#portfolio-sections .subfolder-grid { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--divider); }
+#portfolio-sections .subfolder-title { font-size: 10px; font-weight: 300; color: var(--gold); letter-spacing: .1em; text-transform: uppercase; width: 100%; margin-bottom: 4px; }
+#portfolio-sections .folder-chip { display: inline-block; padding: 6px 12px; background: var(--panel); border: 1px solid var(--divider); border-radius: var(--r); font-size: 11px; color: var(--mist); transition: all .18s; cursor: pointer; }
+#portfolio-sections .folder-chip:hover { border-color: var(--gold-line); color: var(--snow); background: var(--lift); }
+</style>
+</head>
+<body>
+<div class="page">
+
+<div class="masthead">
+  <div class="masthead-title">
+    V.Ar Production<br>
+    <em>Портфолио</em>
+  </div>
+  <p class="masthead-caption">Избранные проекты визуализации интерьеров, экстерьеров и виртуальных туров.</p>
+</div>
+
+<div id="portfolio-sections"></div>
+
+<div class="contacts">
+  <div class="contact-brand">V.Ar Production</div>
+  <div class="contact-row">
+    <svg class="c-ico" viewBox="0 0 13 10" fill="none" stroke="currentColor" stroke-width="1.4"><rect x=".7" y=".7" width="11.6" height="8.6" rx="1.3"/><polyline points=".7,.7 6.5,6 12.3,.7"/></svg>
+    <a href="mailto:varprod@outlook.com">varprod@outlook.com</a>
+  </div>
+  <div class="contact-row">
+    <svg class="c-ico" viewBox="0 0 13 13" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M1.8 1.8h2.8l1.4 3.2-1.8 1.1a6.9 6.9 0 003.5 3.5l1.1-1.8 3.2 1.4v2.8a.9.9 0 01-.9.9C5.2 13 0 7.8 0 1.9A.9.9 0 01.9 1h.9z"/></svg>
+    Tel / WhatsApp / Telegram: <a href="tel:+79044449935">+7 (904) 444-99-35</a>
+  </div>
+</div>
+
+</div>
+
+<script src="source/portfolio/data.js"></script>
+<script>
+function accToggle(id) {
+  const trg = document.getElementById('trg-' + id);
+  const body = document.getElementById('body-' + id);
+  if (body.classList.contains('open')) {
+    body.classList.remove('open');
+    trg.classList.remove('open');
+  } else {
+    body.classList.add('open');
+    trg.classList.add('open');
+  }
+}
+
+function getFilesFromJson(dir) {
+  if (!dir.children) return [];
+  return dir.children.filter(c => c.type === 'file' && /\.(png|jpg|jpeg)$/i.test(c.name)).map(c => c.name);
+}
+
+function getSubfolders(dir) {
+  if (!dir.children) return [];
+  return dir.children.filter(c => c.type === 'directory');
+}
+
+function renderPortfolio(data) {
+  const sections = data.children || [];
+  
+  const container = document.getElementById('portfolio-sections');
+  let html = '';
+  
+  sections.forEach((item, idx) => {
+    if (item.type !== 'directory') return;
+    const num = String(idx + 1).padStart(2, '0');
+    const name = item.name;
+    const files = getFilesFromJson(item);
+    const subfolders = getSubfolders(item);
+    
+    html += `
+<div class="section">
+  <button class="acc-trigger${idx === 0 ? ' open' : ''}" id="trg-${item.name}" onclick="accToggle('${item.name}')">
+    <div class="acc-trigger-left">
+      <span class="acc-num">${num}</span>
+      <span class="acc-title">${name}</span>
+    </div>
+    <div class="acc-arrow"><svg viewBox="0 0 12 8"><polyline points="1,1 6,7 11,1"/></svg></div>
+  </button>
+  <div class="acc-body${idx === 0 ? ' open' : ''}" id="body-${item.name}">
+    ${!files.length && !subfolders.length ? '<p class="pitem-load">Нет изображений</p>' : ''}
+  </div>
+</div>`;
+  });
+  
+  container.innerHTML = html;
+}
+
+if (typeof portfolioData !== 'undefined') {
+  renderPortfolio(portfolioData);
+} else {
+  document.getElementById('portfolio-sections').innerHTML = '<p style="color:var(--gold);padding:20px;">Ошибка: данные не загружены</p>';
+}
+</script>
+</body>
+</html>

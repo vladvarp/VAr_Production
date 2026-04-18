@@ -3,43 +3,171 @@ const portfolioData = {
   "type": "directory",
   "children": [
     {
-      "position": "4",
+      "position": "",
       "first_name": "3D Тур",
       "comment": "3D 360 виртуальный тур - это интерактивная презентация, которая позволяет пользователям исследовать пространство в формате 360 градусов. Он состоит из нескольких панорамных изображений, связанных между собой, что дает возможность пользователю свободно перемещаться по объекту, осматривая его со всех сторон.\n\nКлиенты могут использовать 3D туры для:\n\n- Демонстрации объектов: Идеально подходят для недвижимости, отелей, ресторанов и других бизнесов, позволяя потенциальным клиентам получить полное представление о пространстве.\n- Увеличения вовлеченности: Виртуальные туры создают эффект присутствия, что способствует большему интересу и вовлечению со стороны зрителей.\n- Улучшения позиций в поисковых системах: Размещение 3D тура на сайте или в картах может повысить видимость бизнеса в интернете.\nТаким образом, 3D 360 виртуальный тур является мощным инструментом для маркетинга и продаж, позволяя выделяться на фоне конкурентов и предоставляя клиентам уникальный опыт.",
       "name": "3DТур",
       "type": "directory",
       "children": [
         {
-          "name": "ЖК_Атаман.jpg",
+          "name": "050_ЖК_Атаман.jpg",
           "type": "file"
         },
         {
-          "name": "ЖК_Атаман.txt",
+          "name": "050_ЖК_Атаман.txt",
           "type": "file"
         },
         {
           "position": "",
           "first_name": "ЖК Атаман",
           "comment": "",
-          "name": "ЖК_Атаман.url",
+          "name": "050_ЖК_Атаман.url",
           "type": "URL",
           "URL": "https://zhk-ataman.ru/F/index.htm"
         },
         {
-          "name": "ЖК_Орион.jpg",
+          "name": "051_ЖК_Орион.jpg",
           "type": "file"
         },
         {
-          "name": "ЖК_Орион.txt",
+          "name": "051_ЖК_Орион.txt",
           "type": "file"
         },
         {
           "position": "",
           "first_name": "ЖК Орион",
           "comment": "",
-          "name": "ЖК_Орион.url",
+          "name": "051_ЖК_Орион.url",
           "type": "URL",
           "URL": "https://ev.skoro-sait4.ru/ORION/index.htm"
+        },
+        {
+          "name": "052_ЖК_Парк_Плевен.jpg",
+          "type": "file"
+        },
+        {
+          "name": "052_ЖК_Парк_Плевен.txt",
+          "type": "file"
+        },
+        {
+          "position": "",
+          "first_name": "ЖК Парк Плевен",
+          "comment": "",
+          "name": "052_ЖК_Парк_Плевен.url",
+          "type": "URL",
+          "URL": "https://xn----7sbyhchda6bet.xn--p1ai/plvn/index.htm"
+        },
+        {
+          "name": "053_ЖК_Мечта.jpg",
+          "type": "file"
+        },
+        {
+          "name": "053_ЖК_Мечта.txt",
+          "type": "file"
+        },
+        {
+          "position": "",
+          "first_name": "ЖК Мечта",
+          "comment": "",
+          "name": "053_ЖК_Мечта.url",
+          "type": "URL",
+          "URL": "https://xn----8sbocun7b0b.xn--p1ai/tur/index.htm"
+        },
+        {
+          "name": "054_ЖК_История.jpg",
+          "type": "file"
+        },
+        {
+          "name": "054_ЖК_История.txt",
+          "type": "file"
+        },
+        {
+          "position": "",
+          "first_name": "ЖК История",
+          "comment": "",
+          "name": "054_ЖК_История.url",
+          "type": "URL",
+          "URL": "https://xn----8sbihxn6a.xn--p1ai/tur/index.htm"
+        },
+        {
+          "name": "055_Визуализация_интерьера.jpg",
+          "type": "file"
+        },
+        {
+          "name": "055_Визуализация_интерьера.txt",
+          "type": "file"
+        },
+        {
+          "position": "",
+          "first_name": "Визуализация интерьера",
+          "comment": "",
+          "name": "055_Визуализация_интерьера.url",
+          "type": "URL",
+          "URL": "https://sveta-marchenko.netlify.app/"
+        },
+        {
+          "name": "056_ЖК_Аврора.jpg",
+          "type": "file"
+        },
+        {
+          "name": "056_ЖК_Аврора.txt",
+          "type": "file"
+        },
+        {
+          "position": "",
+          "first_name": "ЖК Аврора",
+          "comment": "",
+          "name": "056_ЖК_Аврора.url",
+          "type": "URL",
+          "URL": "https://xn----7sbyhchda6bet.xn--p1ai/panorama/Aurora.html"
+        },
+        {
+          "name": "057_КПGreenPark.jpg",
+          "type": "file"
+        },
+        {
+          "name": "057_КПGreenPark.txt",
+          "type": "file"
+        },
+        {
+          "position": "",
+          "first_name": "КП Green Park",
+          "comment": "",
+          "name": "057_КПGreenPark.url",
+          "type": "URL",
+          "URL": "https://sk-anastasia.ru/3DGP/index.htm"
+        },
+        {
+          "name": "058_ЖКПальмира2.jpg",
+          "type": "file"
+        },
+        {
+          "name": "058_ЖКПальмира2.txt",
+          "type": "file"
+        },
+        {
+          "position": "",
+          "first_name": "",
+          "comment": "",
+          "name": "058_ЖКПальмира2.url",
+          "type": "URL",
+          "URL": "https://sk-anastasia.ru/3DPALMIRA/index.htm"
+        },
+        {
+          "name": "059_ЖКСевернаяЗвезда.jpg",
+          "type": "file"
+        },
+        {
+          "name": "059_ЖКСевернаяЗвезда.txt",
+          "type": "file"
+        },
+        {
+          "position": "",
+          "first_name": "",
+          "comment": "",
+          "name": "059_ЖКСевернаяЗвезда.url",
+          "type": "URL",
+          "URL": "https://sk-anastasia.ru/3DSZ/index.htm"
         }
       ]
     },
@@ -54,7 +182,7 @@ const portfolioData = {
           "position": "",
           "first_name": "ЖК Атаман",
           "comment": "Жилой комплекс «Атаман» - новый многоэтажный комплекс в современном стиле. В составе проекта 2 дома с благоустроенной территорией.\n\nЗдесь продумано всё до мелочей для вашей комфортной жизни:\n\n- Индивидуальное отопление\n- Закрытая территория\n- Современные фасады в европейском стиле\n- Благоустроенная территория с детскими площадками и озеленением\n- Качественные строительные материалы\n- Бесшумные и безопасные лифты\n- Удобная транспортная развязка\n- Фасады в современном стиле\n- Квартиры с ремонтом под ключ\nБудённовская ул., 269, корп. 1-5, Новочеркасск",
-          "name": "ЖК_Атаман",
+          "name": "050_ЖК_Атаман",
           "type": "directory",
           "children": [
             {
@@ -67,31 +195,648 @@ const portfolioData = {
             },
             {
               "position": "",
-              "first_name": "",
+              "first_name": "3D Тур",
               "comment": "",
               "name": "3D_Тур.url",
               "type": "URL",
               "URL": "https://zhk-ataman.ru/F/index.htm"
+            },
+            {
+              "name": "ЖК Атаман (1).jpg",
+              "type": "file"
+            },
+            {
+              "name": "ЖК Атаман (10).jpg",
+              "type": "file"
+            },
+            {
+              "name": "ЖК Атаман (11).jpg",
+              "type": "file"
+            },
+            {
+              "name": "ЖК Атаман (12).jpg",
+              "type": "file"
+            },
+            {
+              "name": "ЖК Атаман (13).jpg",
+              "type": "file"
+            },
+            {
+              "name": "ЖК Атаман (14).jpg",
+              "type": "file"
+            },
+            {
+              "name": "ЖК Атаман (2).jpg",
+              "type": "file"
+            },
+            {
+              "name": "ЖК Атаман (3).jpg",
+              "type": "file"
+            },
+            {
+              "name": "ЖК Атаман (4).jpg",
+              "type": "file"
+            },
+            {
+              "name": "ЖК Атаман (5).jpg",
+              "type": "file"
+            },
+            {
+              "name": "ЖК Атаман (6).jpg",
+              "type": "file"
+            },
+            {
+              "name": "ЖК Атаман (7).jpg",
+              "type": "file"
+            },
+            {
+              "name": "ЖК Атаман (8).jpg",
+              "type": "file"
+            },
+            {
+              "name": "ЖК Атаман (9).jpg",
+              "type": "file"
+            },
+            {
+              "name": "Сайт.jpg",
+              "type": "file"
+            },
+            {
+              "name": "Сайт.txt",
+              "type": "file"
+            },
+            {
+              "position": "",
+              "first_name": "Сайт: ЖК Атаман",
+              "comment": "",
+              "name": "Сайт.url",
+              "type": "URL",
+              "URL": "https://zhk-ataman.ru/"
             }
           ]
         },
         {
-          "name": "ЖК_Атаман.jpg",
+          "position": "",
+          "first_name": "Ставропольмебель",
+          "comment": "АО «Ставропольмебель» — это современная и качественная корпусная, кухонная, мягкая мебель, мебель для гостиниц и пансионатов, которая вносит в жизнь элегантность и функциональность. Используя данную мебель в гостиных, спальнях, прихожих, кухнях, детских вы будете наслаждаться красотой и незабываемым комфортом.\n\nИстория предприятия:\n\n- 1930 год — артель «Коллективизация», позже артель «Мебельщик».\n- 1956 год — 1984 год — Ставропольская мебельная фабрика.\n- 1984 год — 1992 год — Ставропольский мебельный комбинат.\n- с 1992 года — ОАО «Ставропольмебель» , Торговая марка «Глория».\n2008 год — заработал сайт компании с моделями мебели в интернете. Мебельный магазин компании в Интернете содержит актуальный каталог мебели и цен.",
+          "name": "051_Ставропольмебель",
+          "type": "directory",
+          "children": [
+            {
+              "position": "",
+              "first_name": "",
+              "comment": "",
+              "name": "ГОСТИНАЯ",
+              "type": "directory",
+              "children": [
+                {
+                  "name": "2c18b9d244e0ef517d416.jpg",
+                  "type": "file"
+                },
+                {
+                  "name": "55ab7a197b4ffac04ff46.jpg",
+                  "type": "file"
+                },
+                {
+                  "name": "64e845cd93f9ec4ef0727.jpg",
+                  "type": "file"
+                },
+                {
+                  "name": "7fcf473101e687106bf7d.jpg",
+                  "type": "file"
+                },
+                {
+                  "name": "9b8c5c72f456ceca1030e.jpg",
+                  "type": "file"
+                },
+                {
+                  "name": "d2423e44c303593220897.jpg",
+                  "type": "file"
+                },
+                {
+                  "name": "dd2dc3a33e9bf09625348.jpg",
+                  "type": "file"
+                }
+              ]
+            },
+            {
+              "position": "",
+              "first_name": "",
+              "comment": "",
+              "name": "КУХНЯ",
+              "type": "directory",
+              "children": [
+                {
+                  "name": "0d6a80f75ddf41af01e5f.jpg",
+                  "type": "file"
+                },
+                {
+                  "name": "0de21ddb059e2ef5710f5.jpg",
+                  "type": "file"
+                },
+                {
+                  "name": "0fdd13c863ab69fce6989.jpg",
+                  "type": "file"
+                },
+                {
+                  "name": "44394df4e6cae8f86b659.jpg",
+                  "type": "file"
+                },
+                {
+                  "name": "4dc723a3be37f33b3b6c0.jpg",
+                  "type": "file"
+                },
+                {
+                  "name": "4e1018fcf96cd4fcdf97e.jpg",
+                  "type": "file"
+                },
+                {
+                  "name": "50eee07fe6d88809268a4.jpg",
+                  "type": "file"
+                },
+                {
+                  "name": "5b364e3c88fd4e312cf87.jpg",
+                  "type": "file"
+                },
+                {
+                  "name": "74dfc541211e71b0a0bee.jpg",
+                  "type": "file"
+                },
+                {
+                  "name": "81dd8d67a6b273c58a7ee.jpg",
+                  "type": "file"
+                },
+                {
+                  "name": "912831a85d3681a1207e4.jpg",
+                  "type": "file"
+                },
+                {
+                  "name": "a13b86185042fe27bad6a.jpg",
+                  "type": "file"
+                },
+                {
+                  "name": "a76cb8360a7430d4e31f2.jpg",
+                  "type": "file"
+                },
+                {
+                  "name": "a7d1e7af5fdc6ab24f486.jpg",
+                  "type": "file"
+                },
+                {
+                  "name": "c66d9326a191dff8636c2.jpg",
+                  "type": "file"
+                },
+                {
+                  "name": "cefe5d0ec22e6f70c79bf.jpg",
+                  "type": "file"
+                },
+                {
+                  "name": "df4c9170756d7721a0458.jpg",
+                  "type": "file"
+                },
+                {
+                  "name": "f378df4998291a40636f6.jpg",
+                  "type": "file"
+                },
+                {
+                  "name": "f5c0af3b5493a77551a10.jpg",
+                  "type": "file"
+                },
+                {
+                  "name": "f68a8fcff23327a01dea8.jpg",
+                  "type": "file"
+                },
+                {
+                  "name": "fff51b2047021abcc2f62.jpg",
+                  "type": "file"
+                }
+              ]
+            },
+            {
+              "position": "",
+              "first_name": "",
+              "comment": "",
+              "name": "ПРИХОЖАЯ",
+              "type": "directory",
+              "children": [
+                {
+                  "name": "6a38870e4dfc776ae604f.jpg",
+                  "type": "file"
+                },
+                {
+                  "name": "714b8f4d82d0d95adab0a.jpg",
+                  "type": "file"
+                },
+                {
+                  "name": "715792c8e52308c02a47c.jpg",
+                  "type": "file"
+                },
+                {
+                  "name": "8f8855254e1c161f04c76.jpg",
+                  "type": "file"
+                },
+                {
+                  "name": "96234ffb231b9c228c346.jpg",
+                  "type": "file"
+                },
+                {
+                  "name": "a90917c75f918b939690b.jpg",
+                  "type": "file"
+                },
+                {
+                  "name": "bc236fe4014e60410fbad.jpg",
+                  "type": "file"
+                },
+                {
+                  "name": "befb64bf0ccde2b64e897.jpg",
+                  "type": "file"
+                },
+                {
+                  "name": "cadba723973cbaa12e9e4.jpg",
+                  "type": "file"
+                },
+                {
+                  "name": "d2901c534321c54a2ab00.jpg",
+                  "type": "file"
+                },
+                {
+                  "name": "d3a2ef6a447e209448780.jpg",
+                  "type": "file"
+                },
+                {
+                  "name": "da0e8c0e422b277d8dff2.jpg",
+                  "type": "file"
+                }
+              ]
+            },
+            {
+              "position": "",
+              "first_name": "",
+              "comment": "",
+              "name": "СПАЛЬНЯ",
+              "type": "directory",
+              "children": [
+                {
+                  "name": "0f57968ac7c070642846b.jpg",
+                  "type": "file"
+                },
+                {
+                  "name": "2586c34fc318334d745ce.jpg",
+                  "type": "file"
+                },
+                {
+                  "name": "296daf6c919fb974decf8.jpg",
+                  "type": "file"
+                },
+                {
+                  "name": "2a374b90a851f7951913a.jpg",
+                  "type": "file"
+                },
+                {
+                  "name": "2b9ab02f6555cadc32559.jpg",
+                  "type": "file"
+                },
+                {
+                  "name": "3b4ac01c0f63337cb3c97.jpg",
+                  "type": "file"
+                },
+                {
+                  "name": "3fdd3790abe20b5bcce7a.jpg",
+                  "type": "file"
+                },
+                {
+                  "name": "47e6b5ac94e5b719adcf2.jpg",
+                  "type": "file"
+                },
+                {
+                  "name": "48fbae12d2f5065415640.jpg",
+                  "type": "file"
+                },
+                {
+                  "name": "4c89be00ad3a3812d025c.jpg",
+                  "type": "file"
+                },
+                {
+                  "name": "76b8dbf3f5e85ccde3ac0.jpg",
+                  "type": "file"
+                },
+                {
+                  "name": "80b8b54f94dfd7848c465.jpg",
+                  "type": "file"
+                },
+                {
+                  "name": "854bf1c9f9ae3fb87b6c5.jpg",
+                  "type": "file"
+                },
+                {
+                  "name": "8dcfd1d8a0f17464eed4b.jpg",
+                  "type": "file"
+                },
+                {
+                  "name": "948c4981145cac892ad52.jpg",
+                  "type": "file"
+                },
+                {
+                  "name": "a19c2571fb3f524ad50fd.jpg",
+                  "type": "file"
+                },
+                {
+                  "name": "a4209ac481a6a2ace3686.jpg",
+                  "type": "file"
+                },
+                {
+                  "name": "b72fe7d4108659a29d0df.jpg",
+                  "type": "file"
+                },
+                {
+                  "name": "c42320ba0a3063f5de837.jpg",
+                  "type": "file"
+                },
+                {
+                  "name": "d841eafa5d351042e205b.jpg",
+                  "type": "file"
+                },
+                {
+                  "name": "e0d8b6d3fbba97d214eec.jpg",
+                  "type": "file"
+                },
+                {
+                  "name": "ea3374886898cde74a1f0.jpg",
+                  "type": "file"
+                },
+                {
+                  "name": "ed8be04c7507b7ffbddd8.jpg",
+                  "type": "file"
+                },
+                {
+                  "name": "fc89f6c4182d25366e3ad.jpg",
+                  "type": "file"
+                },
+                {
+                  "name": "ff975f4fd693ffdcb82e1.jpg",
+                  "type": "file"
+                }
+              ]
+            },
+            {
+              "name": "ГОСТИНАЯ.jpg",
+              "type": "file"
+            },
+            {
+              "name": "КУХНЯ.jpg",
+              "type": "file"
+            },
+            {
+              "name": "ПРИХОЖАЯ.jpg",
+              "type": "file"
+            },
+            {
+              "name": "Сайт.jpg",
+              "type": "file"
+            },
+            {
+              "name": "Сайт.txt",
+              "type": "file"
+            },
+            {
+              "position": "",
+              "first_name": "Сайт: Ставропольмебель",
+              "comment": "",
+              "name": "Сайт.url",
+              "type": "URL",
+              "URL": "https://mebelgloria.ru/"
+            },
+            {
+              "name": "СПАЛЬНЯ.jpg",
+              "type": "file"
+            }
+          ]
+        },
+        {
+          "name": "050_ЖК_Атаман.jpg",
           "type": "file"
         },
         {
-          "name": "ЖК_Атаман.txt",
+          "name": "050_ЖК_Атаман.txt",
+          "type": "file"
+        },
+        {
+          "name": "051_Ставропольмебель.jpg",
+          "type": "file"
+        },
+        {
+          "name": "051_Ставропольмебель.txt",
           "type": "file"
         }
       ]
     },
     {
       "position": "3",
+      "first_name": "3D Планировки",
+      "comment": "",
+      "name": "планировки",
+      "type": "directory",
+      "children": [
+        {
+          "position": "",
+          "first_name": "ЖК Атаман (Планировки)",
+          "comment": "",
+          "name": "050_ЖК_Атаман",
+          "type": "directory",
+          "children": [
+            {
+              "name": "-buJO-G8TluWwdZyV2Kx1JQ0LnLSct3ehWce9syCYRVnqmVNRHMnMK8U7HrHHsv98Gpn2nZNXctF3zpa81Cmkzl6.jpg",
+              "type": "file"
+            },
+            {
+              "name": "2E3i8FWX_PS8-HEDCQ0jICNP1YIauDpXIAopXrx355coJ9vQcFFY8jMwYt9ge6WuSemLez8bgcL3hOonU5_uE1JJ.jpg",
+              "type": "file"
+            },
+            {
+              "name": "4_qpfDMec5c0EkKApub6HnviXZw96P-XocXpjJopzMSkgtAXc4MNniCYa-j44WNT6aW8ureWVN3QenaoG5XofYGB.jpg",
+              "type": "file"
+            },
+            {
+              "name": "5qoQWaEPCOBTlEzq7BjfgxvKILMqZ-NQpyDgPs5gYnhXiOHq4Hl7y3aV5CNyhyXyKuh0h-pv8j_EOGkakst7Mc2R.jpg",
+              "type": "file"
+            },
+            {
+              "name": "72CIYu2WLtWNzbyha_vdwhzVqB160fAg9WXdnkKmkTJIYku7sBEEAhClZaxsF0emRiFJl31R4xXGty5_nXT5X_-_.jpg",
+              "type": "file"
+            },
+            {
+              "name": "8sUN0BsD665lR207lMrUuj0ufW21-FIZBSaEAfpzOM0R7zrjncv4sVmXUdfbmpKGsSEoHsS4ZJIKcJdjn-RiETfA.jpg",
+              "type": "file"
+            },
+            {
+              "name": "aGterRaQUPwIjWmuOmk9ET_UfhP_O62pz6-RPiVqApYgBpLGy6S7MElWVY6yYu-ez8-pLrBZMrzLth-xCXHSw2RB.jpg",
+              "type": "file"
+            },
+            {
+              "name": "Ao2m-QGUue70JfwqE6xdZAyHJzZOzUO1TpMGOR0D3z0ceF-azJZRlhs3m8QoOYqrbCxuHKb3WMEpS7_9wQf9qI11.jpg",
+              "type": "file"
+            },
+            {
+              "name": "H8n7sDSZaMupEc7SQOYdWaA9kc7dIEGLS9pIUPa2LPC9NkEc64gfGgUSfZAase6cqdC3gKL7CWgf_0Xs1HFC4Xe-.jpg",
+              "type": "file"
+            },
+            {
+              "name": "LxTRAlduD_qByTXrdsATikR4IhDzAfPe_NIjRdOaQjq64kO271u5Zd64v-OCGeYlIYLnD9O-G71kDvRGlvgmvomA.jpg",
+              "type": "file"
+            },
+            {
+              "name": "mf-3uu5cuyO8Aq3eKWMF7wiywbFPmD3BVXn2n0GLYg_D1tz3DTuP2993mJimztmyMluUY-ZIR03WESCeOIDmpCxf.jpg",
+              "type": "file"
+            },
+            {
+              "name": "OPFCBuLWCF0wmVwjWiP7fraSe08DEzbd9p_aSrN6vQL_r52VoZivtAJrmXFU4CvB2dRmHwztnUbRW4-8SU_dmQju.jpg",
+              "type": "file"
+            },
+            {
+              "name": "r9T1mSYgB9AdDlo-rSsxyIVD2DTTikDAi-sPKe0P8OQ4xRIxFKr8AoEwp29GMKZvewQfzTFLaI8KSkDHk-ErvZT9.jpg",
+              "type": "file"
+            },
+            {
+              "name": "uVgD2luz90nkG9sJvV1XPBF5KXXifU9OHplx18RXxgj2zLsv_NXwPWWDQAtIxd7rzwU9C3RF4H0JmyJcP0RbjWpF.jpg",
+              "type": "file"
+            },
+            {
+              "name": "Wd_eHc0enjewHZWS_4XOXmhtg5xRTafCDUosEgaEUtbCCfZEeIcCkiIoe3ldYOtA5UbTxqprTTwnZBucvkScLKqy.jpg",
+              "type": "file"
+            },
+            {
+              "name": "Сайт.jpg",
+              "type": "file"
+            },
+            {
+              "name": "Сайт.txt",
+              "type": "file"
+            },
+            {
+              "position": "",
+              "first_name": "Сайт: ЖК Атаман",
+              "comment": "",
+              "name": "Сайт.url",
+              "type": "URL",
+              "URL": "https://zhk-ataman.ru/"
+            }
+          ]
+        },
+        {
+          "name": "050_ЖК_Атаман.jpg",
+          "type": "file"
+        },
+        {
+          "name": "050_ЖК_Атаман.txt",
+          "type": "file"
+        }
+      ]
+    },
+    {
+      "position": "4",
       "first_name": "3D Визуализация рекламной продукции (предметная визуализация)",
       "comment": "3D визуализация рекламной продукции - это процесс создания трехмерных моделей товаров и объектов для использования в рекламных материалах. Эта технология позволяет создавать реалистичные изображения и анимации, которые помогают эффективно представить продукт потенциальным клиентам.\n\nОсновные характеристики 3D визуализации рекламной продукции:\n\n- Фотореализм: Визуализации могут быть выполнены с высокой степенью детализации, что позволяет передать текстуры, материалы и освещение, создавая впечатление реального объекта.\n- Гибкость: 3D визуализация позволяет вносить изменения в дизайн и внешний вид продукта без необходимости физического производства, что экономит время и средства.\n- Применение: Используется для создания рекламных роликов, баннеров, упаковки и других маркетинговых материалов, что делает рекламу более привлекательной и запоминающейся.\n- Эффективность: Позволяет быстро создавать визуальные материалы, которые могут быть адаптированы для различных форматов и платформ, включая онлайн-продажи и социальные сети.\nТаким образом, 3D визуализация рекламной продукции является мощным инструментом для маркетинга, позволяющим компаниям выделяться на фоне конкурентов и привлекать внимание потребителей.",
       "name": "продукция",
       "type": "directory",
-      "children": []
+      "children": [
+        {
+          "position": "",
+          "first_name": "PODIUM",
+          "comment": "",
+          "name": "050_PODIUM",
+          "type": "directory",
+          "children": [
+            {
+              "name": "0700c5d42975748777729.jpg",
+              "type": "file"
+            },
+            {
+              "name": "0pwc37JrtSxI8vrDauKCE1owoS0rJJQ75zeSAGa_tJkI1EHhqYR5y13jrK9dGkw7RbCojnTwTNxBlWvzLpa0Kc8_.jpg",
+              "type": "file"
+            },
+            {
+              "name": "12723ae6a5d2f1290cb78.jpg",
+              "type": "file"
+            },
+            {
+              "name": "424b1fcbdb69c13147205.jpg",
+              "type": "file"
+            },
+            {
+              "name": "4a76ad9821509badb2375.jpg",
+              "type": "file"
+            },
+            {
+              "name": "8272c63eddf376cc58ccd.jpg",
+              "type": "file"
+            },
+            {
+              "name": "9c8663a578507ad8a54c8.jpg",
+              "type": "file"
+            },
+            {
+              "name": "b2b93e13b44d0dfff0388.jpg",
+              "type": "file"
+            },
+            {
+              "name": "c98cfa793807ddb184293.jpg",
+              "type": "file"
+            },
+            {
+              "name": "d1d3189c1da8e06aed3bd.jpg",
+              "type": "file"
+            },
+            {
+              "name": "DwvEMItzkiJw_9E1Phy_lOD9MB3DkmY-9JpAPusEXS0beJ87cU3Y5colip7JDi2k_x67MCMaKOKcqpl8uutdM3wJ.jpg",
+              "type": "file"
+            },
+            {
+              "name": "eaebfbbe8439cb57468a2.jpg",
+              "type": "file"
+            },
+            {
+              "name": "ef84114c75b8341607675.jpg",
+              "type": "file"
+            },
+            {
+              "name": "NT7LAKUpHn9ZyZpm1lb4vz4yFNAa_H5WY38BjOTc83MkoGgDCmn-Vq9MRJ5jgLEtuIeXnBAYPaXIC-FCF-Ma6uu7.jpg",
+              "type": "file"
+            },
+            {
+              "name": "pw0N6z9xU0tZUD4T7PIcm57NXDaKFJTDNn6SqIzIoLcADc8hzw9g4I0_kaaK_NFB6UQ30IdM145yifRK53uPU9OA.jpg",
+              "type": "file"
+            },
+            {
+              "name": "VfiIEjKSzPf85OZ7A6wCWUByM3Z-6CBjQXPez6RLV6ibM55yp-xB_7TAeDSAjnXPUvOD-VgAKHbouRhgP33tUAHs.jpg",
+              "type": "file"
+            },
+            {
+              "name": "Сайт.jpg",
+              "type": "file"
+            },
+            {
+              "name": "Сайт.txt",
+              "type": "file"
+            },
+            {
+              "position": "",
+              "first_name": "Сайт: PODIUM",
+              "comment": "",
+              "name": "Сайт.url",
+              "type": "URL",
+              "URL": "https://podium-pigments.com/ru#brand"
+            }
+          ]
+        },
+        {
+          "name": "050_PODIUM.jpg",
+          "type": "file"
+        },
+        {
+          "name": "050_PODIUM.txt",
+          "type": "file"
+        }
+      ]
     },
     {
       "position": "2",
@@ -115,6 +860,14 @@ const portfolioData = {
     },
     {
       "name": "интерьер.txt",
+      "type": "file"
+    },
+    {
+      "name": "планировки.jpg",
+      "type": "file"
+    },
+    {
+      "name": "планировки.txt",
       "type": "file"
     },
     {

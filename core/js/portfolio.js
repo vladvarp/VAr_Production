@@ -241,9 +241,22 @@ function renderSubfolder(data, sectionName, subPath) {
   }
   
   const name = getDisplayName(currentFolder);
-  const files = getFilesFromJson(currentFolder);
+  let files = getFilesFromJson(currentFolder);
   const urls = getUrls(currentFolder);
   const nestedDirs = getSubfolders(currentFolder);
+  
+  const coverImagesInUse = new Set();
+  const sectionCover = getCoverImage(currentFolder, currentFolder.children || []);
+  if (sectionCover) coverImagesInUse.add(sectionCover);
+  (nestedDirs || []).forEach(nd => {
+    const ndCover = getCoverImage(nd, currentFolder.children || []);
+    if (ndCover) coverImagesInUse.add(ndCover);
+  });
+  (urls || []).forEach(urlItem => {
+    const urlCover = getUrlCover(urlItem, currentFolder.children || []);
+    if (urlCover) coverImagesInUse.add(urlCover);
+  });
+  files = files.filter(f => !coverImagesInUse.has(f));
   
   let folderPath = sectionName;
   if (subPathParts.length > 1) {

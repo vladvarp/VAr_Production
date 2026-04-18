@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>V.Ar Production — Портфолио</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="core/css/portfolio.css">
+</head>
+<body>
+<div class="page" id="content">
+<div class="masthead">
+  <div class="masthead-title">
+    V.Ar Production<br>
+    <em>Портфолио</em>
+  </div>
+</div>
+<div id="portfolio-content"></div>
+
+<!-- CONTACTS -->
+<div class="contacts">
+  <div class="contact-brand">V.Ar Production</div>
+  <div class="contact-row">
+    <svg class="c-ico" viewBox="0 0 13 10" fill="none" stroke="currentColor" stroke-width="1.4"><rect x=".7" y=".7" width="11.6" height="8.6" rx="1.3"/><polyline points=".7,.7 6.5,6 12.3,.7"/></svg>
+    <a href="mailto:varprod@outlook.com">varprod@outlook.com</a>
+  </div>
+  <div class="contact-row">
+    <svg class="c-ico" viewBox="0 0 13 13" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M1.8 1.8h2.8l1.4 3.2-1.8 1.1a6.9 6.9 0 003.5 3.5l1.1-1.8 3.2 1.4v2.8a.9.9 0 01-.9.9C5.2 13 0 7.8 0 1.9A.9.9 0 01.9 1h.9z"/></svg>
+    Tel / WhatsApp / Telegram: <a href="tel:+79044449935">+7 (904) 444-99-35</a>
+  </div>
+</div>
+</div>
+
+<script>
+const imageExtensions = ['.jpg', '.jpeg', '.png', '.gif', '.webp', '.svg'];
+const textExtensions = ['.txt', '.inf', '.md'];
+
+function isImage(name) {
+  const lower = name.toLowerCase();
+  return imageExtensions.some(ext => lower.endsWith(ext));
+}
+
+function isText(name) {
+  const lower = name.toLowerCase();
+  return textExtensions.some(ext => lower.endsWith(ext));
+}
+
+function parseInfoInf(content) {
+  const lines = content.split('\n').map(l => l.trim());
+  const sections = [];
+  let currentSection = {
+    type: '',
+    image: '',
+    headings: '',
+    content: [],
+    links: []
+  };
+
+  for (const line of lines) {
+    if (!line) continue;
+    
+    if (line.startsWith('"Type"')) {
+      if (currentSection.type || currentSection.headings || currentSection.content.length > 0 || currentSection.image) {
+        sections.push(currentSection);
+      }
+      currentSection = {
+        type: line.replace('"Type"', '').trim(),
+        image: '',
+        headings: '',
+        content: [],
+        links: []
+      };
+      continue;
+    }
+    
+    if (line.startsWith('"Headings"')) {
+      if (currentSection.headings || currentSection.content.length > 0) {
+        sections.push(currentSection);
+        currentSection = {
+          type: currentSection.type,
+          image: '',
+          headings: '',
+          content: [],
+          links: []
+        };
+      }
+      currentSection.headings = line.replace('"Headings"', '').trim();
+      continue;
+    }
+    
+    if (line.startsWith('"Image"')) {
+      if (currentSection.image || currentSection.headings || currentSection.content.length > 0) {
+        sections.push(currentSection);
+        currentSection = {
+          type: currentSection.type,
+          image: '',
+          headings: '',
+          content: [],
+          links: []
+        };
+      }
+      currentSection.image = line.replace('"Image"', '').trim();
+      continue;
+    }
+    
+    if (line.startsWith('"Link"')) {
+      const linkContent = line.replace('"Link"', '').trim();
+      const match = linkContent.match(/\[([^\]]+)\]\s*(.+)/);
+      if (match) {
+        currentSection.links.push({ url: match[1], title: match[2] });
+      }
+      continue;
+    }
+    
+    currentSection.content.push(line);
+  }
+  
+  if (currentSection.type || currentSection.headings || currentSection.content.length > 0 || currentSection.image) {
+    sections.push(currentSection);
+  }
+
+  return sections;
+}
+
+function buildGallery(carouselImages, basePath) {
+  if (!carouselImages || carouselImages.length === 0) return '';
+  
+  const items = carouselImages.map((img, idx) => `
+    <div class="gallery-item">
+      <img src="${basePath}/${img}" alt="" loading="lazy">
+    </div>
+  `).join('');
+  
+  const dots = carouselImages.map((_, idx) => 
+    `<div class="gallery-dot ${idx === 0 ? 'active' : ''}" data-index="${idx}"></div>`
+  ).join('');
+
+  return `
+    <div class="gallery">
+      <div class="gallery-images" id="gallery-${basePath.replace(/\//g, '-')}">
+        ${items}
+      </div>
+      <div class="gallery-nav">
+        ${dots}
+      </div>
+    </div>
+  `;
+}
+
+function renderChapter(sections, chapterPath, allImages) {
+  let html = '';
+  
+  for (const info of sections) {
+    if (info.headings) {
+      html += `<h2 class="chapter-title">${info.headings}</h2>`;
+    }
+    
+    if (info.content && info.content.length > 0) {
+      const contentHtml = info.content.join('<br>').replace(/- /g, '— ');
+      html += `<div class="chapter-content"><p>${contentHtml}</p></div>`;
+    }
+    
+    if (info.image) {
+      html += `<img class="chapter-image" src="${chapterPath}/${info.image}" alt="">`;
+    }
+    
+    if (info.links && info.links.length > 0) {
+      const linksHtml = info.links.map(link => `
+        <a href="${link.url}" class="link-item" target="_blank" rel="noopener">
+          ${link.title}
+          <svg class="link-arrow" viewBox="0 0 12 8"><polyline points="1,1 6,7 11,1"/></svg>
+        </a>
+      `).join('');
+      html += `<div class="links-list">${linksHtml}</div>`;
+    }
+  }
+  
+  const firstSection = sections[0];
+  if (firstSection && firstSection.type === 'Gallery') {
+    const carouselImages = allImages.filter(img => firstSection.image ? img !== firstSection.image : true);
+    if (carouselImages.length > 0) {
+      html += buildGallery(carouselImages, chapterPath);
+    }
+  } else {
+    const carouselImages = allImages.filter(img => !firstSection || img !== firstSection.image);
+    if (carouselImages.length > 0) {
+      html += buildGallery(carouselImages, chapterPath);
+    }
+  }
+  
+  return html;
+}
+
+async function loadInfoInf(path) {
+  try {
+    const response = await fetch('./' + path);
+    if (!response.ok) {
+      console.error('Failed to load', path, response.status);
+      return '';
+    }
+    return await response.text();
+  } catch (err) {
+    console.error('Error loading', path, err);
+    return '';
+  }
+}
+
+function getImagesFromChildren(children, basePath) {
+  return children
+    .filter(c => c.type === 'image' && isImage(c.name))
+    .map(c => c.name);
+}
+
+function getPathFromTree(targetNode, tree, basePath = []) {
+  if (tree === targetNode) return basePath;
+  if (tree.children) {
+    for (const child of tree.children) {
+      const result = getPathFromTree(targetNode, child, [...basePath, tree.name]);
+      if (result) return result;
+    }
+  }
+  return null;
+}
+
+function findPath(targetNode, tree) {
+  const parts = getPathFromTree(targetNode, tree);
+  console.log('findPath parts:', parts);
+  if (parts && parts.length > 0) {
+    // parts includes VAr_Production, source, portfolio, etc.
+    // We want just portfolio/interior
+    return parts.slice(2).join('/');
+  }
+  return '';
+}
+
+async function processDirectory(dirNode, tree) {
+  const dirPath = findPath(dirNode, tree);
+  console.log('Processing directory:', dirNode.name, 'path:', dirPath);
+  const basePath = dirPath ? `source/${dirPath}` : 'source';
+  
+  const infoInf = dirNode.children?.find(c => c.name === 'info.inf' && c.type === 'text');
+  console.log('Found info.inf:', infoInf);
+  let info = { type: '', image: '', headings: '', content: [], links: [] };
+  
+  if (infoInf) {
+    const content = await loadInfoInf(`${basePath}/info.inf`);
+    console.log('Loaded info.inf content:', content);
+    info = parseInfoInf(content);
+    console.log('Parsed sections:', info);
+  }
+  
+  const images = getImagesFromChildren(dirNode.children || [], basePath);
+  console.log('Found images:', images);
+  
+  return { info, images, path: basePath, node: dirNode };
+}
+
+async function buildPage(data) {
+  console.log('Building page with data:', data);
+  const container = document.getElementById('portfolio-content');
+  const tree = data;
+  
+  async function processAndRender(dirNode) {
+    console.log('Rendering directory:', dirNode.name);
+    const { info: sections, images, path, node } = await processDirectory(dirNode, tree);
+    console.log('Sections:', sections, 'Images:', images);
+    
+    for (const info of sections) {
+      if (info.type === 'Chapter' || info.type === 'Page' || info.type === 'Gallery') {
+        console.log('Rendering chapter with type:', info.type);
+        const chapterDiv = document.createElement('div');
+        chapterDiv.className = 'chapter';
+        chapterDiv.innerHTML = renderChapter(sections, path, images);
+        container.appendChild(chapterDiv);
+        break;
+      }
+    }
+    
+    const subdirs = (node.children || []).filter(c => c.type === 'directory');
+    for (const subdir of subdirs) {
+      if (subdir.name !== 'info.inf') {
+        await processAndRender(subdir);
+      }
+    }
+  }
+  
+  const portfolioDir = data.tree.children?.find(c => c.name === 'source')?.children?.find(c => c.name === 'portfolio');
+  if (portfolioDir) {
+    await processAndRender(portfolioDir);
+  }
+  
+  initGalleries();
+}
+
+function initGalleries() {
+  document.querySelectorAll('.gallery').forEach(gallery => {
+    const container = gallery.querySelector('.gallery-images');
+    const dots = gallery.querySelectorAll('.gallery-dot');
+    
+    container.addEventListener('scroll', () => {
+      const scrollLeft = container.scrollLeft;
+      const itemWidth = container.querySelector('.gallery-item')?.offsetWidth || 0;
+      const gap = 8;
+      const index = Math.round(scrollLeft / (itemWidth + gap));
+      
+      dots.forEach((dot, i) => {
+        dot.classList.toggle('active', i === index);
+      });
+    });
+    
+    dots.forEach(dot => {
+      dot.addEventListener('click', () => {
+        const index = parseInt(dot.dataset.index);
+        const itemWidth = container.querySelector('.gallery-item').offsetWidth;
+        const gap = 8;
+        container.scrollTo({ left: index * (itemWidth + gap), behavior: 'smooth' });
+      });
+    });
+  });
+}
+
+fetch('./source/structure.json')
+  .then(res => {
+    console.log('Response status:', res.status);
+    if (!res.ok) throw new Error('Failed to load: ' + res.status);
+    return res.json();
+  })
+  .then(data => {
+    console.log('Data loaded:', data);
+    buildPage(data);
+  })
+  .catch(err => {
+    console.error('Error:', err);
+    document.getElementById('portfolio-content').innerHTML = 
+      '<div class="chapter"><p style="color:var(--gold)">Ошибка загрузки: ' + err.message + '</p></div>';
+  });
+</script>
+</body>
+</html>

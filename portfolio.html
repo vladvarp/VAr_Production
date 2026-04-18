@@ -18,6 +18,15 @@
 #portfolio-sections .subfolder-title { font-size: 10px; font-weight: 300; color: var(--gold); letter-spacing: .1em; text-transform: uppercase; width: 100%; margin-bottom: 4px; }
 #portfolio-sections .folder-chip { display: inline-block; padding: 6px 12px; background: var(--panel); border: 1px solid var(--divider); border-radius: var(--r); font-size: 11px; color: var(--mist); transition: all .18s; cursor: pointer; }
 #portfolio-sections .folder-chip:hover { border-color: var(--gold-line); color: var(--snow); background: var(--lift); }
+.section-link { display: block; text-decoration: none; }
+.section-card { background: var(--panel); border: 1px solid var(--divider); border-radius: var(--r2); padding: 24px; margin-bottom: 12px; transition: all .2s; }
+.section-card:hover { border-color: var(--gold-line); background: var(--lift); }
+.section-card-num { font-size: 10px; font-weight: 400; letter-spacing: .12em; color: var(--gold); margin-bottom: 8px; }
+.section-card-title { font-family: 'Playfair Display', serif; font-size: 20px; color: var(--snow); }
+.section-card-desc { font-size: 12px; color: var(--fog); margin-top: 6px; }
+.back-link { display: inline-flex; align-items: center; gap: 8px; color: var(--mist); font-size: 12px; text-decoration: none; margin-bottom: 20px; transition: color .2s; }
+.back-link:hover { color: var(--gold); }
+.back-link svg { width: 16px; height: 16px; stroke: currentColor; stroke-width: 1.5; fill: none; transform: rotate(180deg); }
 </style>
 </head>
 <body>
@@ -49,18 +58,6 @@
 
 <script src="source/portfolio/data.js"></script>
 <script>
-function accToggle(id) {
-  const trg = document.getElementById('trg-' + id);
-  const body = document.getElementById('body-' + id);
-  if (body.classList.contains('open')) {
-    body.classList.remove('open');
-    trg.classList.remove('open');
-  } else {
-    body.classList.add('open');
-    trg.classList.add('open');
-  }
-}
-
 function getFilesFromJson(dir) {
   if (!dir.children) return [];
   return dir.children.filter(c => c.type === 'file' && /\.(png|jpg|jpeg)$/i.test(c.name)).map(c => c.name);
@@ -75,7 +72,11 @@ function getDisplayName(item) {
   return item.first_name && item.first_name.trim() ? item.first_name : item.name;
 }
 
-function renderPortfolio(data) {
+function getSectionUrl(name) {
+  return '#' + name;
+}
+
+function renderSectionList(data) {
   let sections = (data.children || []).filter(item => item.type === 'directory');
   
   sections.sort((a, b) => {
@@ -92,49 +93,67 @@ function renderPortfolio(data) {
     const name = getDisplayName(item);
     const files = getFilesFromJson(item);
     const subfolders = getSubfolders(item);
+    const totalFiles = files.length + subfolders.reduce((sum, sf) => sum + getFilesFromJson(sf).length, 0);
     
-    let filesHtml = '';
-    if (files.length) {
-      filesHtml = files.slice(0, 30).map(f => `
-<div class="pitem">
-  <img src="source/portfolio/${item.name}/${f}" alt="${f}" loading="lazy" onerror="this.parentElement.style.display='none'">
-</div>`).join('');
-    }
-    
-    let subfoldersHtml = '';
-    if (subfolders.length) {
-      subfoldersHtml = '<div class="subfolder-grid"><span class="subfolder-title">Проекты</span>';
-      subfolders.forEach(sf => {
-        const sfName = getDisplayName(sf);
-        const sfFiles = getFilesFromJson(sf);
-        subfoldersHtml += `<span class="folder-chip" onclick="loadSubfolder('${item.name}', '${sf.name}', this)">${sfName} (${sfFiles.length})</span>`;
-      });
-      subfoldersHtml += '</div>';
-    }
-    
-    html += `
-<div class="section">
-  <button class="acc-trigger${idx === 0 ? ' open' : ''}" id="trg-${item.name}" onclick="accToggle('${item.name}')">
-    <div class="acc-trigger-left">
-      <span class="acc-num">${num}</span>
-      <span class="acc-title">${name}</span>
-    </div>
-    <div class="acc-arrow"><svg viewBox="0 0 12 8"><polyline points="1,1 6,7 11,1"/></svg></div>
-  </button>
-  <div class="acc-body${idx === 0 ? ' open' : ''}" id="body-${item.name}">
-    <div class="pgrid">${filesHtml}</div>
-    ${subfoldersHtml}
-    ${!files.length && !subfolders.length ? '<p class="pitem-load">Нет изображений</p>' : ''}
-  </div>
-</div>`;
+    html += `<a href="${getSectionUrl(item.name)}" class="section-link">
+      <div class="section-card">
+        <div class="section-card-num">${num}</div>
+        <div class="section-card-title">${name}</div>
+        <div class="section-card-desc">${totalFiles} изображений</div>
+      </div>
+    </a>`;
   });
   
   container.innerHTML = html;
 }
 
+function renderSection(data, sectionName) {
+  const section = data.children?.find(c => c.name === sectionName);
+  if (!section) {
+    window.location.hash = '';
+    return;
+  }
+  
+  const name = getDisplayName(section);
+  const files = getFilesFromJson(section);
+  const subfolders = getSubfolders(section);
+  
+  let filesHtml = '';
+  if (files.length) {
+    filesHtml = files.slice(0, 30).map(f => `
+<div class="pitem">
+  <img src="source/portfolio/${section.name}/${f}" alt="${f}" loading="lazy" onerror="this.parentElement.style.display='none'">
+</div>`).join('');
+  }
+  
+  let subfoldersHtml = '';
+  if (subfolders.length) {
+    subfoldersHtml = '<div class="subfolder-grid"><span class="subfolder-title">Проекты</span>';
+    subfolders.forEach(sf => {
+      const sfName = getDisplayName(sf);
+      const sfFiles = getFilesFromJson(sf);
+      subfoldersHtml += `<span class="folder-chip" onclick="loadSubfolder('${section.name}', '${sf.name}', this)">${sfName} (${sfFiles.length})</span>`;
+    });
+    subfoldersHtml += '</div>';
+  }
+  
+  const container = document.getElementById('portfolio-sections');
+  container.innerHTML = `
+    <a href="#" class="back-link">
+      <svg viewBox="0 0 12 8"><polyline points="1,1 6,7 11,1" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+      К портфолио
+    </a>
+    <div class="masthead" style="margin-bottom: 24px;">
+      <div class="masthead-title">${name}</div>
+    </div>
+    <div class="pgrid">${filesHtml}</div>
+    ${subfoldersHtml}
+    ${!files.length && !subfolders.length ? '<p class="pitem-load">Нет изображений</p>' : ''}
+  `;
+}
+
 function loadSubfolder(dirName, subfolderName, chip) {
-  const body = chip.closest('.acc-body');
-  const wrapper = body.querySelector('.pgrid');
+  const wrapper = document.querySelector('.pgrid');
   if (wrapper) wrapper.innerHTML = '<p class="pitem-load">Загрузка...</p>';
   
   if (typeof portfolioData === 'undefined') return;
@@ -154,11 +173,22 @@ function loadSubfolder(dirName, subfolderName, chip) {
   }
 }
 
-if (typeof portfolioData !== 'undefined') {
-  renderPortfolio(portfolioData);
-} else {
-  document.getElementById('portfolio-sections').innerHTML = '<p style="color:var(--gold);padding:20px;">Ошибка: данные не загружены</p>';
+function handleRoute() {
+  if (typeof portfolioData === 'undefined') {
+    document.getElementById('portfolio-sections').innerHTML = '<p style="color:var(--gold);padding:20px;">Ошибка: данные не загружены</p>';
+    return;
+  }
+  
+  const hash = window.location.hash.slice(1);
+  if (hash) {
+    renderSection(portfolioData, hash);
+  } else {
+    renderSectionList(portfolioData);
+  }
 }
+
+window.addEventListener('hashchange', handleRoute);
+handleRoute();
 </script>
 </body>
 </html>

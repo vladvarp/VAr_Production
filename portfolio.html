@@ -36,5 +36,12 @@
 
 <script src="source/portfolio/data.js"></script>
 <script src="core/js/portfolio.js"></script>
+
+<div id="lightbox" class="lightbox" onclick="closeLightbox()">
+  <img id="lightbox-img" src="" alt="">
+  <button class="lb-nav lb-prev" onclick="event.stopPropagation(); prevImage()">&#10094;</button>
+  <button class="lb-nav lb-next" onclick="event.stopPropagation(); nextImage()">&#10095;</button>
+  <button class="lb-close" onclick="closeLightbox()">&#10005;</button>
+</div>
 </body>
 </html>

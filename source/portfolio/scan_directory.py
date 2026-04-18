@@ -31,12 +31,41 @@ def load_existing_data():
                     index[current_path] = item
                     if 'children' in item:
                         build_index(item['children'], current_path, index)
+                elif item.get('type') == 'URL':
+                    current_path = parent_path + "/" + item['name'] if parent_path else item['name']
+                    index[current_path] = item
             return index
         
         return build_index(data.get('children', []))
     except Exception as e:
         print(f"Error loading data: {e}")
         return None
+
+def get_url_from_file(file_path):
+    if file_path.exists() and file_path.is_file():
+        try:
+            with open(file_path, 'r', encoding='utf-8') as f:
+                content = f.read()
+                for line in content.splitlines():
+                    if line.startswith('URL='):
+                        return line[4:].strip()
+        except Exception:
+            pass
+    return ""
+
+def get_first_name_from_txt_or_url(folder_path, existing_first_name, existing_comment):
+    txt_file = folder_path.with_suffix('.txt')
+    if txt_file.exists() and txt_file.is_file():
+        try:
+            with open(txt_file, 'r', encoding='utf-8') as f:
+                lines = f.readlines()
+                if lines:
+                    first_name = lines[0].strip()
+                    comment = ''.join(lines[1:]).strip() if len(lines) > 1 else ""
+                    return first_name, comment
+        except Exception:
+            pass
+    return existing_first_name if existing_first_name else "", existing_comment if existing_comment else ""
 
 def scan_directory(root_path, existing_index, parent_path=None):
     children = []
@@ -53,13 +82,33 @@ def scan_directory(root_path, existing_index, parent_path=None):
         if item.is_dir():
             key = parent_path + "/" + item.name if parent_path else item.name
             existing = existing_index.get(key, {})
+            existing_first_name = existing.get("first_name") if existing.get("first_name") is not None else ""
+            existing_comment = existing.get("comment") if existing.get("comment") is not None else ""
+            first_name, comment = get_first_name_from_txt_or_url(item, existing_first_name, existing_comment)
             
             children.append({
                 "position": existing.get("position") if existing.get("position") is not None else "",
-                "first_name": existing.get("first_name") if existing.get("first_name") is not None else "",
+                "first_name": first_name,
+                "comment": comment,
                 "name": item.name,
                 "type": "directory",
                 "children": scan_directory(item, existing_index, key)
+            })
+        elif item.suffix == '.url':
+            key = parent_path + "/" + item.name if parent_path else item.name
+            existing = existing_index.get(key, {})
+            existing_first_name = existing.get("first_name") if existing.get("first_name") is not None else ""
+            existing_comment = existing.get("comment") if existing.get("comment") is not None else ""
+            first_name, comment = get_first_name_from_txt_or_url(item.with_suffix(''), existing_first_name, existing_comment)
+            url = get_url_from_file(item)
+            
+            children.append({
+                "position": existing.get("position") if existing.get("position") is not None else "",
+                "first_name": first_name,
+                "comment": comment,
+                "name": item.name,
+                "type": "URL",
+                "URL": url
             })
         else:
             children.append({

@@ -474,8 +474,14 @@ input[type="range"]::-moz-range-thumb {
 #portfolio-sections .folder-chip { display: inline-block; padding: 6px 12px; background: var(--panel); border: 1px solid var(--divider); border-radius: var(--r); font-size: 11px; color: var(--mist); transition: all .18s; cursor: pointer; }
 #portfolio-sections .folder-chip:hover { border-color: var(--gold-line); color: var(--snow); background: var(--lift); }
 .section-link { display: block; text-decoration: none; }
-.section-card { background: var(--panel); border: 1px solid var(--divider); border-radius: var(--r2); padding: 24px; margin-bottom: 12px; transition: all .2s; }
-.section-card:hover { border-color: var(--gold-line); background: var(--lift); }
+.section-card { background: var(--panel); border: 1px solid var(--divider); border-radius: var(--r2); padding: 24px; margin-bottom: 12px; transition: all .2s; position: relative; overflow: visible; }
+.section-card.has-cover { background-size: cover; background-position: center; border: none; overflow: hidden; }
+.section-card.has-cover:hover { border: none; }
+.section-card.has-cover > * { position: relative; z-index: 2; }
+.section-card:not(.has-cover):hover { border-color: var(--gold-line); background: var(--lift); }
+.section-card.has-cover .section-card-num { color: #fff; }
+.section-card.has-cover .section-card-title { color: #fff; }
+.section-card.has-cover .section-card-desc { color: #fff; }
 .section-card-num { font-size: 10px; font-weight: 400; letter-spacing: .12em; color: var(--gold); margin-bottom: 8px; }
 .section-card-title { font-family: 'Playfair Display', serif; font-size: 20px; color: var(--snow); }
 .section-card-desc { font-size: 12px; color: var(--fog); margin-top: 6px; }

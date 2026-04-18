@@ -16,8 +16,19 @@ function getSectionUrl(name) {
   return '#' + name;
 }
 
+function getCoverImage(item, allItems) {
+  if (!allItems) return null;
+  const siblingFiles = allItems.filter(c => c.type === 'file' && /\.(png|jpg|jpeg)$/i.test(c.name));
+  const cover = siblingFiles.find(f => {
+    const nameWithoutExt = f.name.replace(/\.(png|jpg|jpeg)$/i, '');
+    return nameWithoutExt === item.name;
+  });
+  return cover ? cover.name : null;
+}
+
 function renderSectionList(data) {
   let sections = (data.children || []).filter(item => item.type === 'directory');
+  const allItems = data.children || [];
   
   sections.sort((a, b) => {
     const posA = parseInt(a.position) || 999;
@@ -35,8 +46,13 @@ function renderSectionList(data) {
     const subfolders = getSubfolders(item);
     const totalFiles = files.length + subfolders.reduce((sum, sf) => sum + getFilesFromJson(sf).length, 0);
     
+    const coverImage = getCoverImage(item, allItems);
+    const hasCover = !!coverImage;
+    const coverStyle = hasCover ? `background: url(source/portfolio/${coverImage}) center/cover no-repeat !important; border: none !important;` : '';
+    const coverClass = hasCover ? ' has-cover' : '';
+    
     html += `<a href="${getSectionUrl(item.name)}" class="section-link">
-      <div class="section-card">
+      <div class="section-card${coverClass}" style="${coverStyle}">
         <div class="section-card-num">${num}</div>
         <div class="section-card-title">${name}</div>
         <div class="section-card-desc">${totalFiles} изображений</div>

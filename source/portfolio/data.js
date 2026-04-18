@@ -190,6 +190,22 @@ const portfolioData = {
       "name": "subject",
       "type": "directory",
       "children": []
+    },
+    {
+      "name": "3dtour.jpg",
+      "type": "file"
+    },
+    {
+      "name": "exterior.jpg",
+      "type": "file"
+    },
+    {
+      "name": "interior.jpg",
+      "type": "file"
+    },
+    {
+      "name": "subject.jpg",
+      "type": "file"
     }
   ]
 };

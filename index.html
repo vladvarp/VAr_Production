@@ -15,6 +15,7 @@
 .preloader.hidden { display: none; }
 .page { display: none; }
 .page.visible { display: block; }
+
 </style>
 </head>
 <body>
@@ -28,19 +29,42 @@
 
 <div class="page">
 
-<div class="masthead">
-  <div class="masthead-title">
-    V.Ar Production
-  </div>
-  <p class="masthead-caption">Визуализация интерьеров, экстерьеров и виртуальные туры.</p>
+<div class="masthead" style="text-align: center; margin-bottom: 0; padding-bottom: 0;">
+  <div class="masthead-title" style="font-size: clamp(28px, 5vw, 36px);">V.Ar Production</div>
+  <p class="masthead-caption" style="margin: 0 auto; text-align: center;">Избранные проекты визуализации интерьеров, экстерьеров и виртуальных туров</p>
 </div>
 
-<div class="services-tags">
-  <span class="tag">Интерьеры</span>
-  <span class="tag">Экстерьеры</span>
-  <span class="tag">Виртуальные туры</span>
-  <span class="tag">3D визуализация</span>
-  <span class="tag">Видео</span>
+<div class="hero-divider"></div>
+
+<div class="services-grid">
+  <div class="service-card">
+    <div class="service-card-icon">
+      <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    </div>
+    <div class="service-card-title">Интерьеры</div>
+    <div class="service-card-desc">Визуализация жилых и коммерческих помещений</div>
+  </div>
+  <div class="service-card">
+    <div class="service-card-icon">
+      <svg viewBox="0 0 24 24"><path d="M3 21h18M5 21V7l8-4v18M19 21V11l-6-4M9 9v.01M9 12v.01M9 15v.01M9 18v.01"/></svg>
+    </div>
+    <div class="service-card-title">Экстерьеры</div>
+    <div class="service-card-desc">Визуализация домов, комплексов и архитектурных объектов</div>
+  </div>
+  <div class="service-card">
+    <div class="service-card-icon">
+      <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+    </div>
+    <div class="service-card-title">Виртуальные туры</div>
+    <div class="service-card-desc">Интерактивные 360° туры для недвижимости</div>
+  </div>
+  <div class="service-card">
+    <div class="service-card-icon">
+      <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4M7 8h4M7 12h10"/></svg>
+    </div>
+    <div class="service-card-title">Видео</div>
+    <div class="service-card-desc">Анимационные ролики и видео рендеры</div>
+  </div>
 </div>
 
 <div class="nav-links">

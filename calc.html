@@ -308,8 +308,10 @@
 window.addEventListener('load', function() {
   var preloader = document.querySelector('.preloader');
   var page = document.querySelector('.page');
-  if (preloader) preloader.classList.add('hidden');
-  if (page) page.classList.add('visible');
+  setTimeout(function() {
+    if (preloader) preloader.classList.add('hidden');
+    if (page) page.classList.add('visible');
+  }, 1000);
 });
 </script>
 </body>

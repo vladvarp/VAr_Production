@@ -6,7 +6,16 @@
 <title>V.Ar Production — Портфолио</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="core/css/style.css">
-<script>document.documentElement.classList.add('loading');</script>
+<style>
+.preloader { position: fixed; inset: 0; background: #0d0d0d; display: flex; align-items: center; justify-content: center; z-index: 9999; }
+.preloader-content { text-align: center; }
+.preloader-title { font-family: 'Playfair Display', serif; font-size: 24px; color: #c2c2c9; margin-bottom: 20px; }
+.preloader-spin { width: 40px; height: 40px; border: 2px solid #252022; border-top-color: #b35a5a; border-radius: 50%; animation: spin 1s linear infinite; margin: 0 auto; }
+@keyframes spin { to { transform: rotate(360deg); } }
+.preloader.hidden { display: none; }
+.page { display: none; }
+.page.visible { display: block; }
+</style>
 </head>
 <body>
 
@@ -56,10 +65,9 @@
 <script>
 window.addEventListener('load', function() {
   var preloader = document.querySelector('.preloader');
-  if (preloader) {
-    preloader.classList.add('hidden');
-  }
-  document.documentElement.classList.remove('loading');
+  var page = document.querySelector('.page');
+  if (preloader) preloader.classList.add('hidden');
+  if (page) page.classList.add('visible');
 });
 </script>
 </body>

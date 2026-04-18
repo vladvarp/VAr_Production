@@ -1268,6 +1268,43 @@ const portfolioData = {
           ]
         },
         {
+          "position": "",
+          "first_name": "Студия",
+          "comment": "",
+          "name": "056_Студия",
+          "type": "directory",
+          "children": [
+            {
+              "name": "A1.jpg",
+              "type": "file"
+            },
+            {
+              "name": "A2.jpg",
+              "type": "file"
+            },
+            {
+              "name": "B1.jpg",
+              "type": "file"
+            },
+            {
+              "name": "B2.jpg",
+              "type": "file"
+            },
+            {
+              "name": "B3.jpg",
+              "type": "file"
+            },
+            {
+              "name": "C (1).jpg",
+              "type": "file"
+            },
+            {
+              "name": "C (2).jpg",
+              "type": "file"
+            }
+          ]
+        },
+        {
           "name": "050_ЖК_Атаман.jpg",
           "type": "file"
         },
@@ -1321,6 +1358,14 @@ const portfolioData = {
         },
         {
           "name": "056_ЖК_История.txt",
+          "type": "file"
+        },
+        {
+          "name": "056_Студия.jpg",
+          "type": "file"
+        },
+        {
+          "name": "056_Студия.txt",
           "type": "file"
         }
       ]
@@ -1778,6 +1823,163 @@ const portfolioData = {
           ]
         },
         {
+          "position": "",
+          "first_name": "Жилой парк «Сокольники»: Планировки",
+          "comment": "Новый масштабный проект от группы компаний «Сокол». Дома комфорт-класса с панорамным остеклением. Большой выбор планировочных решений.Современная инфраструктура, большая благоустроенная территория.\n\nЕстественный природный ландшафт, лиственные и хвойные деревья, кустарники, газоны.\n---\n## РАСПОЛОЖЕНИЕ\n\nПроект реализуется в западной части Ростова-на-Дону, в Левенцовском районе, на пересечении улиц Еременко и Солженицына. Это один из самых перспективных и динамично развивающихся районов города, который располагает обширной инфраструктурой и хорошей транспортной доступностью.",
+          "name": "055_ЖП_Сокольники_Планировки",
+          "type": "directory",
+          "children": [
+            {
+              "name": "0ab64b637a496af8afd2a.jpg",
+              "type": "file"
+            },
+            {
+              "name": "12d3f58eba36ef047a4ac.jpg",
+              "type": "file"
+            },
+            {
+              "name": "1870929dc05ec304fc112.jpg",
+              "type": "file"
+            },
+            {
+              "name": "24ba3f0ca76afc910b7cb.jpg",
+              "type": "file"
+            },
+            {
+              "name": "2642bbbc8e5d979335a45.jpg",
+              "type": "file"
+            },
+            {
+              "name": "376895ac6237968629096.jpg",
+              "type": "file"
+            },
+            {
+              "name": "3cc0e35ac4792f593e862.jpg",
+              "type": "file"
+            },
+            {
+              "name": "4a3cf0123bb3de66bb6e7.jpg",
+              "type": "file"
+            },
+            {
+              "name": "4c901a63e3d0c02af1e01.jpg",
+              "type": "file"
+            },
+            {
+              "name": "4e36aaade4908f3646fe9.jpg",
+              "type": "file"
+            },
+            {
+              "name": "50a56a3400a4c2b5d7462.jpg",
+              "type": "file"
+            },
+            {
+              "name": "58d966decd0c8dbf29ca3.jpg",
+              "type": "file"
+            },
+            {
+              "name": "5b050cfaa344829fce002.jpg",
+              "type": "file"
+            },
+            {
+              "name": "6626d46f53b559ff1b6c1.jpg",
+              "type": "file"
+            },
+            {
+              "name": "71244a4f2bdc8bc953bfd.jpg",
+              "type": "file"
+            },
+            {
+              "name": "7cbcfb317a032ed83adda.jpg",
+              "type": "file"
+            },
+            {
+              "name": "7f619869d9895d1e63f15.jpg",
+              "type": "file"
+            },
+            {
+              "name": "876e7d0239aaf86bd2a85.jpg",
+              "type": "file"
+            },
+            {
+              "name": "8853a83377e1389d6fd66.jpg",
+              "type": "file"
+            },
+            {
+              "name": "8e7fa37b8c8f1af516451.jpg",
+              "type": "file"
+            },
+            {
+              "name": "8fa835dfeb1bbd1530c52.jpg",
+              "type": "file"
+            },
+            {
+              "name": "95c2febc7018e0bfb10a3.jpg",
+              "type": "file"
+            },
+            {
+              "name": "a980ca2d0caac494f8d65.jpg",
+              "type": "file"
+            },
+            {
+              "name": "afd2d4c5ca820e658b711.jpg",
+              "type": "file"
+            },
+            {
+              "name": "b9a776f32e8b73e8f0bb2.jpg",
+              "type": "file"
+            },
+            {
+              "name": "d101887ff59709161e274.jpg",
+              "type": "file"
+            },
+            {
+              "name": "d441babb5120d02bda861.jpg",
+              "type": "file"
+            },
+            {
+              "name": "d68fa5e385d0730e69c88.jpg",
+              "type": "file"
+            },
+            {
+              "name": "e6e8def67469f914363ab.jpg",
+              "type": "file"
+            },
+            {
+              "name": "ea5164356a75d3801714a.jpg",
+              "type": "file"
+            },
+            {
+              "name": "eca99beb7cacaf961209d.jpg",
+              "type": "file"
+            },
+            {
+              "name": "f282d533ecd5c6c9b06ec.jpg",
+              "type": "file"
+            },
+            {
+              "name": "f79ae368f2bf364a3162d.jpg",
+              "type": "file"
+            },
+            {
+              "name": "Сайт.jpg",
+              "type": "file"
+            },
+            {
+              "name": "Сайт.txt",
+              "type": "file"
+            },
+            {
+              "position": "",
+              "first_name": "Сайт: Жилой Парк «Сокольники»",
+              "comment": "",
+              "name": "Сайт.url",
+              "type": "URL",
+              "URL": "https://xn-----8kcwiacidbhcgvmbjuuc9u.xn--p1ai/"
+            }
+          ]
+        },
+        {
           "name": "050_ЖК_Атаман.jpg",
           "type": "file"
         },
@@ -1815,6 +2017,14 @@ const portfolioData = {
         },
         {
           "name": "054_ЖК_История.txt",
+          "type": "file"
+        },
+        {
+          "name": "055_ЖП_Сокольники_Планировки.jpg",
+          "type": "file"
+        },
+        {
+          "name": "055_ЖП_Сокольники_Планировки.txt",
           "type": "file"
         }
       ]
@@ -1931,7 +2141,569 @@ const portfolioData = {
       "comment": "3D визуализация экстерьера - это процесс создания реалистичного трехмерного изображения фасада здания или ландшафтного дизайна участка с помощью специальных программ. Она позволяет наглядно представить, как будет выглядеть внешний вид объекта после строительства или благоустройства.\n\nОсновные характеристики 3D визуализации экстерьера:\n\n- Передает объем, освещение, материалы и фактуры\n- Дает возможность визуально оценить внешний вид здания или участка\n- Создается на основе чертежей и трехмерной модели\n- Выполняется в фотореалистичной графике\nКачественная 3D визуализация экстерьера максимально точно передает первоначальную концепцию архитектурного или ландшафтного дизайна. Она помогает согласовать проект с заказчиком и наглядно презентовать его инвесторам.",
       "name": "экстерьер",
       "type": "directory",
-      "children": []
+      "children": [
+        {
+          "position": "",
+          "first_name": "Резиденция \"Романов\"",
+          "comment": "Резиденция «Романов» – это пространство премиум-класса в самом престижном районе Ялты, где ваш статус ощущается в каждой детали. Здесь всё создано для безупречного комфорта. Панорамные виды, утончённая архитектура, удобные планировки. Восьмиэтажная резиденция с потолками высотой более трёх метров и панорамными окнами от пола до потолка, которые наполняют интерьеры светом и открывают великолепные виды на море и горы, а также просторные террасы становятся вашим личным уголком на свежем воздухе. Для вашего комфорта и активного отдыха на территории резиденции есть всё. Подогреваемый круглогодичный бассейн, современное фитнес-пространство и уютный лаунж – зоны для отдыха в тени деревьев. Ваш покой и удобство обеспечены собственным подземным паркингом и высоким уровнем сервиса.\n---\nАдрес: Ялта, Поликуровская 25",
+          "name": "050_Резиденция_Романов",
+          "type": "directory",
+          "children": [
+            {
+              "name": "A1.jpg",
+              "type": "file"
+            },
+            {
+              "name": "A2.jpg",
+              "type": "file"
+            },
+            {
+              "name": "A3.jpg",
+              "type": "file"
+            },
+            {
+              "name": "A4.jpg",
+              "type": "file"
+            },
+            {
+              "name": "a5.jpg",
+              "type": "file"
+            },
+            {
+              "name": "a6.jpg",
+              "type": "file"
+            },
+            {
+              "name": "a7.jpg",
+              "type": "file"
+            },
+            {
+              "name": "a8.jpg",
+              "type": "file"
+            },
+            {
+              "name": "a9.jpg",
+              "type": "file"
+            },
+            {
+              "name": "b1.jpg",
+              "type": "file"
+            },
+            {
+              "name": "b2.jpg",
+              "type": "file"
+            },
+            {
+              "name": "b3.jpg",
+              "type": "file"
+            },
+            {
+              "name": "b4.jpg",
+              "type": "file"
+            },
+            {
+              "name": "b5.jpg",
+              "type": "file"
+            },
+            {
+              "name": "b6.jpg",
+              "type": "file"
+            }
+          ]
+        },
+        {
+          "position": "",
+          "first_name": "ЖК Надежда",
+          "comment": "\"Жилой комплекс с помещениями общественного назначения и встроенно-пристроенной подземной автостоянкой, расположенный по адресу: Ростовская обл., г. Ростов-на-Дону, ул. 2-й Пятилетки, 29\"",
+          "name": "051_ЖК_Надежда",
+          "type": "directory",
+          "children": [
+            {
+              "name": "0JLEUMs5K7t_T0OklHhFcWps_pBrj4946HkydbgwNmbFq7ocNEdm43StUZxoVMOrQWsMJBJklgYai9LokUyt2Ok6.jpg",
+              "type": "file"
+            },
+            {
+              "name": "1TrLrgvNYJOVquVakXg5yFzDhHRfTdEYr2AmEUENp_9YmDOHgtScRR8q9dlKTo5O16e_G7oMOFJhb580yJd4IitT.jpg",
+              "type": "file"
+            },
+            {
+              "name": "2TS4xE1TyAaB2y5j9dBLS2vISqW-SrgvXghbHaO0X9auKAofLmEYSjJ5jQXdVFSjjxctmPFzCfG4oYTSfJSVslJs.jpg",
+              "type": "file"
+            },
+            {
+              "name": "2TxhGn43bMM6MQ8LyWUM0fTCuYxnSgriW1QfuzQEfnz0ejb8D36SmahEpxjXUvZstXHP_CC9hENPYJyuiM6kjn_O.jpg",
+              "type": "file"
+            },
+            {
+              "name": "55fYz2aQ-qg6yzv-9jAsUvZTRBlZQoPS_ThVbSf8g3sjB_Ml7tl_ZBo1t_rFJdVreE6i4UWm_HxmKqQlYxVO8pux.jpg",
+              "type": "file"
+            },
+            {
+              "name": "6UvKvwiC859oPhnKOEtm1hglIDoQjotPamHgRbfTBKdOoXYUr5H8chWYMnKNNbPcdCaaN2ncI7yrx4FJHRHxchSN.jpg",
+              "type": "file"
+            },
+            {
+              "name": "9wy6idAWrVimpdBBJedzOLCmgjA0M3e_Nl1qTkgg966BBnZQtmA32yB-sPjcLxLlb8zs21Wu_1EIQMxZXc9zEeTc.jpg",
+              "type": "file"
+            },
+            {
+              "name": "_JlLZD6PsLRTcVV8qTRAmDdWNx_wvuxn-fO3q5bPwiTom-dVELHwSgcz35WSfGEye18ell1Hcl_HtDCj22bSO3AP.jpg",
+              "type": "file"
+            },
+            {
+              "name": "a_KS-Y9GEDnkTC8ugdK92Tm7ZBmuxLC2js5sNOPekOapqh6n_uEO6yZdArKCma5jj90WfrEHfPwGw7gvhljOpQML.jpg",
+              "type": "file"
+            },
+            {
+              "name": "CRiLuOIWRZ8dFVRXm-J0fWF1MvEdlUmhjBn0zY5h4DK7O1jJcblK7Qcd5N_FjjWMcsG8oN18C1J_C248u0hJ5116.jpg",
+              "type": "file"
+            },
+            {
+              "name": "d40OUe6gbQ0rP2AX-HUvdUiTr65DeyodCW1RTIM8idJ-GlMuL6-CMaKafemgHRYjscU6w04-04IhRWOv76hbaa5m.jpg",
+              "type": "file"
+            },
+            {
+              "name": "D_mvb_RgmDdl9Q8xLbDcGJETWY2vMNzXnBMt6q0T8CCiLYDt1oqu4sHMZ0PP44LYbDmOl-SmbIDDKBOlqXe8xxBd.jpg",
+              "type": "file"
+            },
+            {
+              "name": "F6P34khtwQCAax_2-DtYdfsued6BVHnWDqbNvS8RVILDaH2jZkSLHw6wZmKkwZBA2Z6c32TLgUUeV1Y3dgX3ZVLQ.jpg",
+              "type": "file"
+            },
+            {
+              "name": "fRCac0ZU8V901vEmqzSkL9Lqb5CWKsNagkF5Q49G7olxwX8Jv80zSMrY4prn2JfBlrcCCIph71TgSz618-PK-gsO.jpg",
+              "type": "file"
+            },
+            {
+              "name": "G5sj5xYByQgdT0pPXpCJ3jJISFs7XpoBzNNPWmP46KqZSIKHrSyQ6FFtRNFgDCCc60NXvnZ15lxOH6sC49v99oq6.jpg",
+              "type": "file"
+            },
+            {
+              "name": "On6k1TqBxlU1tPAuGvJdGGoLZ9UmF6K8dDcYFkvibSWyv3_C0P8oQrK2D7OAOCYb4Yu-0QNl9TaRa-tRdQ43HwOm.jpg",
+              "type": "file"
+            },
+            {
+              "name": "PGBzLWKev966DE_6u9AgMg4H_N8xYXKt35-jVhnRm_bZX0uNwP9alYU-vgl6UkjgzLwPdua_FXy4s7fLi3N4lZq0.jpg",
+              "type": "file"
+            },
+            {
+              "name": "pqW_pj__S92FI8zOIGx71Wf7q3T2lEd_DWNJ8G5YkUsoRdEDw1JvOtx-4YQvO5Q515wbreQhEO6vsdTQnHjxsKa7.jpg",
+              "type": "file"
+            },
+            {
+              "name": "Qathh4PuTOcKUoq56790qjgnSREC-JJDru-CCRU3Xc4-UuRtOkNd_0ipv8DX2q7taBCzxrJ1rk0rWXyvL-CreMvK.jpg",
+              "type": "file"
+            },
+            {
+              "name": "qCkyEMVxCsBh8x_Cfwxqjr3PtzFMmplh6wTHxldQgML8ZPVg7Upm9tWTr_oZfMyqnBM_g08W55Yj980-FNhdtLSy.jpg",
+              "type": "file"
+            },
+            {
+              "name": "qzcWOk3QNPwBv5F7_q9zlrnR3N37DyhmH31RoZ2-Sy-cfyZzjNmUJPJZdIoio0Mg0YZw3FhJwG6LmYnwBmugDmsD.jpg",
+              "type": "file"
+            },
+            {
+              "name": "S3B7dZ_HFUPrT2Z3fBf-QaiCTjR3gv_EYkYdxC1AdHLrbtL5jmhYUsJb4bFrEsg_xE2zDwctlYxk1UAq11lqbGCh.jpg",
+              "type": "file"
+            },
+            {
+              "name": "S_sQxZjSm4MFy8c5KGFg0NXQ0Se3JMauapG1J5tFMGii7XD1QN0kV5eLn_a6D5OnJC2-8zpLliySbHGlgyCoJ4Hd.jpg",
+              "type": "file"
+            },
+            {
+              "name": "SB0KAu-PI-5kMuiEpHS6UynrEEKGxgiChbEbFAF5F8tnDJO3h3A9xBvu9hLP--TsVeFmhzNlGJMDYOxt5wJl-r5d.jpg",
+              "type": "file"
+            },
+            {
+              "name": "sMduj7gflgPOfiWCuo_GUQw6TF3LJoisvYSW7SJevZGGgIJqPP6V_V-OXGO2Xov69j33z8B5SfhOVMbz5BFUnIH-.jpg",
+              "type": "file"
+            },
+            {
+              "name": "sNM5r--BMu1Nu6UC3jlPjaEmKiZmLYz7vEEZdVgP7tCOmVzxhOQRV792nDYRKzom8nmPWqhONMpv_n_IJhFC3x3Z.jpg",
+              "type": "file"
+            },
+            {
+              "name": "TOyfrGJbXxmpn-ICOCmC_DDtCYSR0e12IxwaI18v9RLy3lUNv2Y8P7EN1eAzbYJmW25flM4E7aCYieQlWE2FJr27.jpg",
+              "type": "file"
+            },
+            {
+              "name": "V1oheMEpPB7R6tAreTDaSxYb9rVvTyFMtRBOJSxCDsCUlrOsfLiu-rW6tfhYl9rHla1-x0Iq0IFvaF_EiCrteH72.jpg",
+              "type": "file"
+            },
+            {
+              "name": "Vc0Zjt64YSoSHVOdTMYn-D3igqheijs4vMsGszr8LOh5XgzuOeV8GPTOeT0AkjfwM15Ead_YP05YF5VKWcWmGF_t.jpg",
+              "type": "file"
+            },
+            {
+              "name": "VGj_iTUUAKL3yuN_eDfKh4QN1VqGj0eSmz-EsT9kKQUZmSZpwKEdfmvPWUhlkPnTgcehb1qQVBr9VUV4X_Adi7Gh.jpg",
+              "type": "file"
+            },
+            {
+              "name": "wfovYyWnNadg3G2-LcsCI64YgYi00QbPZLB-IEJw1zbhJb21Ncr5dO5o7m8JoSR5ZlMRqMGOx-mxc_nMjwsGhrYw.jpg",
+              "type": "file"
+            },
+            {
+              "name": "WsIzT-r2032NIIybxbi6GtEWvuXVaHbZuoM0Ie_6CEJAEupH4I-gzzuFUAN4tu_UxB3JF2x_wmnY-ii1uI1c7v2H.jpg",
+              "type": "file"
+            },
+            {
+              "name": "Yo3g_AbUbedxGLJfETSx2Ur4KWzVb3jsN1IBUBSRGBcyKJ6X2ZmAUi2OmbOXmYBrbXZr5LVbNLwLDG50frW93f5c.jpg",
+              "type": "file"
+            },
+            {
+              "name": "Zeetk8qB9ovv6n_KnR2WJ0xubF-BiIMRsFMGAGcX4L57UWq6egOyHNxLcj55gCNzbp3d2-QYEU3JQbfWbA0i9c21.jpg",
+              "type": "file"
+            }
+          ]
+        },
+        {
+          "position": "",
+          "first_name": "Жилой комплекс \"Орион\"",
+          "comment": "## Яркое созвездие города\nЖилой комплекс «Орион» находится в самом сердце Западного района Ростова-на-Дону, на проспекте Стачки — одной из главных улиц города. Благодаря прекрасно развитой транспортной инфраструктуре, отсюда легко добраться как до центра, так и до любого уголка города.\n\nНе только автомобилисты по достоинству оценят удобство этого места: до остановки общественного транспорта всего одна минута пешком. Это прекрасное решение для тех, кто стремится быть мобильным и всегда быть в центре событий.\n\n*Адрес: Ростов-на-Дону, Проспект Стачки, д. 231/2*\n---\n\n## Вселенная для вашей семьи\nВсе ключевые объекты инфраструктуры словно собраны на орбите «Ориона», как планеты. Из окон открывается вид на современную школу, а рядом находятся ещё пять школ, шесть детских садов, городская поликлиника и Южный федеральный университет.\n\nВ пешей доступности расположен крупный фитнес-центр, а в пяти минутах езды на автомобиле — торговый центр «Золотой Вавилон». Жить в «Орионе» — значит быть в окружении всего, что необходимо для комфортной жизни.\n---\n\n## «Звездные» парки\nВсего в пяти минутах находится один из самых любимых парков ростовчан — «Сказка». Здесь вы сможете прогуляться всей семьей или активно провести время на футбольной площадке и теннисном корте. А дети будут в восторге от зоопарка и дельфинария.\n\nЧуть дальше расположена «Аллея роз» и легендарный парк Плевен с фонтаном, аттракционами и уютными кафе. Добраться до него можно пешком, прогулка займёт не более 15 минут.",
+          "name": "052_ЖК_Орион",
+          "type": "directory",
+          "children": [
+            {
+              "name": "3dтур.jpg",
+              "type": "file"
+            },
+            {
+              "name": "3dтур.txt",
+              "type": "file"
+            },
+            {
+              "position": "",
+              "first_name": "3D Тур",
+              "comment": "",
+              "name": "3dтур.url",
+              "type": "URL",
+              "URL": "https://ev.skoro-sait4.ru/ORION/index.htm"
+            },
+            {
+              "name": "a (1).jpg",
+              "type": "file"
+            },
+            {
+              "name": "a (2).jpg",
+              "type": "file"
+            },
+            {
+              "name": "a (3).jpg",
+              "type": "file"
+            },
+            {
+              "name": "a (4).jpg",
+              "type": "file"
+            },
+            {
+              "name": "a (5).jpg",
+              "type": "file"
+            },
+            {
+              "name": "a (6).jpg",
+              "type": "file"
+            },
+            {
+              "name": "b (1).jpg",
+              "type": "file"
+            },
+            {
+              "name": "b (2).jpg",
+              "type": "file"
+            },
+            {
+              "name": "b (3).jpg",
+              "type": "file"
+            },
+            {
+              "name": "b (4).jpg",
+              "type": "file"
+            },
+            {
+              "name": "b (5).jpg",
+              "type": "file"
+            },
+            {
+              "name": "b (6).jpg",
+              "type": "file"
+            },
+            {
+              "name": "b (7).jpg",
+              "type": "file"
+            },
+            {
+              "name": "c (1).jpg",
+              "type": "file"
+            },
+            {
+              "name": "c (2).jpg",
+              "type": "file"
+            },
+            {
+              "name": "c (3).jpg",
+              "type": "file"
+            },
+            {
+              "name": "c (4).jpg",
+              "type": "file"
+            },
+            {
+              "name": "c (5).jpg",
+              "type": "file"
+            },
+            {
+              "name": "c (6).jpg",
+              "type": "file"
+            },
+            {
+              "name": "c (7).jpg",
+              "type": "file"
+            },
+            {
+              "name": "Сайт.jpg",
+              "type": "file"
+            },
+            {
+              "name": "Сайт.txt",
+              "type": "file"
+            },
+            {
+              "position": "",
+              "first_name": "Сайт: ЖК \"Орион\"",
+              "comment": "",
+              "name": "Сайт.url",
+              "type": "URL",
+              "URL": "http://www.zhk-orion.ru/"
+            }
+          ]
+        },
+        {
+          "position": "",
+          "first_name": "СТРОЙПРОЕКТ-1",
+          "comment": "Строительство 9-этажного жилого дома со встроенными помещениями общественного назначения и подземной автостоянкой по адресу: \n\n*ул. 7 февраля, 2/99 в г. Ростове - на - Дону.*",
+          "name": "053_СТРОЙПРОЕКТ",
+          "type": "directory",
+          "children": [
+            {
+              "name": "3_d3X82237Y.jpg",
+              "type": "file"
+            },
+            {
+              "name": "4yS3ohqb_4E.jpg",
+              "type": "file"
+            },
+            {
+              "name": "AttbTXOyGes.jpg",
+              "type": "file"
+            },
+            {
+              "name": "hbs73uT3EbY.jpg",
+              "type": "file"
+            },
+            {
+              "name": "Jsqvp7B63Yw.jpg",
+              "type": "file"
+            },
+            {
+              "name": "sctdfuF44Hs.jpg",
+              "type": "file"
+            },
+            {
+              "name": "uE54uBxE7Go.jpg",
+              "type": "file"
+            },
+            {
+              "name": "ufkxzE-aa00.jpg",
+              "type": "file"
+            },
+            {
+              "name": "xc3UClrjBL8.jpg",
+              "type": "file"
+            },
+            {
+              "name": "Xgzp_dzNdDM.jpg",
+              "type": "file"
+            }
+          ]
+        },
+        {
+          "position": "",
+          "first_name": "Жилой комплекс \"Регата\"",
+          "comment": "Новый 20-этажный дом бизнес-класса в центре города. Современная архитектура фасадов включает в себя панорамное остекление окон в пол, из которых открывается прекрасный вид на город. При строительстве применяются современные технологии и вентилируемый фасад из керамогранита, что сохранит в квартирах тепло в зимний период, и обеспечит прохладу летом. Проектом предусмотрена установка корзин для сплит систем и дренажной системы для централизованного сбора конденсата. Дизайнерская отделка холла включает в себя зону ресепшен и лобби для встреч с гостями. Отличная транспортная развязка дает возможность быстро добираться на работу и в учебные заведения любого района города Ростова-на-Дону. На закрытой придомовой территории разместятся современные детская и спортивная площадки, зоны отдыха и гостевой паркинг.\n\n---\n\nНаличие вместительной подземной парковки исключит Ваше беспокойство о сохранности своего автомобиля в любую непогоду. Эргономичные просторные планировки позволят выбрать квартиру на любой вкус и состав семьи.\n\n---\n\n*ул. Сиверса 12д в г. Ростове - на - Дону.*",
+          "name": "054_ЖК_Регата",
+          "type": "directory",
+          "children": [
+            {
+              "name": "a (1).jpg",
+              "type": "file"
+            },
+            {
+              "name": "a (2).jpg",
+              "type": "file"
+            },
+            {
+              "name": "a (3).jpg",
+              "type": "file"
+            },
+            {
+              "name": "a (4).jpg",
+              "type": "file"
+            },
+            {
+              "name": "a (5).jpg",
+              "type": "file"
+            },
+            {
+              "name": "a (6).jpg",
+              "type": "file"
+            },
+            {
+              "name": "b (1).jpg",
+              "type": "file"
+            },
+            {
+              "name": "b (10).jpg",
+              "type": "file"
+            },
+            {
+              "name": "b (11).jpg",
+              "type": "file"
+            },
+            {
+              "name": "b (12).jpg",
+              "type": "file"
+            },
+            {
+              "name": "b (13).jpg",
+              "type": "file"
+            },
+            {
+              "name": "b (14).jpg",
+              "type": "file"
+            },
+            {
+              "name": "b (15).jpg",
+              "type": "file"
+            },
+            {
+              "name": "b (16).jpg",
+              "type": "file"
+            },
+            {
+              "name": "b (17).jpg",
+              "type": "file"
+            },
+            {
+              "name": "b (18).jpg",
+              "type": "file"
+            },
+            {
+              "name": "b (19).jpg",
+              "type": "file"
+            },
+            {
+              "name": "b (2).jpg",
+              "type": "file"
+            },
+            {
+              "name": "b (3).jpg",
+              "type": "file"
+            },
+            {
+              "name": "b (4).jpg",
+              "type": "file"
+            },
+            {
+              "name": "b (5).jpg",
+              "type": "file"
+            },
+            {
+              "name": "b (6).jpg",
+              "type": "file"
+            },
+            {
+              "name": "b (7).jpg",
+              "type": "file"
+            },
+            {
+              "name": "b (8).jpg",
+              "type": "file"
+            },
+            {
+              "name": "b (9).jpg",
+              "type": "file"
+            },
+            {
+              "name": "c (1).jpg",
+              "type": "file"
+            },
+            {
+              "name": "c (2).jpg",
+              "type": "file"
+            },
+            {
+              "name": "c (3).jpg",
+              "type": "file"
+            },
+            {
+              "name": "Сайт.jpg",
+              "type": "file"
+            },
+            {
+              "name": "Сайт.txt",
+              "type": "file"
+            },
+            {
+              "position": "",
+              "first_name": "Сайт: ЖК \"Регата\"",
+              "comment": "",
+              "name": "Сайт.url",
+              "type": "URL",
+              "URL": "https://xn--80aahhey6bt.xn--p1ai/"
+            }
+          ]
+        },
+        {
+          "name": "050_Резиденция_Романов.jpg",
+          "type": "file"
+        },
+        {
+          "name": "050_Резиденция_Романов.txt",
+          "type": "file"
+        },
+        {
+          "name": "051_ЖК_Надежда.jpg",
+          "type": "file"
+        },
+        {
+          "name": "051_ЖК_Надежда.txt",
+          "type": "file"
+        },
+        {
+          "name": "052_ЖК_Орион.jpg",
+          "type": "file"
+        },
+        {
+          "name": "052_ЖК_Орион.txt",
+          "type": "file"
+        },
+        {
+          "name": "053_СТРОЙПРОЕКТ.jpg",
+          "type": "file"
+        },
+        {
+          "name": "053_СТРОЙПРОЕКТ.txt",
+          "type": "file"
+        },
+        {
+          "name": "054_ЖК_Регата.jpg",
+          "type": "file"
+        },
+        {
+          "name": "054_ЖК_Регата.txt",
+          "type": "file"
+        }
+      ]
     },
     {
       "name": "3DТур.jpg",

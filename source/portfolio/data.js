@@ -11,14 +11,14 @@ const portfolioData = {
     },
     {
       "position": "3",
-      "first_name": "",
+      "first_name": "3D Визуализации экстерьера",
       "name": "exterior",
       "type": "directory",
       "children": []
     },
     {
       "position": "1",
-      "first_name": "",
+      "first_name": "3D Визуализации интерьера",
       "name": "interior",
       "type": "directory",
       "children": [
@@ -186,7 +186,7 @@ const portfolioData = {
     },
     {
       "position": "3",
-      "first_name": "",
+      "first_name": "3D Визуализация рекламной продукции (предметная визуализация)",
       "name": "subject",
       "type": "directory",
       "children": []

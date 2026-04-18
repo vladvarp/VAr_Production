@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>V.Ar Production — Портфолио</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="core/css/calc.css">
+<link rel="stylesheet" href="core/css/style.css">
 <style>
 #portfolio-sections .pgrid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 8px; }
 @media (max-width: 540px) { #portfolio-sections .pgrid { grid-template-columns: repeat(2, 1fr); } }
@@ -76,13 +76,18 @@ function getDisplayName(item) {
 }
 
 function renderPortfolio(data) {
-  const sections = data.children || [];
+  let sections = (data.children || []).filter(item => item.type === 'directory');
+  
+  sections.sort((a, b) => {
+    const posA = parseInt(a.position) || 999;
+    const posB = parseInt(b.position) || 999;
+    return posA - posB;
+  });
   
   const container = document.getElementById('portfolio-sections');
   let html = '';
   
   sections.forEach((item, idx) => {
-    if (item.type !== 'directory') return;
     const num = String(idx + 1).padStart(2, '0');
     const name = getDisplayName(item);
     const files = getFilesFromJson(item);

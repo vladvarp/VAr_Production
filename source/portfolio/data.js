@@ -2664,6 +2664,14 @@ const portfolioData = {
           ]
         },
         {
+          "position": "",
+          "first_name": "",
+          "comment": "",
+          "name": "055_Новочеркасск_молодежная_33",
+          "type": "directory",
+          "children": []
+        },
+        {
           "name": "050_Резиденция_Романов.jpg",
           "type": "file"
         },
@@ -2701,6 +2709,14 @@ const portfolioData = {
         },
         {
           "name": "054_ЖК_Регата.txt",
+          "type": "file"
+        },
+        {
+          "name": "055_Новочеркасск_молодежная_33.jpg",
+          "type": "file"
+        },
+        {
+          "name": "055_Новочеркасск_молодежная_33.txt",
           "type": "file"
         }
       ]

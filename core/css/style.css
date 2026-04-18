@@ -186,10 +186,12 @@ html, body {
 .field input[type="number"]::-webkit-inner-spin-button,
 .field input[type="number"]::-webkit-outer-spin-button {
   -webkit-appearance: none;
+  appearance: none;
   margin: 0;
 }
 .field input[type="number"] {
   -moz-appearance: textfield;
+  appearance: textfield;
 }
 .field select {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='rgba(255,255,255,0.3)' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
@@ -277,7 +279,6 @@ html, body {
 .ckitem.on .ckbox svg { opacity: 1; }
 
 /* ── SLIDER ── */
-.sl-wrap { }
 .sl-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 14px; }
 .sl-readout { font-size: 28px; font-weight: 200; color: var(--white); letter-spacing: -.02em; line-height: 1; }
 .sl-readout small { font-size: 12px; font-weight: 300; color: var(--fog); margin-left: 4px; letter-spacing: .04em; }

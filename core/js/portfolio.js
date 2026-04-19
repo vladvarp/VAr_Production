@@ -157,22 +157,24 @@ function renderSectionList(data) {
   container.innerHTML = html;
 }
 
-function renderSection(data, sectionName) {
-  const decodedSectionName = decodeURIComponent(sectionName);
-  const section = data.children?.find(c => c.name === decodedSectionName);
-  if (!section) {
-    window.location.hash = '';
-    return;
-  }
-  
-  const name = getDisplayName(section);
-  const subfolders = getSubfolders(section);
-  const comment = section.comment && section.comment.trim() ? section.comment : '';
-  
-  let contentHtml = '';
-  if (comment) {
-    contentHtml = `<div class="section-content">${parseComment(comment)}</div>`;
-  }
+ function renderSection(data, sectionName) {
+   const decodedSectionName = decodeURIComponent(sectionName);
+   const section = data.children?.find(c => c.name === decodedSectionName);
+   if (!section) {
+     window.location.hash = '';
+     return;
+   }
+   
+    const name = getDisplayName(section);
+    const subfolders = getSubfolders(section);
+    const comment = section.comment && section.comment.trim() ? section.comment : '';
+    
+     let contentHtml = '';
+     if (comment) {
+       const isLong = comment.length > 500;
+       const commentHtml = parseComment(comment);
+       contentHtml = `<div class="section-content${isLong ? ' collapsed' : ''}">${commentHtml}</div>${isLong ? '<button class="read-more-btn">Читать дальше</button>' : ''}`;
+     }
   let subfoldersHtml = '';
   const urls = getUrls(section);
   if (subfolders.length) {
@@ -258,15 +260,25 @@ function nextImage() {
   if (lbImg) lbImg.src = galleryImages[currentImageIndex];
 }
 
-document.addEventListener('contextmenu', e => e.preventDefault());
+ document.addEventListener('contextmenu', e => e.preventDefault());
 
-document.addEventListener('keydown', function(e) {
-  const lb = document.getElementById('lightbox');
-  if (!lb || !lb.classList.contains('active')) return;
-  if (e.key === 'Escape') closeLightbox();
-  if (e.key === 'ArrowLeft') prevImage();
-  if (e.key === 'ArrowRight') nextImage();
-});
+  document.addEventListener('click', function(e) {
+    if (e.target.classList.contains('read-more-btn')) {
+      const container = e.target.previousElementSibling;
+      if (container && container.classList.contains('section-content')) {
+        container.classList.remove('collapsed');
+        e.target.remove();
+      }
+    }
+  });
+
+ document.addEventListener('keydown', function(e) {
+   const lb = document.getElementById('lightbox');
+   if (!lb || !lb.classList.contains('active')) return;
+   if (e.key === 'Escape') closeLightbox();
+   if (e.key === 'ArrowLeft') prevImage();
+   if (e.key === 'ArrowRight') nextImage();
+ });
 
 function renderSubfolder(data, sectionName, subPath) {
   const subPathParts = subPath.split('/');
@@ -309,11 +321,13 @@ function renderSubfolder(data, sectionName, subPath) {
   const imgPath = folderPathParts.map(p => encodeURIComponent(p)).join('/') + '/' + encodeURIComponent(subPathName);
   galleryImages = files.map(f => `source/portfolio/${imgPath}/${f}`);
   
-  const comment = currentFolder.comment && currentFolder.comment.trim() ? currentFolder.comment : '';
-  let contentHtml = '';
-  if (comment) {
-    contentHtml = `<div class="section-content">${parseComment(comment)}</div>`;
-  }
+   const comment = currentFolder.comment && currentFolder.comment.trim() ? currentFolder.comment : '';
+    let contentHtml = '';
+    if (comment) {
+      const isLong = comment.length > 500;
+      const commentHtml = parseComment(comment);
+      contentHtml = `<div class="section-content${isLong ? ' collapsed' : ''}">${commentHtml}</div>${isLong ? '<button class="read-more-btn">Читать дальше</button>' : ''}`;
+    }
   
   let filesHtml = '';
   if (files.length) {

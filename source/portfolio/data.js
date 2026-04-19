@@ -147,7 +147,7 @@ const portfolioData = {
         },
         {
           "position": "",
-          "first_name": "",
+          "first_name": "ЖК Пальмира 2.0",
           "comment": "",
           "name": "058_ЖКПальмира2.url",
           "type": "URL",

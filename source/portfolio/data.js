@@ -10,6 +10,35 @@ const portfolioData = {
       "type": "directory",
       "children": [
         {
+          "position": "",
+          "first_name": "Визуализация интерьера",
+          "comment": "",
+          "name": "055_Визуализация_интерьера",
+          "type": "directory",
+          "children": [
+            {
+              "name": "055_Визуализация_интерьера.jpg",
+              "type": "file"
+            },
+            {
+              "name": "055_Визуализация_интерьера.txt",
+              "type": "file"
+            },
+            {
+              "position": "",
+              "first_name": "3D Тур",
+              "comment": "",
+              "name": "055_Визуализация_интерьера.url",
+              "type": "URL",
+              "URL": "https://sveta-marchenko.netlify.app/"
+            },
+            {
+              "name": "MAP.jpg",
+              "type": "file"
+            }
+          ]
+        },
+        {
           "name": "050_ЖК_Атаман.jpg",
           "type": "file"
         },
@@ -98,14 +127,6 @@ const portfolioData = {
           "type": "file"
         },
         {
-          "position": "",
-          "first_name": "Визуализация интерьера",
-          "comment": "",
-          "name": "055_Визуализация_интерьера.url",
-          "type": "URL",
-          "URL": "https://sveta-marchenko.netlify.app/"
-        },
-        {
           "name": "056_ЖК_Аврора.jpg",
           "type": "file"
         },
@@ -163,7 +184,7 @@ const portfolioData = {
         },
         {
           "position": "",
-          "first_name": "",
+          "first_name": "ЖК Северная Звезда",
           "comment": "",
           "name": "059_ЖКСевернаяЗвезда.url",
           "type": "URL",
@@ -889,6 +910,71 @@ const portfolioData = {
         },
         {
           "position": "",
+          "first_name": "Прихожая",
+          "comment": "",
+          "name": "054_01_Прихожая",
+          "type": "directory",
+          "children": [
+            {
+              "name": "1_Post.jpg",
+              "type": "file"
+            },
+            {
+              "name": "2.1_Post1.jpg",
+              "type": "file"
+            },
+            {
+              "name": "2_Post.jpg",
+              "type": "file"
+            },
+            {
+              "name": "2_Post1.jpg",
+              "type": "file"
+            },
+            {
+              "name": "2_Post2.jpg",
+              "type": "file"
+            },
+            {
+              "name": "2_Post3.jpg",
+              "type": "file"
+            },
+            {
+              "name": "Внутрь 1.jpg",
+              "type": "file"
+            },
+            {
+              "name": "Внутрь 2.jpg",
+              "type": "file"
+            },
+            {
+              "name": "Коллаж 1.jpg",
+              "type": "file"
+            },
+            {
+              "name": "Коллаж 2.jpg",
+              "type": "file"
+            },
+            {
+              "name": "На выход 1.jpg",
+              "type": "file"
+            },
+            {
+              "name": "На выход 2.jpg",
+              "type": "file"
+            },
+            {
+              "name": "На шкаф 1.jpg",
+              "type": "file"
+            },
+            {
+              "name": "На шкаф 2.jpg",
+              "type": "file"
+            }
+          ]
+        },
+        {
+          "position": "",
           "first_name": "ЖК Мечта: Отдел продаж",
           "comment": "",
           "name": "054_ЖК_Мечта_Отдел",
@@ -1499,6 +1585,14 @@ const portfolioData = {
         },
         {
           "name": "053_ЖК_Мечта_Холл.txt",
+          "type": "file"
+        },
+        {
+          "name": "054_01_Прихожая.jpg",
+          "type": "file"
+        },
+        {
+          "name": "054_01_Прихожая.txt",
           "type": "file"
         },
         {
@@ -2376,6 +2470,245 @@ const portfolioData = {
       "name": "продукция",
       "type": "directory",
       "children": [
+        {
+          "position": "",
+          "first_name": "AVSHAR Mattress production",
+          "comment": "## Компания «Авшар»\n\nОснована в 2010 году, компания «Авшар» специализируется на производстве ортопедических и анатомических матрасов, делая акцент на качестве и инновациях.\n\n---\n\n### Ассортимент продукции:\n\n* Пружинные и беспружинные матрасы различной жёсткости.\n* Модели для односпальных, двуспальных и полуторных кроватей.\n* Специальные матрасы для людей с проблемами опорно-двигательного аппарата и избыточным весом.\n* Летние и утеплённые варианты.\n* Детские и взрослые изделия.\n\n---\n\n### Материалы:\n\n* Натуральный латекс\n* Кокосовое волокно\n* «Умные» пены\n* Холлофайбер\n* Шерсть, хлопок и другие современные материалы.\n\n---\n\n### Сопутствующие товары:\n\n* Подушки\n* Постельное бельё\n* Домашний текстиль\n\n---\n\n### Основные преимущества:\n\n* Сертификация по российским и международным стандартам.\n* Время изготовления – до 10 дней.\n* Доставка по всей России и странам СНГ.\n* Оптовая и розничная продажа.\n\n\n***Заключение:** «Авшар» — это надёжные и качественные матрасы, обеспечивающие комфортный и здоровый сон.*",
+          "name": "049_AVSHAR_Mattress_production",
+          "type": "directory",
+          "children": [
+            {
+              "position": "",
+              "first_name": "Ракурс: 1",
+              "comment": "",
+              "name": "Ракурс_1",
+              "type": "directory",
+              "children": [
+                {
+                  "name": "Comfort combi.jpg",
+                  "type": "file"
+                },
+                {
+                  "name": "Comfort latex.jpg",
+                  "type": "file"
+                },
+                {
+                  "name": "Comfort lite mix.jpg",
+                  "type": "file"
+                },
+                {
+                  "name": "Comfort lite plus.jpg",
+                  "type": "file"
+                },
+                {
+                  "name": "Comfort lite.jpg",
+                  "type": "file"
+                },
+                {
+                  "name": "Comfort mix.jpg",
+                  "type": "file"
+                },
+                {
+                  "name": "Comfort plus.jpg",
+                  "type": "file"
+                },
+                {
+                  "name": "Comfort relef mix.jpg",
+                  "type": "file"
+                },
+                {
+                  "name": "Comfort relef plus.jpg",
+                  "type": "file"
+                },
+                {
+                  "name": "Comfort relef.jpg",
+                  "type": "file"
+                },
+                {
+                  "name": "Comfort.jpg",
+                  "type": "file"
+                },
+                {
+                  "name": "Mix Soft.jpg",
+                  "type": "file"
+                },
+                {
+                  "name": "Бэби Foam.jpg",
+                  "type": "file"
+                },
+                {
+                  "name": "Люкс  soft too.jpg",
+                  "type": "file"
+                },
+                {
+                  "name": "Люкс  soft.jpg",
+                  "type": "file"
+                },
+                {
+                  "name": "Люкс лайт.jpg",
+                  "type": "file"
+                },
+                {
+                  "name": "Люкс меморикс relaks.jpg",
+                  "type": "file"
+                },
+                {
+                  "name": "Люкс.jpg",
+                  "type": "file"
+                },
+                {
+                  "name": "Т1.jpg",
+                  "type": "file"
+                },
+                {
+                  "name": "Т2.jpg",
+                  "type": "file"
+                },
+                {
+                  "name": "Т3.jpg",
+                  "type": "file"
+                },
+                {
+                  "name": "Т4.jpg",
+                  "type": "file"
+                },
+                {
+                  "name": "Т5.jpg",
+                  "type": "file"
+                },
+                {
+                  "name": "Тедди latex.jpg",
+                  "type": "file"
+                },
+                {
+                  "name": "Тедди сезон.jpg",
+                  "type": "file"
+                },
+                {
+                  "name": "Топпер.jpg",
+                  "type": "file"
+                }
+              ]
+            },
+            {
+              "position": "",
+              "first_name": "Ракурс: 2",
+              "comment": "",
+              "name": "Ракурс_2",
+              "type": "directory",
+              "children": [
+                {
+                  "name": "Comfort combi.jpg",
+                  "type": "file"
+                },
+                {
+                  "name": "Comfort latex mix.jpg",
+                  "type": "file"
+                },
+                {
+                  "name": "Comfort latex.jpg",
+                  "type": "file"
+                },
+                {
+                  "name": "Comfort mix.jpg",
+                  "type": "file"
+                },
+                {
+                  "name": "Comfort plus.jpg",
+                  "type": "file"
+                },
+                {
+                  "name": "Comfort relef mix.jpg",
+                  "type": "file"
+                },
+                {
+                  "name": "Comfort relef plus.jpg",
+                  "type": "file"
+                },
+                {
+                  "name": "Comfort relef.jpg",
+                  "type": "file"
+                },
+                {
+                  "name": "Comfort.jpg",
+                  "type": "file"
+                },
+                {
+                  "name": "Lux soft eco.jpg",
+                  "type": "file"
+                },
+                {
+                  "name": "Mix Soft plus.jpg",
+                  "type": "file"
+                },
+                {
+                  "name": "Mix Soft.jpg",
+                  "type": "file"
+                },
+                {
+                  "name": "Люкс  soft too.jpg",
+                  "type": "file"
+                },
+                {
+                  "name": "Люкс  soft.jpg",
+                  "type": "file"
+                },
+                {
+                  "name": "Люкс меморикс relaks.jpg",
+                  "type": "file"
+                }
+              ]
+            },
+            {
+              "name": "Анимация.jpg",
+              "type": "file"
+            },
+            {
+              "name": "Анимация.txt",
+              "type": "file"
+            },
+            {
+              "position": "",
+              "first_name": "Видео-анимация",
+              "comment": "",
+              "name": "Анимация.url",
+              "type": "URL",
+              "URL": "https://disk.yandex.ru/i/bMaxM51R1gHXXw"
+            },
+            {
+              "name": "Ракурс_1.jpg",
+              "type": "file"
+            },
+            {
+              "name": "Ракурс_1.txt",
+              "type": "file"
+            },
+            {
+              "name": "Ракурс_2.jpg",
+              "type": "file"
+            },
+            {
+              "name": "Ракурс_2.txt",
+              "type": "file"
+            },
+            {
+              "name": "Сайт.jpg",
+              "type": "file"
+            },
+            {
+              "name": "Сайт.txt",
+              "type": "file"
+            },
+            {
+              "position": "",
+              "first_name": "Сайт: AVSHAR Mattress production",
+              "comment": "",
+              "name": "Сайт.url",
+              "type": "URL",
+              "URL": "https://matras-avshar.ru/"
+            }
+          ]
+        },
         {
           "position": "",
           "first_name": "PODIUM",
@@ -3559,6 +3892,14 @@ const portfolioData = {
           ]
         },
         {
+          "name": "049_AVSHAR_Mattress_production.jpg",
+          "type": "file"
+        },
+        {
+          "name": "049_AVSHAR_Mattress_production.txt",
+          "type": "file"
+        },
+        {
           "name": "050_PODIUM.jpg",
           "type": "file"
         },
@@ -3591,11 +3932,11 @@ const portfolioData = {
           "type": "file"
         },
         {
-          "name": "054_AVSHAR_Mattress_production.jpg",
+          "name": "054_AVSHAR_Mattress_production — копия.txt",
           "type": "file"
         },
         {
-          "name": "054_AVSHAR_Mattress_production.txt",
+          "name": "054_AVSHAR_Mattress_production.jpg",
           "type": "file"
         }
       ]

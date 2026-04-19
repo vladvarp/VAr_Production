@@ -44,10 +44,10 @@
      Overall apartment ~12×9 m → 120×90 units.
   ─────────────────────────────────────────────── */
   function buildPlan() {
-    const r = rng(gen * 17 + 3);
-    const W0 = 90, H0 = 120;
+    const r = rng(gen * 16 + 3);
+    const W0 = 1920, H0 = 1000;
 
-    const kx  = 0.50 + r() * 0.12;
+    const kx  = 0.80 + r() * 0.12;
     const ky  = 0.40 + r() * 0.12;
     const kx2 = 0.55 + r() * 0.10;
 
@@ -55,7 +55,7 @@
     const dy  = Math.round(H0 * ky);
     const dx2 = dx + Math.round((W0 - dx) * kx2);
 
-    const BW = 3, PW = 1.5;
+    const BW = 2, PW = 1;
     return { W0, H0, dx, dy, dx2, BW, PW, r };
   }
 
@@ -111,20 +111,20 @@
 
     /* ── DOORS ── */
     function door(wx, wy, horiz, ccw, wallThk) {
-      const dsz = 8;
+      const dsz = 80;
       clr(wx, wy, horiz ? dsz : wallThk, horiz ? wallThk : dsz);
       if (horiz) {
-        seg(wx, wy + wallThk/2, wx + dsz, wy + wallThk/2, 0.7, 'door', 0.85);
+        seg(wx, wy + wallThk/2, wx + dsz, wy + wallThk/2, 7, 'door', 0.85);
         const ox = ccw ? wx + dsz : wx;
         arc(ox, wy + (ccw ? 0 : wallThk), dsz,
             ccw ? Math.PI : 0,
-            ccw ? Math.PI * 1.5 : Math.PI * 0.5, 0.6, 'door');
+            ccw ? Math.PI * 1.5 : Math.PI * 0.5, 6, 'door');
       } else {
-        seg(wx + wallThk/2, wy, wx + wallThk/2, wy + dsz, 0.7, 'door', 0.85);
+        seg(wx + wallThk/2, wy, wx + wallThk/2, wy + dsz, 7, 'door', 0.85);
         const oy = ccw ? wy + dsz : wy;
         arc(wx + (ccw ? 0 : wallThk), oy, dsz,
             ccw ? -Math.PI * 0.5 : Math.PI * 0.5,
-            ccw ? 0 : Math.PI, 0.6, 'door');
+            ccw ? 0 : Math.PI, 6, 'door');
       }
     }
 
@@ -139,26 +139,26 @@
       clr(wx, wy, horiz ? size : wallThk, horiz ? wallThk : size);
       const t1 = wallThk * 0.15, t2 = wallThk * 0.50, t3 = wallThk * 0.85;
       if (horiz) {
-        for (const t of [t1, t2, t3]) seg(wx, wy + t, wx + size, wy + t, 0.45, 'win', 0.8);
-        seg(wx,       wy, wx,       wy + wallThk, 0.35, 'win', 0.45);
-        seg(wx + size, wy, wx + size, wy + wallThk, 0.35, 'win', 0.45);
+        for (const t of [t1, t2, t3]) seg(wx, wy + t, wx + size, wy + t, 4.5, 'win', 0.8);
+        seg(wx,       wy, wx,       wy + wallThk, 3.5, 'win', 0.45);
+        seg(wx + size, wy, wx + size, wy + wallThk, 3.5, 'win', 0.45);
       } else {
-        for (const t of [t1, t2, t3]) seg(wx + t, wy, wx + t, wy + size, 0.45, 'win', 0.8);
-        seg(wx, wy,       wx + wallThk, wy,       0.35, 'win', 0.45);
-        seg(wx, wy + size, wx + wallThk, wy + size, 0.35, 'win', 0.45);
+        for (const t of [t1, t2, t3]) seg(wx + t, wy, wx + t, wy + size, 4.5, 'win', 0.8);
+        seg(wx, wy,       wx + wallThk, wy,       3.5, 'win', 0.45);
+        seg(wx, wy + size, wx + wallThk, wy + size, 3.5, 'win', 0.45);
       }
     }
 
-    win(10,              0,      true,  ow, 14);
-    win(dx + ibw + 8,    0,      true,  ow, 16);
-    win(dx2 + pw + 5,    0,      true,  ow, 12);
-    win(W0 - ow,         8,      false, ow, 14);
-    win(W0 - ow,         dy + 8, false, ow, 16);
-    win(0,               dy - ow - 10, false, ow, 14);
-    win(8,               H0 - ow, true, ow, 12);
+    win(100,             0,      true,  ow, 140);
+    win(dx + ibw + 80,  0,      true,  ow, 160);
+    win(dx2 + pw + 50,  0,      true,  ow, 120);
+    win(W0 - ow,         80,     false, ow, 140);
+    win(W0 - ow,         dy + 80, false, ow, 160);
+    win(0,               dy - ow - 100, false, ow, 140);
+    win(80,              H0 - ow, true,  ow, 120);
 
     /* ── DIMENSION LINES ── */
-    const off = 10;
+    const off = 100;
     dim(-off, 0,    -off,  dy,   (dy  / 10).toFixed(1) + ' m', true);
     dim(-off, dy,   -off,  H0,   ((H0 - dy) / 10).toFixed(1) + ' m', true);
     dim(0,  -off,   dx - ibw/2, -off, (dx / 10).toFixed(1) + ' m', false);
@@ -166,7 +166,7 @@
     dim(0,  H0 + off, W0, H0 + off, (W0 / 10).toFixed(0) + '.0 m total', false);
 
     /* ── CENTRELINE DASHES ── */
-    dash(dx,   -6,      dx,   H0 + 6);
+    dash(dx,   -60,     dx,   H0 + 60);
     dash(0,     dy + pw/2, dx - ibw/2, dy + pw/2);
     dash(dx2 + pw/2, 0, dx2 + pw/2, dy);
 
@@ -192,8 +192,8 @@
     const sx = (W/DPR - margin * 2) / (W0 + 22);
     const sy = (H/DPR - margin * 2) / (H0 + 22);
     const sc = Math.min(sx, sy);
-    const ox = (W/DPR - W0 * sc) / 2 + 9 * sc;
-    const oy = (H/DPR - H0 * sc) / 2 + 9 * sc;
+    const ox = (W/DPR - W0 * sc) / 2 + 0 * sc;
+    const oy = (H/DPR - H0 * sc) / 2 - 1400 * sc;
     return { sc, ox, oy };
   }
 

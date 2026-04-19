@@ -258,6 +258,8 @@ function nextImage() {
   if (lbImg) lbImg.src = galleryImages[currentImageIndex];
 }
 
+document.addEventListener('contextmenu', e => e.preventDefault());
+
 document.addEventListener('keydown', function(e) {
   const lb = document.getElementById('lightbox');
   if (!lb || !lb.classList.contains('active')) return;
@@ -376,6 +378,7 @@ function renderSubfolder(data, sectionName, subPath) {
 }
 
 function handleRoute() {
+  window.scrollTo(0, 0);
   if (typeof portfolioData === 'undefined') {
     document.getElementById('portfolio-sections').innerHTML = '<p style="color:var(--gold);padding:20px;">Ошибка: данные не загружены</p>';
     return;

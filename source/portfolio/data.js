@@ -285,6 +285,104 @@ const portfolioData = {
           "type": "directory",
           "children": [
             {
+              "position": "",
+              "first_name": "Концепт: 1",
+              "comment": "",
+              "name": "Концепт_1",
+              "type": "directory",
+              "children": [
+                {
+                  "name": "1.jpg",
+                  "type": "file"
+                },
+                {
+                  "name": "10.jpg",
+                  "type": "file"
+                },
+                {
+                  "name": "2.jpg",
+                  "type": "file"
+                },
+                {
+                  "name": "3.jpg",
+                  "type": "file"
+                },
+                {
+                  "name": "4.jpg",
+                  "type": "file"
+                },
+                {
+                  "name": "5.jpg",
+                  "type": "file"
+                },
+                {
+                  "name": "6.jpg",
+                  "type": "file"
+                },
+                {
+                  "name": "7.jpg",
+                  "type": "file"
+                },
+                {
+                  "name": "8.jpg",
+                  "type": "file"
+                },
+                {
+                  "name": "9.jpg",
+                  "type": "file"
+                }
+              ]
+            },
+            {
+              "position": "",
+              "first_name": "Концепт: 2",
+              "comment": "",
+              "name": "Концепт_2",
+              "type": "directory",
+              "children": [
+                {
+                  "name": "1.jpg",
+                  "type": "file"
+                },
+                {
+                  "name": "10.jpg",
+                  "type": "file"
+                },
+                {
+                  "name": "2.jpg",
+                  "type": "file"
+                },
+                {
+                  "name": "3.2.jpg",
+                  "type": "file"
+                },
+                {
+                  "name": "4.2.jpg",
+                  "type": "file"
+                },
+                {
+                  "name": "5.jpg",
+                  "type": "file"
+                },
+                {
+                  "name": "6.2.jpg",
+                  "type": "file"
+                },
+                {
+                  "name": "7.jpg",
+                  "type": "file"
+                },
+                {
+                  "name": "8.2.jpg",
+                  "type": "file"
+                },
+                {
+                  "name": "9.jpg",
+                  "type": "file"
+                }
+              ]
+            },
+            {
               "name": "3D_Тур.jpg",
               "type": "file"
             },
@@ -301,59 +399,19 @@ const portfolioData = {
               "URL": "https://zhk-ataman.ru/F/index.htm"
             },
             {
-              "name": "ЖК Атаман (1).jpg",
+              "name": "Концепт_1.jpg",
               "type": "file"
             },
             {
-              "name": "ЖК Атаман (10).jpg",
+              "name": "Концепт_1.txt",
               "type": "file"
             },
             {
-              "name": "ЖК Атаман (11).jpg",
+              "name": "Концепт_2.jpg",
               "type": "file"
             },
             {
-              "name": "ЖК Атаман (12).jpg",
-              "type": "file"
-            },
-            {
-              "name": "ЖК Атаман (13).jpg",
-              "type": "file"
-            },
-            {
-              "name": "ЖК Атаман (14).jpg",
-              "type": "file"
-            },
-            {
-              "name": "ЖК Атаман (2).jpg",
-              "type": "file"
-            },
-            {
-              "name": "ЖК Атаман (3).jpg",
-              "type": "file"
-            },
-            {
-              "name": "ЖК Атаман (4).jpg",
-              "type": "file"
-            },
-            {
-              "name": "ЖК Атаман (5).jpg",
-              "type": "file"
-            },
-            {
-              "name": "ЖК Атаман (6).jpg",
-              "type": "file"
-            },
-            {
-              "name": "ЖК Атаман (7).jpg",
-              "type": "file"
-            },
-            {
-              "name": "ЖК Атаман (8).jpg",
-              "type": "file"
-            },
-            {
-              "name": "ЖК Атаман (9).jpg",
+              "name": "Концепт_2.txt",
               "type": "file"
             },
             {

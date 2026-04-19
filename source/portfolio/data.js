@@ -4228,6 +4228,247 @@ const portfolioData = {
           ]
         },
         {
+          "position": "",
+          "first_name": "Концепт парка развлечений",
+          "comment": "",
+          "name": "073_Концепт_парка_развлечений",
+          "type": "directory",
+          "children": [
+            {
+              "name": "A (1).jpg",
+              "type": "file"
+            },
+            {
+              "name": "A (10).jpg",
+              "type": "file"
+            },
+            {
+              "name": "A (11).jpg",
+              "type": "file"
+            },
+            {
+              "name": "A (12).jpg",
+              "type": "file"
+            },
+            {
+              "name": "A (13).jpg",
+              "type": "file"
+            },
+            {
+              "name": "A (14).jpg",
+              "type": "file"
+            },
+            {
+              "name": "A (15).jpg",
+              "type": "file"
+            },
+            {
+              "name": "A (16).jpg",
+              "type": "file"
+            },
+            {
+              "name": "A (2).jpg",
+              "type": "file"
+            },
+            {
+              "name": "A (3).jpg",
+              "type": "file"
+            },
+            {
+              "name": "A (4).jpg",
+              "type": "file"
+            },
+            {
+              "name": "A (5).jpg",
+              "type": "file"
+            },
+            {
+              "name": "A (6).jpg",
+              "type": "file"
+            },
+            {
+              "name": "A (7).jpg",
+              "type": "file"
+            },
+            {
+              "name": "A (8).jpg",
+              "type": "file"
+            },
+            {
+              "name": "A (9).jpg",
+              "type": "file"
+            }
+          ]
+        },
+        {
+          "position": "",
+          "first_name": "Тент",
+          "comment": "",
+          "name": "074_Тент",
+          "type": "directory",
+          "children": [
+            {
+              "name": "A (1).jpg",
+              "type": "file"
+            },
+            {
+              "name": "A (2).jpg",
+              "type": "file"
+            },
+            {
+              "name": "A (3).jpg",
+              "type": "file"
+            },
+            {
+              "name": "A (4).jpg",
+              "type": "file"
+            },
+            {
+              "name": "A (5).jpg",
+              "type": "file"
+            },
+            {
+              "name": "A (6).jpg",
+              "type": "file"
+            },
+            {
+              "name": "A (7).jpg",
+              "type": "file"
+            },
+            {
+              "name": "A (8).jpg",
+              "type": "file"
+            },
+            {
+              "name": "A (9).jpg",
+              "type": "file"
+            }
+          ]
+        },
+        {
+          "position": "",
+          "first_name": "Дом ИНПК Девелопмент",
+          "comment": "",
+          "name": "075_Дом_ИНПК_Девелопмент",
+          "type": "directory",
+          "children": [
+            {
+              "name": "A (1).jpg",
+              "type": "file"
+            },
+            {
+              "name": "A (2).jpg",
+              "type": "file"
+            },
+            {
+              "name": "A (3).jpg",
+              "type": "file"
+            },
+            {
+              "name": "A (4).jpg",
+              "type": "file"
+            },
+            {
+              "name": "A (5).jpg",
+              "type": "file"
+            },
+            {
+              "name": "A (6).jpg",
+              "type": "file"
+            },
+            {
+              "name": "A (7).jpg",
+              "type": "file"
+            },
+            {
+              "name": "A (8).jpg",
+              "type": "file"
+            }
+          ]
+        },
+        {
+          "position": "",
+          "first_name": "ЖК 2-я Круговая №3",
+          "comment": "",
+          "name": "076_ЖК_2я_Круговая_№3",
+          "type": "directory",
+          "children": [
+            {
+              "name": "A (1).jpg",
+              "type": "file"
+            },
+            {
+              "name": "A (2).jpg",
+              "type": "file"
+            },
+            {
+              "name": "A (3).jpg",
+              "type": "file"
+            },
+            {
+              "name": "A (4).jpg",
+              "type": "file"
+            },
+            {
+              "name": "A (5).jpg",
+              "type": "file"
+            },
+            {
+              "name": "A (6).jpg",
+              "type": "file"
+            },
+            {
+              "name": "A (7).jpg",
+              "type": "file"
+            },
+            {
+              "name": "A (8).jpg",
+              "type": "file"
+            }
+          ]
+        },
+        {
+          "position": "",
+          "first_name": "Коттеджный поселок",
+          "comment": "",
+          "name": "077_Коттеджный_поселок",
+          "type": "directory",
+          "children": [
+            {
+              "name": "A (1).jpg",
+              "type": "file"
+            },
+            {
+              "name": "A (2).jpg",
+              "type": "file"
+            },
+            {
+              "name": "A (3).jpg",
+              "type": "file"
+            },
+            {
+              "name": "A (4).jpg",
+              "type": "file"
+            },
+            {
+              "name": "A (5).jpg",
+              "type": "file"
+            },
+            {
+              "name": "A (6).jpg",
+              "type": "file"
+            },
+            {
+              "name": "A (7).jpg",
+              "type": "file"
+            },
+            {
+              "name": "A (8).jpg",
+              "type": "file"
+            }
+          ]
+        },
+        {
           "name": "050_Резиденция_Романов.jpg",
           "type": "file"
         },
@@ -4409,6 +4650,46 @@ const portfolioData = {
         },
         {
           "name": "072_Дом-школа.txt",
+          "type": "file"
+        },
+        {
+          "name": "073_Концепт_парка_развлечений.jpg",
+          "type": "file"
+        },
+        {
+          "name": "073_Концепт_парка_развлечений.txt",
+          "type": "file"
+        },
+        {
+          "name": "074_Тент.jpg",
+          "type": "file"
+        },
+        {
+          "name": "074_Тент.txt",
+          "type": "file"
+        },
+        {
+          "name": "075_Дом_ИНПК_Девелопмент.jpg",
+          "type": "file"
+        },
+        {
+          "name": "075_Дом_ИНПК_Девелопмент.txt",
+          "type": "file"
+        },
+        {
+          "name": "076_ЖК_2я_Круговая_№3.jpg",
+          "type": "file"
+        },
+        {
+          "name": "076_ЖК_2я_Круговая_№3.txt",
+          "type": "file"
+        },
+        {
+          "name": "077_Коттеджный_поселок.jpg",
+          "type": "file"
+        },
+        {
+          "name": "077_Коттеджный_поселок.txt",
           "type": "file"
         }
       ]

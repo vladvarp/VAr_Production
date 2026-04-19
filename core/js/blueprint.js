@@ -10,15 +10,27 @@
 
   const ctx = cv.getContext('2d');
   const DPR = Math.min(window.devicePixelRatio || 1, 2);
-  const BG  = '#030508';
+
+  /* ═══ COLOURS ═══ */
+  const COL = {
+    BG:            'rgba(22, 20, 20, 0.65)',
+    WALL:          'rgba(92, 83, 83, 0.92)',
+    PART:          'rgba(80, 70, 70, 0.92)',
+    DIM:           'rgba(120,90,90, 0.92)',
+    HATCH:         'rgba(37, 35, 35, 0.92)',
+    CURSOR:        'rgba(85, 70, 70, 0.92)',
+    CURSOR_FILL:   'rgba(49, 44, 44, 0.1)',
+    GRID:          'rgba(0, 0, 0, 0.03)',
+    STAMP:         'rgba(120,90,90,0.28)',
+    TEXT:          'rgba(120,90,90,0.55)',
+    DASH:          'rgba(120,90,90,0.17)',
+  };
+  const WALL_A  = (a) => COL.WALL + a + ')';
+  const PART_A  = (a) => COL.PART + a + ')';
+  const DIM_A   = (a) => COL.DIM + a + ')';
+  const HATCH_A = (a) => COL.HATCH + a + ')';
 
   let W, H, plan, strokes, curIdx, curT, gen = 0;
-
-  /* ── colours ── */
-  const WALL_A  = (a) => `rgba(180,220,245,${a})`;
-  const PART_A  = (a) => `rgba(140,195,225,${a})`;
-  const DIM_A   = (a) => `rgba(90,145,185,${a})`;
-  const HATCH_A = (a) => `rgba(120,180,215,${a})`;
 
   /* ── seeded random ── */
   function rng(seed) {
@@ -33,17 +45,17 @@
   ─────────────────────────────────────────────── */
   function buildPlan() {
     const r = rng(gen * 17 + 3);
-    const W0 = 120, H0 = 90;
+    const W0 = 90, H0 = 120;
 
-    const kx  = 0.40 + r() * 0.12;
-    const ky  = 0.50 + r() * 0.12;
+    const kx  = 0.50 + r() * 0.12;
+    const ky  = 0.40 + r() * 0.12;
     const kx2 = 0.55 + r() * 0.10;
 
     const dx  = Math.round(W0 * kx);
     const dy  = Math.round(H0 * ky);
     const dx2 = dx + Math.round((W0 - dx) * kx2);
 
-    const BW = 4, PW = 2;
+    const BW = 3, PW = 1.5;
     return { W0, H0, dx, dy, dx2, BW, PW, r };
   }
 
@@ -197,7 +209,7 @@
     const getCol = (col, a) => (colMap[col] || WALL_A)(a);
 
     if (s.t === 'clear') {
-      ctx.fillStyle = BG;
+      ctx.fillStyle = COL.BG;
       ctx.fillRect(px(s.x) - 1, py(s.y) - 1, ps(s.w) + 2, ps(s.h) + 2);
       return;
     }
@@ -207,7 +219,8 @@
       ctx.globalAlpha = s.a || 1;
       ctx.strokeStyle = getCol(s.col, 1);
       ctx.lineWidth   = Math.max(ps(s.lw), 0.7 * d);
-      ctx.lineCap     = 'square';
+      ctx.lineCap     = 'butt';
+      ctx.lineJoin    = 'round';
       ctx.beginPath();
       ctx.moveTo(px(s.x1), py(s.y1));
       ctx.lineTo(px(s.x1) + ps(ddx) * t, py(s.y1) + ps(ddy) * t);
@@ -229,7 +242,7 @@
       if (!full) return;
       const hx = px(s.x), hy = py(s.y), hw = ps(s.w), hh = ps(s.h);
       ctx.save();
-      ctx.globalAlpha = 0.14;
+      ctx.globalAlpha = 0.08;
       ctx.strokeStyle = HATCH_A(1);
       ctx.lineWidth   = 0.65 * d;
       ctx.beginPath();
@@ -271,7 +284,7 @@
       if (!full) return;
       ctx.save();
       ctx.globalAlpha = 0.17;
-      ctx.strokeStyle = DIM_A(1);
+      ctx.strokeStyle = COL.DASH;
       ctx.lineWidth   = 0.5 * d;
       ctx.setLineDash([3*sc*d, 4*sc*d]);
       ctx.beginPath();
@@ -285,7 +298,7 @@
       if (!full) return;
       ctx.save();
       ctx.globalAlpha = s.a;
-      ctx.fillStyle   = DIM_A(1);
+      ctx.fillStyle   = COL.TEXT;
       ctx.font        = `${Math.max(s.fs*sc*d, 8)}px monospace`;
       ctx.textAlign   = 'center';
       ctx.fillText(s.str, px(s.x), py(s.y));
@@ -297,8 +310,8 @@
       const bx = px(s.W0) - bw - 2*d, by = py(s.H0) - bh - 2*d;
       ctx.save();
       ctx.globalAlpha = 0.28;
-      ctx.strokeStyle = DIM_A(1);
-      ctx.fillStyle   = DIM_A(1);
+      ctx.strokeStyle = COL.STAMP;
+      ctx.fillStyle   = COL.STAMP;
       ctx.lineWidth   = 0.6 * d;
       ctx.strokeRect(bx, by, bw, bh);
       ctx.font      = `${Math.max(2.5*sc*d, 7)}px monospace`;
@@ -328,8 +341,8 @@
     if (x == null) return;
     const r = 4.5 * DPR;
     ctx.save();
-    ctx.strokeStyle = 'rgba(220,238,255,0.92)';
-    ctx.fillStyle   = 'rgba(160,210,240,0.10)';
+    ctx.strokeStyle = COL.CURSOR;
+    ctx.fillStyle   = COL.CURSOR_FILL;
     ctx.lineWidth   = 1.1 * DPR;
     ctx.beginPath(); ctx.arc(x, y, r, 0, Math.PI*2); ctx.fill(); ctx.stroke();
     ctx.globalAlpha = 0.5;
@@ -343,8 +356,9 @@
 
   function drawGrid() {
     ctx.save();
-    ctx.strokeStyle = 'rgba(90,145,185,0.03)';
-    ctx.lineWidth   = DPR;
+    ctx.strokeStyle = COL.GRID;
+    ctx.lineWidth   = DPR * 1.5;
+    ctx.imageSmoothingEnabled = false;
     const gs = 44 * DPR;
     for (let x=0; x<W; x+=gs) { ctx.beginPath(); ctx.moveTo(x,0); ctx.lineTo(x,H); ctx.stroke(); }
     for (let y=0; y<H; y+=gs) { ctx.beginPath(); ctx.moveTo(0,y); ctx.lineTo(W,y); ctx.stroke(); }
@@ -364,7 +378,7 @@
 
   function loop() {
     requestAnimationFrame(loop);
-    ctx.fillStyle = BG; ctx.fillRect(0, 0, W, H);
+    ctx.fillStyle = COL.BG; ctx.fillRect(0, 0, W, H);
     drawGrid();
 
     curT += SPEED;

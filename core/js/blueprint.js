@@ -14,7 +14,7 @@
   /* ═══ COLOURS ═══ */
   const COL = {
     BG:            'rgba(22, 20, 20, 0.65)',
-    WALL:          'rgba(92, 83, 83, 0.92)',
+    WALL:          'rgba(43, 40, 40, 0.92)',
     PART:          'rgba(80, 70, 70, 0.92)',
     DIM:           'rgba(120,90,90, 0.92)',
     HATCH:         'rgba(37, 35, 35, 0.92)',
@@ -45,7 +45,7 @@
   ─────────────────────────────────────────────── */
   function buildPlan() {
     const r = rng(gen * 16 + 3);
-    const W0 = 1920, H0 = 1000;
+    const W0 = 1500, H0 = 700;
 
     const kx  = 0.80 + r() * 0.12;
     const ky  = 0.40 + r() * 0.12;
@@ -192,9 +192,13 @@
     const sx = (W/DPR - margin * 2) / (W0 + 22);
     const sy = (H/DPR - margin * 2) / (H0 + 22);
     const sc = Math.min(sx, sy);
-    const ox = (W/DPR - W0 * sc) / 2 + 0 * sc;
-    const oy = (H/DPR - H0 * sc) / 2 - 1400 * sc;
-    return { sc, ox, oy };
+    const rightEdge = (W/DPR) * 0.97;
+    const leftLimit = (W/DPR) * 0.50;
+    const maxWidth = rightEdge - leftLimit;
+    const adjustedSc = Math.min(sc, maxWidth / W0);
+    const ox = rightEdge - W0 * adjustedSc;
+    const oy = margin;
+    return { sc: adjustedSc, ox, oy };
   }
 
   /* ── draw stroke ── */

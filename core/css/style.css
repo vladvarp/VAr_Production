@@ -24,10 +24,18 @@
 
 html, body {
   min-height: 100vh;
-  background: var(--void);
+  background: transparent;
   font-family: 'Jost', sans-serif;
   color: var(--snow);
   -webkit-font-smoothing: antialiased;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: var(--void);
+  z-index: -2;
 }
 
 ::-webkit-scrollbar { width: 6px; }
